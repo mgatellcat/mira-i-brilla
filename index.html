@@ -738,11 +738,14 @@ function hairFront(h){
   let s = `<path d="M87 120 Q82 44 150 42 Q218 44 213 120 Q206 92 190 82 Q178 98 162 86 Q150 100 138 86 Q122 98 110 84 Q94 94 87 120 Z" fill="${HR}" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/><path d="M112 62 Q130 52 152 52" stroke="${HRL}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
   if (h === 'cua') s += `<circle cx="204" cy="72" r="10" fill="#ff5fa8" stroke="${PL}" stroke-width="3"/>`;
   if (h === 'monyo') s += `<rect x="128" y="58" width="44" height="9" rx="4.5" fill="#ff5fa8" stroke="${PL}" stroke-width="2.5"/>`;
-  if (h === 'trena') {
-    [[202,150],[207,172],[210,194],[211,216],[210,238]].forEach(([x,y]) => s += `<ellipse cx="${x}" cy="${y}" rx="14" ry="13" fill="${HR}" stroke="${PL}" stroke-width="3"/>`);
-    s += `<rect x="201" y="250" width="18" height="8" rx="4" fill="#ff5fa8" stroke="${PL}" stroke-width="2.5"/><path d="M204 258 L200 274 L210 266 L220 274 L216 258 Z" fill="${HR}" stroke="${PL}" stroke-width="2.5" stroke-linejoin="round"/>`;
-  }
   return s;
+}
+/* braid falling from behind the right ear over the shoulder (drawn before arms and head) */
+function braidFront(h){
+  if (h !== 'trena') return '';
+  let s = '';
+  [[214,146],[218,168],[220,190],[220,212],[218,234]].forEach(([x,y]) => s += `<ellipse cx="${x}" cy="${y}" rx="13" ry="12.5" fill="${HR}" stroke="${PL}" stroke-width="3"/>`);
+  return s + `<rect x="209" y="244" width="18" height="8" rx="4" fill="#ff5fa8" stroke="${PL}" stroke-width="2.5"/><path d="M212 252 L208 268 L218 260 L228 268 L224 252 Z" fill="${HR}" stroke="${PL}" stroke-width="2.5" stroke-linejoin="round"/>`;
 }
 function headAcc(k){
   switch(k){
@@ -771,13 +774,15 @@ function shoe(k, fx){
   }
   return '';
 }
+/* Motilo Style colours: tubes and moulded parts take the pony colour; the corset wears a light printed cover */
+function tint(hex, k){ const n = parseInt(hex.slice(1), 16); const c = [n>>16, (n>>8)&255, n&255].map(v => Math.round(v + (255-v)*k)); return '#' + c.map(v => v.toString(16).padStart(2,'0')).join(''); }
+function castor(cx, cy, r){ return `<g class="wheel"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#8d8f99" stroke="${PL}" stroke-width="2.5"/><circle cx="${cx}" cy="${cy}" r="${r*.42}" fill="#fff"/></g>`; }
 function girlSVG(o, opt={}){
-  const d = col(o.dress), w = col(o.pony), pose = opt.pose || 'wave';
-  let s = `<ellipse cx="150" cy="428" rx="120" ry="10" fill="${PL}" opacity=".14"/>`;
-  // Motilo walker: rear column, rear base & wheels
-  s += `<rect x="141" y="196" width="18" height="194" rx="8" fill="${w.dark}" ${ST}/>`;
-  s += `<rect x="72" y="384" width="156" height="14" rx="7" fill="${w.dark}" ${ST}/>`;
-  s += wheel(88,404,13) + wheel(212,404,13);
+  const d = col(o.dress), w = col(o.pony), pose = opt.pose || 'wave', cov = tint(w.hex, .72);
+  let s = `<ellipse cx="150" cy="430" rx="122" ry="9" fill="${PL}" opacity=".14"/>`;
+  // base seen from the front: rear tubes and rear castors (behind the girl)
+  s += `<path d="M150 396 L80 386 M150 396 L220 386" stroke="${PL}" stroke-width="13" stroke-linecap="round"/><path d="M150 396 L80 386 M150 396 L220 386" stroke="${w.dark}" stroke-width="7" stroke-linecap="round"/>`;
+  s += castor(80,398,9) + castor(220,398,9);
   s += hairBack(o.hair);
   // legs + shoes
   s += `<rect x="129" y="296" width="16" height="80" rx="8" fill="${SK}" ${ST}/><rect x="155" y="296" width="16" height="80" rx="8" fill="${SK}" ${ST}/>`;
@@ -786,22 +791,31 @@ function girlSVG(o, opt={}){
   s += `<rect x="139" y="158" width="22" height="42" rx="9" fill="${SKD}"/>`;
   s += `<path d="M112 256 Q150 246 188 256 L216 318 Q150 338 84 318 Z" fill="${d.hex}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
   s += `<path d="M92 314 Q150 332 208 314" stroke="#fff" stroke-width="5" fill="none" opacity=".75" stroke-dasharray="1 11" stroke-linecap="round"/>`;
-  [[110,300],[190,300],[150,318],[128,280],[172,282]].forEach(([x,y]) => s += `<path d="${starPath(x,y,6,2.6)}" fill="#fff" opacity=".9"/>`);
+  [[110,300],[190,300],[128,280],[172,282]].forEach(([x,y]) => s += `<path d="${starPath(x,y,6,2.6)}" fill="#fff" opacity=".9"/>`);
   s += `<rect x="117" y="186" width="66" height="84" rx="24" fill="${d.hex}" stroke="${PL}" stroke-width="3.5"/>`;
-  // corset (custom trunk support) + side frame + front wheels
-  s += `<path d="M106 250 L64 398 M194 250 L236 398" stroke="${PL}" stroke-width="17" stroke-linecap="round"/><path d="M106 250 L64 398 M194 250 L236 398" stroke="${w.dark}" stroke-width="10" stroke-linecap="round"/>`;
-  s += `<path d="M103 220 Q103 206 118 206 L182 206 Q197 206 197 220 L199 256 Q199 272 184 272 L116 272 Q101 272 101 256 Z" fill="${w.hex}" stroke="${PL}" stroke-width="3.5"/>`;
-  s += `<path d="M112 216 Q150 209 188 216" stroke="#fff" stroke-width="4.5" opacity=".6" fill="none" stroke-linecap="round"/>`;
-  s += `<rect x="101" y="254" width="98" height="9" fill="${w.dark}" stroke="${PL}" stroke-width="2.5"/><rect x="142" y="251" width="16" height="15" rx="3" fill="#fff" stroke="${PL}" stroke-width="2.5"/>`;
-  [125,150,175].forEach(x => s += `<g transform="translate(${x-13} 218) scale(.26)">${sticker(o.stick)}</g>`);
-  s += wheel(62,406,17) + wheel(238,406,17);
-  // arms
+  // saddle of the corset, between the legs
+  s += `<path d="M136 326 Q150 352 164 326 Q150 333 136 326 Z" fill="${cov}" ${ST}/>`;
+  // central column in front of the girl, from the base up to the handlebar
+  s += `<rect x="144" y="236" width="12" height="166" rx="5" fill="${w.dark}" ${ST}/>`;
+  // moulded centre piece, front bumper and front castors
+  s += `<path d="M124 408 Q150 388 176 408 L172 416 L128 416 Z" fill="${w.hex}" ${ST}/>`;
+  s += castor(66,424,8) + castor(234,424,8);
+  s += `<path d="M54 404 Q150 430 246 404 Q252 412 246 418 Q150 444 54 418 Q48 412 54 404 Z" fill="${w.hex}" ${ST}/><path d="M70 410 Q150 430 230 410" stroke="#fff" stroke-width="3.5" opacity=".55" fill="none" stroke-linecap="round"/>`;
+  // saddle corset (anterior trunk support) with the printed "Style" cover
+  s += braidFront(o.hair);
+  s += `<path d="M104 218 Q104 202 120 202 L180 202 Q196 202 196 218 L198 254 Q198 270 182 270 L118 270 Q102 270 102 254 Z" fill="${cov}" stroke="${PL}" stroke-width="3.5"/>`;
+  [[121,220],[150,216],[179,220],[123,248],[177,248]].forEach(([x,y]) => s += `<g transform="translate(${x-9} ${y-9}) scale(.18)">${sticker(o.stick)}</g>`);
+  s += `<path d="M106 210 Q150 197 194 210" stroke="#ece6f6" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M106 210 Q150 197 194 210" stroke="${PL}" stroke-width="2" fill="none" opacity=".35"/>`;
+  s += `<rect x="102" y="258" width="96" height="8" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2.5"/>`;
+  // T handlebar with black grips on top of the column
+  s += `<rect x="92" y="232" width="116" height="9" rx="4.5" fill="#a7abb5" ${ST}/><rect x="80" y="229" width="26" height="15" rx="7.5" fill="#3b2a4a" ${ST}/><rect x="194" y="229" width="26" height="15" rx="7.5" fill="#3b2a4a" ${ST}/><circle cx="150" cy="237" r="8" fill="${w.dark}" ${ST}/>`;
+  // arms: hands on the grips (one free to wave or hold the microphone)
   const arm = (dd, hx, hy) => `<path d="${dd}" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="${dd}" stroke="${SK}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="${hx}" cy="${hy}" r="10.5" fill="${SK}" ${ST}/>`;
-  s += arm('M120 206 Q96 216 88 246', 87, 250);
+  s += arm('M120 206 Q98 212 94 232', 93, 236);
   if (pose === 'mic') {
     s += arm('M180 206 Q208 196 196 168', 194, 162);
     s += `<path d="M194 166 L182 140" stroke="${PL}" stroke-width="11" stroke-linecap="round"/><path d="M194 166 L182 140" stroke="#ff7ab8" stroke-width="6" stroke-linecap="round"/><circle cx="179" cy="134" r="11" fill="#e9e3f5" ${ST}/>`;
-  } else if (pose === 'down') s += arm('M180 206 Q204 216 212 246', 213, 250);
+  } else if (pose === 'down') s += arm('M180 206 Q202 212 206 232', 207, 236);
   else s += arm('M180 206 Q206 192 214 160', 215, 154);
   s += `<circle cx="120" cy="198" r="13" fill="${d.hex}" ${ST}/><circle cx="180" cy="198" r="13" fill="${d.hex}" ${ST}/>`;
   // head & face
@@ -861,26 +875,39 @@ function headAccSide(k){
   }
   return '';
 }
-/* the girl seen from the side, walking with her pony (faces right; flipped with CSS to go left) */
+/* the girl seen from the side, walking with her Motilo (faces right; flipped with CSS to go left).
+   The column and T handlebar are in front of her, the saddle corset holds her chest and goes between
+   her legs, a soft back support closes it behind, and the low base has a front bumper and 4 castors. */
 function girlSide(o){
-  const d = col(o.dress), w = col(o.pony), [hb, hf] = hairSide(o.hair);
+  const d = col(o.dress), w = col(o.pony), cov = tint(w.hex, .72), [hb, hf] = hairSide(o.hair);
   const leg = (cls, fill) => `<g class="leg ${cls}"><rect x="146" y="290" width="16" height="86" rx="8" fill="${fill}" ${ST}/>${shoeSide(o.shoes)}</g>`;
-  let s = `<ellipse cx="156" cy="428" rx="118" ry="10" fill="${PL}" opacity=".14"/>`;
-  s += `<path d="M98 392 L112 236" stroke="${PL}" stroke-width="17" stroke-linecap="round"/><path d="M98 392 L112 236" stroke="${w.dark}" stroke-width="10" stroke-linecap="round"/>`;
-  s += `<rect x="70" y="384" width="178" height="14" rx="7" fill="${w.dark}" ${ST}/>`;
-  s += wheel(84,406,17) + wheel(234,406,17);
+  let s = `<ellipse cx="160" cy="430" rx="120" ry="9" fill="${PL}" opacity=".14"/>`;
+  // base: tube along the floor, moulded centre piece, front bumper, castors
+  s += `<path d="M74 408 L238 408" stroke="${PL}" stroke-width="13" stroke-linecap="round"/><path d="M74 408 L238 408" stroke="${w.dark}" stroke-width="7" stroke-linecap="round"/>`;
+  s += castor(76,420,10) + castor(236,421,10);
   s += hb;
   s += leg('leg-b', SKD) + leg('leg-f', SK);
+  s += `<path d="M196 400 Q214 392 236 396 Q256 400 254 410 Q252 418 232 418 L200 418 Q190 410 196 400 Z" fill="${w.hex}" ${ST}/>`;
+  s += `<path d="M150 412 Q164 398 186 402 L190 414 L150 416 Z" fill="${w.hex}" ${ST}/>`;
+  // body
   s += `<rect x="146" y="156" width="20" height="42" rx="9" fill="${SKD}"/>`;
   s += `<path d="M126 254 Q156 244 186 254 L204 316 Q156 334 108 316 Z" fill="${d.hex}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
-  [[124,300],[186,302],[156,316],[146,280]].forEach(([x,y]) => s += `<path d="${starPath(x,y,6,2.6)}" fill="#fff" opacity=".9"/>`);
+  [[124,300],[156,316],[146,280]].forEach(([x,y]) => s += `<path d="${starPath(x,y,6,2.6)}" fill="#fff" opacity=".9"/>`);
   s += `<rect x="128" y="186" width="56" height="84" rx="22" fill="${d.hex}" stroke="${PL}" stroke-width="3.5"/>`;
-  s += `<rect x="114" y="206" width="84" height="66" rx="22" fill="${w.hex}" stroke="${PL}" stroke-width="3.5"/><path d="M124 216 Q156 209 188 216" stroke="#fff" stroke-width="4.5" opacity=".6" fill="none" stroke-linecap="round"/>`;
-  s += `<rect x="114" y="254" width="84" height="9" fill="${w.dark}" stroke="${PL}" stroke-width="2.5"/>`;
-  [140,172].forEach(x => s += `<g transform="translate(${x-13} 220) scale(.26)">${sticker(o.stick)}</g>`);
-  s += `<path d="M190 252 L232 398" stroke="${PL}" stroke-width="17" stroke-linecap="round"/><path d="M190 252 L232 398" stroke="${w.dark}" stroke-width="10" stroke-linecap="round"/>`;
-  s += `<path d="M152 206 Q178 214 200 232" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M152 206 Q178 214 200 232" stroke="${SK}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="202" cy="234" r="10.5" fill="${SK}" ${ST}/>`;
+  // soft back support + straps
+  s += `<rect x="106" y="206" width="18" height="62" rx="9" fill="${cov}" ${ST}/>`;
+  s += `<rect x="112" y="226" width="86" height="7" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2"/><rect x="112" y="250" width="86" height="7" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2"/>`;
+  // front shell of the saddle corset: chest pad going down and under, between the legs
+  s += `<path d="M182 204 Q206 204 206 226 L206 262 Q204 296 170 302 L140 304 Q130 298 140 290 L166 286 Q184 280 184 262 Z" fill="${cov}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
+  [[195,222],[195,252]].forEach(([x,y]) => s += `<g transform="translate(${x-8} ${y-8}) scale(.16)">${sticker(o.stick)}</g>`);
+  // column from the base up to the handlebar, clamp to the corset
+  s += `<path d="M226 404 L214 238" stroke="${PL}" stroke-width="14" stroke-linecap="round"/><path d="M226 404 L214 238" stroke="${w.dark}" stroke-width="8" stroke-linecap="round"/>`;
+  s += `<rect x="204" y="262" width="16" height="12" rx="3" fill="#3b2a4a" stroke="${PL}" stroke-width="2"/>`;
+  s += `<path d="M200 232 L226 232" stroke="${PL}" stroke-width="10" stroke-linecap="round"/><path d="M200 232 L226 232" stroke="#a7abb5" stroke-width="5" stroke-linecap="round"/><circle cx="210" cy="232" r="9" fill="#3b2a4a" stroke="${PL}" stroke-width="2.5"/>`;
+  // arm holding the grip
+  s += `<path d="M152 206 Q182 212 206 230" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M152 206 Q182 212 206 230" stroke="${SK}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="208" cy="231" r="10.5" fill="${SK}" ${ST}/>`;
   s += `<circle cx="150" cy="200" r="13" fill="${d.hex}" ${ST}/>`;
+  // head (profile: eye, cheek, nose and smile on the right)
   s += `<circle cx="156" cy="110" r="60" fill="${SK}" ${ST}/>`;
   s += `<path d="M210 106 Q224 114 211 122" fill="${SK}" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/>`;
   s += `<path d="M172 110 Q182 98 192 110" stroke="${PL}" stroke-width="5.5" fill="none" stroke-linecap="round"/><path d="M192 109 L198 104" stroke="${PL}" stroke-width="3" stroke-linecap="round"/>`;
