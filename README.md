@@ -9,6 +9,8 @@ Joc kawaii per practicar el control amb la mirada (Tobii + TD Control). És per 
 2. **Encén el concert.** A l'escenari hi ha pictogrames ARASAAC de colors, roba i instruments, sempre visibles. El joc diu què ha de buscar («Busca la guitarra!») i ensenya el pictograma. Només reacciona el que se li demana: li cau el focus, balla i surten estrelles. Al final hi ha un concert.
 3. **Vesteix-te d'estrella.** Amb opcions que són només pictogrames ARASAAC, tria el pentinat, el vestit, les sabates, què porta al cap, el color del pony i els adhesius. Després li fan una foto, que queda a l'esquerra, i a la dreta li pregunten què ha triat («Quin pentinat has triat?») amb 4, 6 o 8 opcions en pictogrames ARASAAC. Si encerta, la nena de la foto balla i surten estrelles. Si s'equivoca, el joc diu «Mira bé la foto i torna-ho a intentar!».
 
+   En acabar, surt **la seva fitxa**: la foto i una frase per cada cosa triada, en primera persona i en majúscules («PORTO UNA CUA.», «EL MEU PONY ÉS ROSA.»), amb pictogrames ARASAAC als noms, adjectius i verbs. L'adult la pot baixar en **PDF** (A4) amb el botó «📄 Descarregar PDF». Vegeu `exemple-fitxa.png`.
+
    Al costat de la nena hi ha el botó **«Descansar la mirada»**. Mentre està en pausa, la mirada no tria res i pot mirar les opcions amb calma. Es torna a activar mirant el botó, tocant-lo a la pantalla o amb el ratolí.
 
 També hi ha l'opció **Tots els jocs**, que els juga seguits. En acabar, el joc la felicita i torna a l'inici.
@@ -31,7 +33,8 @@ Durant el joc, els botons «⌂ Inici» i «⏭ Següent» són per a l'adult i 
 
 ## Codi font (`codi-font/`)
 - `src.html`: el joc, sense els pictogrames ni la veu gravada.
-- `build.py`: posa els pictogrames i la veu dins del fitxer i genera `index.html`.
+- `build.py`: posa els pictogrames, la veu i jsPDF dins del fitxer i genera `index.html`.
+- `vendor/jspdf.umd.min.js`: jsPDF 2.5.1 (MIT), per fer el PDF.
 - `frases.js` i `phrases.json`: la llista de totes les frases que diu el joc.
 - `veu_ona.py`: grava cada frase amb Ona (Python 3.11 amb `piper-phonemize==1.1.0` i `onnxruntime`), tres preses per frase.
 - `tria_millor_presa.py`: escull la presa que s'entén millor (comprovat amb Whisper).

@@ -10,6 +10,7 @@ for i in sorted(ids):
     mp[str(i)]='data:image/png;base64,'+base64.b64encode(open(f,'rb').read()).decode()
 print(len(mp),'pictos')
 out=src.replace('"__PICTOS__"',json.dumps(mp))
+out=out.replace('/*__JSPDF__*/', open(os.path.join(d,'jspdf.umd.min.js')).read())
 vj=sys.argv[4] if len(sys.argv)>4 else None
 out=out.replace('"__VOICE__"', open(vj).read() if vj else '{}')
 open(sys.argv[2],'w').write(out)

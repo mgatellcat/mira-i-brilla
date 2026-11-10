@@ -207,6 +207,18 @@ body.gz-paused .opts{border-radius:3.4vmin;box-shadow:0 0 0 .8vmin #fff3b0}
 @keyframes stepleg{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
 .qphoto.pulse .polaroid{animation:hintp 1s ease-in-out 2}
 
+.sheetprev{background:var(--white);border:.55vmin solid var(--plum);border-radius:3vmin;box-shadow:0 .8vmin 0 var(--plum);padding:1.2vmin 2.4vmin;display:grid;gap:.9vmin;align-content:start;overflow:auto;min-height:0}
+.srow2{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.4vmin 1.2vmin}
+.tok{display:grid;justify-items:center;gap:.3vmin}
+.tok img{width:clamp(30px,6vmin,76px);height:clamp(30px,6vmin,76px);object-fit:contain;border:.25vmin solid var(--plum);border-radius:1vmin;background:var(--white)}
+.tok span{font:900 clamp(12px,2.2vmin,26px)/1 var(--body);letter-spacing:.03em;color:var(--plum)}
+.sheetbar{display:flex;gap:2vmin;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.sheetbar .pdfbtn{font:800 clamp(16px,2.8vmin,30px)/1 var(--display);color:var(--white);background:var(--pink-deep);border:.45vmin solid var(--plum);border-radius:999px;padding:1.4vmin 3vmin;box-shadow:0 .7vmin 0 var(--plum);cursor:pointer}
+.sheetbar .pdfbtn:focus-visible{outline:4px solid var(--gold)}
+.sheetbar .opt{width:clamp(160px,26vmin,300px);height:clamp(64px,11vmin,120px)}
+.sheetbar .opt .lbl{font-size:clamp(18px,3.4vmin,38px)}
+.sheetmsg{font:800 clamp(13px,2vmin,20px)/1.2 var(--body);color:var(--plum)}
+.credit{font:700 12px/1.4 var(--body);opacity:.7;text-align:center}
 /* ---------- settings ---------- */
 #settings{position:fixed;inset:0;z-index:90;background:rgba(42,20,66,.55);display:grid;place-items:center;padding:16px}
 .panel{background:var(--cream);color:var(--plum);border:4px solid var(--plum);border-radius:24px;max-width:980px;width:100%;max-height:92vh;overflow:auto;padding:20px max(16px,2.4vw) 24px;box-shadow:0 10px 0 var(--plum);user-select:text}
@@ -365,6 +377,7 @@ body.gz-paused .opts{border-radius:3.4vmin;box-shadow:0 0 0 .8vmin #fff3b0}
 <div id="ring" hidden></div>
 <div id="dot" hidden></div>
 
+<script>/*__JSPDF__*/</script>
 <script>
 "use strict";
 const PICTO = "__PICTOS__";
@@ -483,7 +496,7 @@ const TXT = {
     g1end:(n,nm)=>`Molt bé${nm?', '+nm:''}! Has agafat ${['zero','una','dues','tres','quatre','cinc','sis','set','vuit','nou','deu','onze','dotze','tretze','catorze','quinze','setze','disset','divuit','dinou','vint'][n] || n} estrelles!`,
     g2intro:'Anem a encendre el concert!', g2find:a=>`Busca ${a}!`, g2found:a=>`Molt bé! Has trobat ${a}!`, g2show:'Comença el concert!', bravo:'Bravo! Bravo!',
     g3intro:"Anem a vestir-nos d'estrella per al concert!", photo:'Foto! Somriu!', photoNice:n=>`Que guapa${n?', '+n:''}! Ets una superestrella!`, star:'Superestrella',
-    qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', pauseOn:'Descansa la mirada. Mira-ho tot amb calma.', pauseOff:'Som-hi! Ara pots triar.', pauseNote:'⏸ Mirada en pausa: mira-ho tot amb calma', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!',
+    qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', pauseOn:'Descansa la mirada. Mira-ho tot amb calma.', pauseOff:'Som-hi! Ara pots triar.', pauseNote:'⏸ Mirada en pausa: mira-ho tot amb calma', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!', sheetSay:'Mira la teva fitxa!', sheetPdf:'📄 Descarregar PDF', sheetGo:'Continuar', sheetErr:"No s'ha pogut fer el PDF.",
     sumTitle:'Què he fet avui?', sumG1:'He passejat amb el pony', sumG1b:n=>`${n} estrelles`, sumG2:'He encès el concert', sumG3:"M'he vestit d'estrella", sumFeel:'Com ha anat?',
     home:'Inici', again:'Tornar a jugar', walk:'caminar', pony:'pony', star1:'estrella', concert:'concert', sing:'cantar', dance:'ballar', clap:'aplaudir', dressv:'vestir', photoW:'foto', look2:'mirar', search:'buscar',
     feel:[[21917,"M'agrada"],[38890,"No m'agrada"],[24735,'Divertit'],[4645,'Fàcil'],[4629,'Difícil'],[5508,'Més'],[28429,'Prou']],
@@ -494,7 +507,7 @@ const TXT = {
     g1end:(n,nm)=>`¡Muy bien${nm?', '+nm:''}! ¡Has cogido ${['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'][n] || n} estrellas!`,
     g2intro:'¡Vamos a encender el concierto!', g2find:a=>`¡Busca ${a}!`, g2found:a=>`¡Muy bien! ¡Has encontrado ${a}!`, g2show:'¡Empieza el concierto!', bravo:'¡Bravo! ¡Bravo!',
     g3intro:'¡Vamos a vestirnos de estrella para el concierto!', photo:'¡Foto! ¡Sonríe!', photoNice:n=>`¡Qué guapa${n?', '+n:''}! ¡Eres una superestrella!`, star:'Superestrella',
-    qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', pauseOn:'Descansa la mirada. Míralo todo con calma.', pauseOff:'¡Vamos! Ahora puedes elegir.', pauseNote:'⏸ Mirada en pausa: míralo todo con calma', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!',
+    qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', pauseOn:'Descansa la mirada. Míralo todo con calma.', pauseOff:'¡Vamos! Ahora puedes elegir.', pauseNote:'⏸ Mirada en pausa: míralo todo con calma', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!', sheetSay:'¡Mira tu ficha!', sheetPdf:'📄 Descargar PDF', sheetGo:'Continuar', sheetErr:'No se ha podido hacer el PDF.',
     sumTitle:'¿Qué he hecho hoy?', sumG1:'He paseado con el pony', sumG1b:n=>`${n} estrellas`, sumG2:'He encendido el concierto', sumG3:'Me he vestido de estrella', sumFeel:'¿Cómo ha ido?',
     home:'Inicio', again:'Volver a jugar', walk:'caminar', pony:'pony', star1:'estrella', concert:'concierto', sing:'cantar', dance:'bailar', clap:'aplaudir', dressv:'vestir', photoW:'foto', look2:'mirar', search:'buscar',
     feel:[[21917,'Me gusta'],[38890,'No me gusta'],[24735,'Divertido'],[4645,'Fácil'],[4629,'Difícil'],[5508,'Más'],[28429,'Terminar']],
@@ -1403,7 +1416,7 @@ async function game3(){
   const qph = document.createElement('div'); qph.className = 'qphoto drop'; qph.innerHTML = polaroid(); left.insertBefore(qph, pb);
   confetti(); sfx.yay();
   await say(t.photoNice(cfg.name), t.photoNice(''));
-  if (!cfg.g3q) { await wait(1200); return; }
+  if (!cfg.g3q) { await wait(800); await sheetScreen(left, ask, opts); return; }
   ask.innerHTML = `<img alt="" src="${pic(7107)}"><h2>${t.qintro}</h2>`;
   await say(t.qintro);
   for (const cat of cats){
@@ -1442,7 +1455,135 @@ async function game3(){
       }
     }
   }
-  confetti(); sfx.yay(); await say(t.qend); await wait(600);
+  confetti(); sfx.yay(); await say(t.qend); await wait(400);
+  await sheetScreen(left, ask, opts);
+}
+/* ---- Printable sheet: the photo + one sentence per choice, first person, capitals,
+   ARASAAC pictograms only on nouns, adjectives and verbs ---- */
+const ART = new Set(['un','una','el','la','els','les','los','las']);
+function phraseTokens(item, lang){            // "una cua" -> [UNA][CUA+picto]; "botes d'aigua" stays one unit with its picto
+  const ph = (item[lang] || item.ca)[1].split(' ');
+  const out = [];
+  if (ART.has(ph[0])) out.push({w:ph.shift()});
+  out.push({w:ph.join(' '), p:item.p});
+  return out;
+}
+function sheetData(){
+  const es = cfg.lang === 'es', P_WEAR = 32135, P_BE = 5581, P_HAVE = 7271, P_PONY = 25800;
+  const wear = es ? 'llevo' : 'porto', my = es ? ['mi'] : ['el','meu'], be = es ? 'es' : 'és', have = es ? 'tiene' : 'té', pony = es ? 'poni' : 'pony';
+  const item = (list, id) => list.find(x => x.id === id);
+  const rows = [];
+  const cats = CATS.filter(c => cfg.g3cats.includes(c.id));
+  for (const c of cats){
+    const it = item(c.items, outfit[c.id]); if (!it) continue;
+    let r;
+    if (c.id === 'hair' && ['llarg','curt','arrissat'].includes(it.id)) {
+      const adj = {llarg:[es ? 'largo' : 'llargs', 4675], curt:[es ? 'corto' : 'curts', 4615], arrissat:[es ? 'rizado' : 'arrissats', 26392]}[it.id];
+      r = [{w:wear, p:P_WEAR}, {w:es ? 'el' : 'els'}, {w:es ? 'pelo' : 'cabells', p:2851}, {w:adj[0], p:adj[1]}];
+    } else if (c.id === 'hair' || c.id === 'shoes' || c.id === 'head') r = [{w:wear, p:P_WEAR}, ...phraseTokens(it, es ? 'es' : 'ca')];
+    else if (c.id === 'dress') r = [...my.map(w => ({w})), {w:es ? 'vestido' : 'vestit', p:2613}, {w:be, p:P_BE}, {w:(it[es ? 'es' : 'ca'])[0], p:it.p}];
+    else if (c.id === 'pony') r = [...my.map(w => ({w})), {w:pony, p:P_PONY}, {w:be, p:P_BE}, {w:(it[es ? 'es' : 'ca'])[0], p:it.p}];
+    else if (c.id === 'stick') r = [...my.map(w => ({w})), {w:pony, p:P_PONY}, {w:have, p:P_HAVE}, ...phraseTokens(it, es ? 'es' : 'ca')];
+    if (r) rows.push(r);
+  }
+  const up = w => w.toLocaleUpperCase(es ? 'es' : 'ca');
+  rows.forEach(r => { r.forEach(t => t.w = up(t.w)); r[r.length - 1].w += '.'; });
+  const title = (es ? [{w:'me'}, {w:'he'}, {w:'vestido', p:P_WEAR}, {w:'de'}, {w:'estrella', p:2752}] : [{w:"m'he"}, {w:'vestit', p:P_WEAR}, {w:"d'estrella", p:2752}]).map(t => ({...t, w:up(t.w)}));
+  return {title, rows};
+}
+function sheetHTML(d){
+  const tok = t => `<div class="tok">${t.p ? `<img alt="" src="${pic(t.p)}">` : ''}<span>${t.w}</span></div>`;
+  return d.rows.map(r => `<div class="srow2">${r.map(tok).join('')}</div>`).join('');
+}
+function svgToPng(svg, w, h){
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(new Blob([svg], {type:'image/svg+xml'})), im = new Image();
+    im.onload = () => { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
+      const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#ff9ccc'); g.addColorStop(1, '#c9a4ff'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+      x.fillStyle = 'rgba(255,255,255,.9)'; [[.15,.12],[.82,.18],[.5,.06],[.1,.5],[.9,.55]].forEach(([a,b]) => { x.beginPath(); x.arc(a*w, b*h, w*.012, 0, 7); x.fill(); });
+      const s = Math.min(w / im.width, h / im.height) * .96; x.drawImage(im, (w - im.width*s)/2, h - im.height*s - h*.02, im.width*s, im.height*s);
+      URL.revokeObjectURL(url); res(c.toDataURL('image/png')); };
+    im.onerror = e => { URL.revokeObjectURL(url); rej(e); };
+    im.src = url;
+  });
+}
+function flatPic(id){   // pictograms on a white background (PNG transparency prints badly in some PDF viewers)
+  return new Promise(res => { const im = new Image(); im.onload = () => { const c = document.createElement('canvas'); c.width = im.width; c.height = im.height;
+    const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0); res(c.toDataURL('image/jpeg', 0.92)); };
+    im.onerror = () => res(pic(id)); im.src = pic(id); });
+}
+async function makePdf(){
+  const d = sheetData(), es = cfg.lang === 'es';
+  const flat = {};
+  for (const tk of [...d.title, ...d.rows.flat()]) if (tk.p && !flat[tk.p]) flat[tk.p] = await flatPic(tk.p);
+  const doc = new window.jspdf.jsPDF({unit:'mm', format:'a4'});
+  const W = 210, M = 14, PL_RGB = [74,35,72];
+  const pt2mm = pt => pt * 0.3528;
+  // one row of words, each with its pictogram above (AraWord style); wraps if needed
+  const row = (toks, y, ps, fs, center, x0 = M, width = W - 2*M) => {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(fs);
+    const cells = toks.map(t => ({t, w:Math.max(t.p ? ps : 0, doc.getTextWidth(t.w)) + 3}));
+    const lines = [[]]; let lw = 0;
+    for (const c of cells){ if (lw + c.w > width && lines[lines.length-1].length) { lines.push([]); lw = 0; } lines[lines.length-1].push(c); lw += c.w; }
+    for (const ln of lines){
+      const tw = ln.reduce((n, c) => n + c.w, 0); let x = center ? x0 + (width - tw) / 2 : x0;
+      for (const c of ln){
+        if (c.t.p) {
+          doc.addImage(flat[c.t.p], 'JPEG', x + (c.w - ps) / 2, y, ps, ps, 'p' + c.t.p);
+          doc.setDrawColor(...PL_RGB); doc.setLineWidth(0.3); doc.roundedRect(x + (c.w - ps) / 2, y, ps, ps, 1.5, 1.5, 'S');
+        }
+        doc.setTextColor(...PL_RGB); doc.text(c.t.w, x + c.w / 2, y + ps + 1.5 + pt2mm(fs) * 0.8, {align:'center'});
+        x += c.w;
+      }
+      y += ps + 3 + pt2mm(fs) + 4;
+    }
+    return y;
+  };
+  let y = M;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...PL_RGB);
+  const date = new Date().toLocaleDateString(es ? 'es-ES' : 'ca-ES', {day:'numeric', month:'long', year:'numeric'});
+  doc.text((cfg.name ? cfg.name + '  ·  ' : '') + date, W - M, y + 2, {align:'right'});
+  y = row(d.title, y + 5, 16, 18, true);
+  // the photo
+  const ph = await svgToPng(girlSVG(outfit, {pose:'wave', vb:'20 -10 260 450'}), 600, 840);
+  // photo on the left, sentences on the right
+  const pw = 60, phh = pw * 840 / 600, px = M + 3, top = y + 4;
+  doc.setFillColor(255,255,255); doc.setDrawColor(...PL_RGB); doc.setLineWidth(0.5); doc.roundedRect(px - 3, top, pw + 6, phh + 12, 2, 2, 'FD');
+  doc.addImage(ph, 'PNG', px, top + 3, pw, phh, 'photo');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(224,51,138);
+  doc.text('* ' + (cfg.name || T().star).toLocaleUpperCase(es ? 'es' : 'ca') + ' *', px + pw / 2, top + phh + 9, {align:'center'});
+  const cx = px + pw + 10, cw = W - M - cx, avail = 297 - 16 - top;
+  let picSize = 20, fs = 14;
+  const height = () => { let yy = 0; for (const r of d.rows) yy = row.measure(r, yy, picSize, fs, cw); return yy; };
+  row.measure = (toks, yy, ps, f, width) => { doc.setFont('helvetica', 'bold'); doc.setFontSize(f); let n = 1, lw = 0;
+    for (const t of toks){ const w = Math.max(t.p ? ps : 0, doc.getTextWidth(t.w)) + 3; if (lw + w > width && lw) { n++; lw = 0; } lw += w; }
+    return yy + n * (ps + 3 + pt2mm(f) + 4); };
+  while (height() > avail && picSize > 11) { picSize -= 1; if (picSize < 16) fs = 12; }
+  y = top;
+  for (const r of d.rows) y = row(r, y, picSize, fs, false, cx, cw);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(120,100,120);
+  doc.text("Pictogrames: Sergio Palao. Origen: ARASAAC (arasaac.org). Llicència: CC BY-NC-SA. Propietat: Govern d'Aragó.  Fet amb Mira i Brilla.", W / 2, 297 - 7, {align:'center'});
+  const nm = (cfg.name || 'superestrella').toLowerCase().normalize('NFD').replace(/[^\w]+/g, '-');
+  doc.save(`mira-i-brilla-${nm}-${new Date().toISOString().slice(0,10)}.pdf`);
+}
+async function sheetScreen(left, ask, opts){
+  const t = T(), d = sheetData();
+  ask.classList.remove('pop'); void ask.offsetWidth; ask.classList.add('pop');
+  ask.innerHTML = `<img alt="" src="${pic(7107)}"><h2>${t.sheetSay}</h2>`;
+  opts.style.gridTemplateColumns = '1fr'; opts.style.gridAutoRows = 'auto';
+  opts.style.gridTemplateRows = 'minmax(0,1fr) auto';
+  opts.innerHTML = `<div class="sheetprev">${sheetHTML(d)}</div><div class="sheetbar"><button class="pdfbtn" type="button" id="pdfBtn">${t.sheetPdf}</button><span class="sheetmsg" id="pdfMsg"></span></div>`;
+  const go = document.createElement('div'); go.className = 'opt'; go.innerHTML = `<div class="tb"><div class="lbl ringat">${t.sheetGo} ▶</div></div>`;
+  opts.querySelector('.sheetbar').appendChild(go);
+  $('#pdfBtn').addEventListener('click', async e => {
+    e.stopPropagation(); const b = e.currentTarget; b.disabled = true; $('#pdfMsg').textContent = '';
+    try { await makePdf(); } catch(err) { console.error(err); $('#pdfMsg').textContent = t.sheetErr; }
+    b.disabled = false;
+  });
+  sfx.pop(); say(t.sheetSay);
+  await waitGaze([go]);
+  sfx.sparkle();
+  opts.style.gridTemplateRows = ''; opts.style.gridAutoRows = '';
 }
 function polaroid(){
   const t = T();
@@ -1455,7 +1596,7 @@ function phrasesCa(){
   P.add(t.helloSay('')); P.add(t.g1intro); t.g1more.forEach(x => P.add(x)); for (let n=1;n<=20;n++) P.add(t.g1end(n,''));
   P.add(t.g2intro); STAGE.forEach(it => { P.add(t.g2find(it.ca[1])); P.add(t.g2found(it.ca[1])); }); P.add(t.g2show); P.add(t.bravo);
   P.add(t.g3intro); CATS.forEach(c => { P.add(c.ca.choose); P.add(c.ca.q); c.items.forEach(it => { P.add(c.ca.say(it.ca[1])); P.add(t.yes + c.ca.ok(it.ca[1])); }); });
-  P.add(t.photo); P.add(t.photoNice('')); P.add(t.qintro); P.add(t.look); P.add(t.qend); P.add(t.pauseOn); P.add(t.pauseOff); P.add(t.bye);
+  P.add(t.photo); P.add(t.photoNice('')); P.add(t.qintro); P.add(t.look); P.add(t.qend); P.add(t.sheetSay); P.add(t.pauseOn); P.add(t.pauseOff); P.add(t.bye);
   return [...P].map(x => x.trim());
 }
 
