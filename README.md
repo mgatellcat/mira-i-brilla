@@ -25,15 +25,20 @@ Cada vegada que s'obre el programa, la nena comença amb la roba inicial; el que
 
 Durant el joc, els botons «⌂ Inici» i «⏭ Següent» són per a l'adult i només funcionen amb clic.
 
+## Veu
+- **Veu gravada (per defecte):** totes les frases del joc ja hi van gravades amb la veu catalana **Ona**, generada amb el mateix convertidor de text a sons que fa servir PictoEscriu (piper-phonemize 1.1.0). Funciona sense internet. No diu el nom de la nena.
+- **Veu Ona descarregable** (⚙ Configuració › Veu Ona descarregable): es baixa una sola vegada en aquell navegador (uns 92 MB, des de jsDelivr i Hugging Face) i llavors la veu diu qualsevol frase, també el nom de la nena. Després funciona sense internet. Si no es pot baixar, el joc continua amb la veu gravada.
+
 ## Codi font (`codi-font/`)
-- `src.html`: el joc, sense els pictogrames ni la veu.
+- `src.html`: el joc, sense els pictogrames ni la veu gravada.
 - `build.py`: posa els pictogrames i la veu dins del fitxer i genera `index.html`.
-- `synth.py` i `phrases.json`: generen els àudios de totes les frases amb la veu Ona (Piper).
-- `frases.js`: extreu del joc la llista de frases.
+- `frases.js` i `phrases.json`: la llista de totes les frases que diu el joc.
+- `veu_ona.py`: grava cada frase amb Ona (Python 3.11 amb `piper-phonemize==1.1.0` i `onnxruntime`), tres preses per frase.
+- `tria_millor_presa.py`: escull la presa que s'entén millor (comprovat amb Whisper).
 
 ## Crèdits
 - **Pictogrames:** Sergio Palao. Origen: ARASAAC (https://arasaac.org). Llicència: CC BY-NC-SA. Propietat: Govern d'Aragó.
-- **Veu:** Ona, del projecte Festcat (UPC), en la versió per al motor de veu Piper (`ca_ES-upc_ona-medium`). Consulteu-ne la llicència a la fitxa del model.
+- **Veu:** Ona (Universitat Politècnica de Catalunya, corpus FestCat; llicència CC BY-SA), feta amb Piper (Rhasspy). La veu descarregable funciona amb ONNX Runtime (Microsoft) i eSpeak NG.
 - Les il·lustracions de la nena, del pony i dels escenaris són pròpies del joc.
 
 Ús educatiu i sense ànim de lucre.

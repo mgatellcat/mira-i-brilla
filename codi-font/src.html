@@ -288,12 +288,18 @@ body.gz-paused .opts{border-radius:3.4vmin;box-shadow:0 0 0 .8vmin #fff3b0}
       <label>Idioma del joc
         <select id="c-lang" data-k="lang"><option value="ca">Català</option><option value="es">Castellà</option></select></label>
       <label class="chk"><input type="checkbox" id="c-voice" data-k="voice"> Veu que llegeix les consignes</label>
-      <label>Veu <select id="c-voiceName" data-k="voiceName"><option value="__ona">Ona (veu catalana integrada al joc)</option></select>
+      <label>Veu <select id="c-voiceName" data-k="voiceName"><option value="__ona">Veu catalana gravada al joc</option></select>
         <small id="voiceInfo"></small></label>
       <label>Velocitat de la veu <output data-for="rate"></output><input type="range" id="c-rate" data-k="rate" min="0.6" max="1.3" step="0.05"></label>
       <div class="row"><button class="pbtn" type="button" id="testVoice">🔊 Provar la veu</button></div>
       <label class="chk"><input type="checkbox" id="c-sound" data-k="sound"> Sons i música</label>
       <label>Volum <output data-for="vol"></output><input type="range" id="c-vol" data-k="vol" min="0" max="1" step="0.05"></label>
+    </fieldset>
+
+    <fieldset><legend>Veu Ona descarregable</legend>
+      <p class="wide" style="margin:0;font:700 15px/1.4 var(--body)">El joc ja porta una veu catalana gravada. Si descarregueu la veu <b>Ona</b> (la mateixa de PictoEscriu), el joc pot dir <b>qualsevol frase, també el nom de la nena</b>. Es baixa una sola vegada en aquest navegador (uns 92 MB) i després funciona sense internet.</p>
+      <div class="row wide"><button class="pbtn main" type="button" id="pvDl">⬇ Descarregar la veu Ona</button><button class="pbtn" type="button" id="pvDel" hidden>Esborrar la veu descarregada</button><span id="pvInfo" style="font:800 15px var(--body)"></span></div>
+      <progress id="pvBar" class="wide" max="1" value="0" hidden style="width:100%;height:14px;accent-color:var(--pink-deep)"></progress>
     </fieldset>
 
     <fieldset><legend>Mirada (TD Control)</legend>
@@ -474,7 +480,7 @@ const TXT = {
   ca:{ start:'Comencem! ✨', hello:n=>`Hola${n?', <b>'+n+'</b>':''}! A què jugem?`, helloSay:n=>`Hola${n?' '+n:''}! A què vols jugar?`,
     g1:'Passeig amb el pony', g2:'Encén el concert', g3:"Vesteix-te d'estrella", all:'Tots els jocs',
     g1intro:"Anem a passejar amb el pony! Mira l'estrella.", g1top:"Mira l'estrella!", g1more:['Molt bé!','Una altra!','Genial!','Que bé que camines!','Quina estrella!'],
-    g1end:(n,nm)=>`Molt bé${nm?', '+nm:''}! Has agafat ${n} estrelles!`,
+    g1end:(n,nm)=>`Molt bé${nm?', '+nm:''}! Has agafat ${['zero','una','dues','tres','quatre','cinc','sis','set','vuit','nou','deu','onze','dotze','tretze','catorze','quinze','setze','disset','divuit','dinou','vint'][n] || n} estrelles!`,
     g2intro:'Anem a encendre el concert!', g2find:a=>`Busca ${a}!`, g2found:a=>`Molt bé! Has trobat ${a}!`, g2show:'Comença el concert!', bravo:'Bravo! Bravo!',
     g3intro:"Anem a vestir-nos d'estrella per al concert!", photo:'Foto! Somriu!', photoNice:n=>`Que guapa${n?', '+n:''}! Ets una superestrella!`, star:'Superestrella',
     qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', pauseOn:'Descansa la mirada. Mira-ho tot amb calma.', pauseOff:'Som-hi! Ara pots triar.', pauseNote:'⏸ Mirada en pausa: mira-ho tot amb calma', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!',
@@ -485,7 +491,7 @@ const TXT = {
   es:{ start:'¡Empezamos! ✨', hello:n=>`¡Hola${n?', <b>'+n+'</b>':''}! ¿A qué jugamos?`, helloSay:n=>`¡Hola${n?' '+n:''}! ¿A qué quieres jugar?`,
     g1:'Paseo con el pony', g2:'Enciende el concierto', g3:'Vístete de estrella', all:'Todos los juegos',
     g1intro:'¡Vamos a pasear con el pony! Mira la estrella.', g1top:'¡Mira la estrella!', g1more:['¡Muy bien!','¡Otra!','¡Genial!','¡Qué bien caminas!','¡Qué estrella!'],
-    g1end:(n,nm)=>`¡Muy bien${nm?', '+nm:''}! ¡Has cogido ${n} estrellas!`,
+    g1end:(n,nm)=>`¡Muy bien${nm?', '+nm:''}! ¡Has cogido ${['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'][n] || n} estrellas!`,
     g2intro:'¡Vamos a encender el concierto!', g2find:a=>`¡Busca ${a}!`, g2found:a=>`¡Muy bien! ¡Has encontrado ${a}!`, g2show:'¡Empieza el concierto!', bravo:'¡Bravo! ¡Bravo!',
     g3intro:'¡Vamos a vestirnos de estrella para el concierto!', photo:'¡Foto! ¡Sonríe!', photoNice:n=>`¡Qué guapa${n?', '+n:''}! ¡Eres una superestrella!`, star:'Superestrella',
     qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', pauseOn:'Descansa la mirada. Míralo todo con calma.', pauseOff:'¡Vamos! Ahora puedes elegir.', pauseNote:'⏸ Mirada en pausa: míralo todo con calma', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!',
@@ -592,7 +598,7 @@ function pickVoice(){
 }
 const VOICE = "__VOICE__";
 const voiceAudio = new Audio();
-const onaOn = () => cfg.lang === 'ca' && cfg.voiceName === '__ona';
+const onaOn = () => cfg.lang === 'ca' && (cfg.voiceName === '__ona' || cfg.voiceName === '__ona_dl');
 function playClip(src){
   return new Promise(res => {
     let done = false; const fin = () => { if (!done) { done = true; res(); } };
@@ -604,6 +610,8 @@ function playClip(src){
   });
 }
 function say(text, alt){
+  if (cfg.voice && cfg.lang === 'ca' && cfg.voiceName === '__ona_dl' && PV.st === 'ready')
+    return pvSay(text).catch(() => { const src = VOICE[text.trim()] || (alt && VOICE[alt.trim()]); return src ? playClip(src) : null; });
   if (cfg.voice && onaOn()) { const src = VOICE[text.trim()] || (alt && VOICE[alt.trim()]); if (src) return playClip(src); }
   if (!cfg.voice || !('speechSynthesis' in window)) return wait(Math.min(2200, 600 + text.length*40)).catch(()=>{});
   return new Promise(res => {
@@ -619,7 +627,154 @@ function say(text, alt){
     } catch(e) { res(); }
   });
 }
-function hush(){ try { speechSynthesis.cancel(); } catch(e) {} try { voiceAudio.pause(); } catch(e) {} }
+function hush(){ try { speechSynthesis.cancel(); } catch(e) {} try { voiceAudio.pause(); } catch(e) {} pvStop(); }
+
+/* ---- Downloadable Ona voice (Piper in the browser), adapted from PictoEscriu ----
+   The engine (ONNX Runtime + Piper's text-to-sound converter with eSpeak NG) comes from jsDelivr/unpkg at fixed
+   versions and is checked with SHA-256 before use; the voice comes from Hugging Face (rhasspy/piper-voices).
+   Everything is kept in the browser's Cache Storage, so after the first download it works offline. */
+var PV = {
+  CACHE:'mira-brilla-veus-1', KEY:'https://mira-i-brilla.local/veus/',
+  CDN:['https://cdn.jsdelivr.net/npm/', 'https://unpkg.com/'],
+  HF:['https://huggingface.co/rhasspy/piper-voices/resolve/main/', 'https://huggingface.co/diffusionstudio/piper-voices/resolve/main/'],
+  ENGINE:[
+    {k:'ort.js', p:'onnxruntime-web@1.18.0/dist/ort.wasm.min.js', size:142930, sha:'kFM6P9cAbff4l8DWPEaJltpcjkMOOZZNkuvlhsSZZhQ=', type:'text/javascript'},
+    {k:'ort-wasm-simd.wasm', p:'onnxruntime-web@1.18.0/dist/ort-wasm-simd.wasm', size:10595041, sha:'9TO18heQVj11VsYRw4NaxlhI7jJtomiarFTtfZzIxqQ=', type:'application/wasm'},
+    {k:'piper_phonemize.js', p:'@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize.js', size:120714, sha:'/vDC/EQtJP3vXHx8w31dojFEB2QP4Rqxv+NHxyPf8Zs=', type:'text/javascript'},
+    {k:'piper_phonemize.wasm', p:'@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize.wasm', size:635212, sha:'t3fNEHqR0rzGoepG8sJqZip0BzlP6EWJGYrqqD3XqdY=', type:'application/wasm'},
+    {k:'piper_phonemize.data', p:'@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize.data', size:18077249, sha:'KfECXrI6W1wZLNFKbvvORQlAL/JlQFBy7m99Ggm3j4w=', type:'application/octet-stream'}],
+  MODEL:{path:'ca/ca_ES/upc_ona/medium/ca_ES-upc_ona-medium', size:63201294},
+  st:'none', got:0, need:1, abort:null, engine:null, sess:null, cfg:null, ph:null, phOut:[], src:null, done:null, tok:0, mem:new Map()
+};
+const pvCanStore = () => typeof caches !== 'undefined' && !!(window.crypto && crypto.subtle);
+const pvKey = k => PV.KEY + k;
+const pvFiles = () => { const base = PV.MODEL.path.split('/').pop();
+  return [{k:base + '.onnx.json', p:PV.MODEL.path + '.onnx.json', hf:true, size:5000, type:'application/json'}, {k:base + '.onnx', p:PV.MODEL.path + '.onnx', hf:true, size:PV.MODEL.size, type:'application/octet-stream'}]; };
+const pvCache = () => caches.open(PV.CACHE);
+async function pvMissing(){ const c = await pvCache(), out = []; for (const f of [...PV.ENGINE, ...pvFiles()]) if (!(await c.match(pvKey(f.k)))) out.push(f); return out; }
+async function pvCheck(){
+  if (!pvCanStore()) { PV.st = 'unsupported'; pvUI(); return; }
+  try { if (PV.st !== 'downloading') PV.st = (await pvMissing()).length ? 'none' : 'ready'; } catch(e) { PV.st = 'none'; }
+  if (PV.st !== 'ready' && cfg.voiceName === '__ona_dl') { cfg.voiceName = '__ona'; saveCfg(); }
+  pvUI(); fillVoiceSelect();
+}
+async function pvSha(blob){ const h = new Uint8Array(await crypto.subtle.digest('SHA-256', await blob.arrayBuffer())); let b = ''; h.forEach(x => b += String.fromCharCode(x)); return btoa(b); }
+async function pvFetch(f, signal){
+  let last = null;
+  for (const base of (f.hf ? PV.HF : PV.CDN)) {
+    const before = PV.got;
+    try {
+      const r = await fetch(base + f.p, {signal}); if (!r.ok) throw new Error('http ' + r.status);
+      if (!r.body || !r.body.getReader) { const b = await r.blob(); PV.got += b.size; pvUI(); return b; }
+      const rd = r.body.getReader(), parts = [];
+      for (;;) { const {done, value} = await rd.read(); if (done) break; parts.push(value); PV.got += value.length; pvUI(); }
+      return new Blob(parts);
+    } catch(e) { if (signal.aborted) throw e; last = e; PV.got = before; }
+  }
+  throw last || new Error('net');
+}
+async function pvDownload(){
+  if (!pvCanStore() || PV.st === 'downloading') return;
+  const ac = new AbortController(); PV.abort = ac;
+  PV.st = 'downloading'; PV.err = ''; PV.got = 0; PV.need = 1; pvUI();
+  try {
+    const c = await pvCache(), files = await pvMissing();
+    PV.need = files.reduce((n, f) => n + f.size, 0) || 1; pvUI();
+    for (const f of files) {
+      const blob = await pvFetch(f, ac.signal);
+      if (f.sha && await pvSha(blob) !== f.sha) throw new Error('integrity');
+      await c.put(pvKey(f.k), new Response(blob, {headers:{'Content-Type':f.type}}));
+    }
+    PV.st = 'ready';
+    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch(e) {}
+    cfg.voiceName = '__ona_dl'; saveCfg();
+  } catch(e) {
+    PV.st = ac.signal.aborted ? 'none' : 'error';
+    PV.err = ac.signal.aborted ? '' : (e && e.message === 'integrity' ? "Un fitxer baixat no és l'original: no s'ha fet servir." : "No s'ha pogut baixar. Cal internet (i que la xarxa del centre deixi entrar a huggingface.co i cdn.jsdelivr.net).");
+  }
+  PV.abort = null; pvUI(); fillVoiceSelect(); document.querySelectorAll('#settings [data-k]').forEach(i => i._sync && i._sync());
+}
+async function pvRemove(){
+  pvStop();
+  try { await caches.delete(PV.CACHE); } catch(e) {}
+  PV.sess = null; PV.engine = null; PV.mem.clear(); PV.st = 'none';
+  if (cfg.voiceName === '__ona_dl') { cfg.voiceName = '__ona'; saveCfg(); }
+  pvUI(); fillVoiceSelect(); document.querySelectorAll('#settings [data-k]').forEach(i => i._sync && i._sync());
+}
+function pvUI(){
+  const dl = $('#pvDl'), del = $('#pvDel'), info = $('#pvInfo'), bar = $('#pvBar'); if (!dl) return;
+  dl.hidden = PV.st === 'ready'; del.hidden = PV.st !== 'ready'; bar.hidden = PV.st !== 'downloading';
+  dl.disabled = PV.st === 'downloading' || PV.st === 'unsupported';
+  dl.textContent = PV.st === 'downloading' ? 'Baixant…' : '⬇ Descarregar la veu Ona';
+  if (PV.st === 'downloading') { bar.value = Math.min(1, PV.got / PV.need); info.textContent = Math.round(PV.got / 1e6) + ' de ' + Math.round(PV.need / 1e6) + ' MB'; }
+  else info.textContent = PV.st === 'ready' ? '✔ Veu Ona descarregada en aquest navegador' : PV.st === 'error' ? PV.err : PV.st === 'unsupported' ? 'Aquest navegador no pot guardar la veu. Obriu el joc amb Chrome o Edge.' : '';
+}
+async function pvBlobURL(k){ const r = await (await pvCache()).match(pvKey(k)); if (!r) throw new Error('missing ' + k); return URL.createObjectURL(await r.blob()); }
+function pvScript(url){ return new Promise((res, rej) => { const el = document.createElement('script'); el.src = url; el.onload = res; el.onerror = () => rej(new Error('script')); document.head.appendChild(el); }); }
+async function pvNewPhonemizer(){
+  const wasm = await pvBlobURL('piper_phonemize.wasm'), data = await pvBlobURL('piper_phonemize.data');
+  PV.ph = await createPiperPhonemize({print:l => PV.phOut.push(l), printErr:() => {}, locateFile:f => f.endsWith('.wasm') ? wasm : f.endsWith('.data') ? data : f});
+}
+function pvEngine(){
+  return PV.engine || (PV.engine = (async () => {
+    if (!window.ort) await pvScript(await pvBlobURL('ort.js'));
+    ort.env.wasm.numThreads = 1; ort.env.wasm.proxy = false;
+    ort.env.wasm.wasmPaths = {'ort-wasm-simd.wasm':await pvBlobURL('ort-wasm-simd.wasm')};
+    if (!window.createPiperPhonemize) await pvScript(await pvBlobURL('piper_phonemize.js'));
+    await pvNewPhonemizer();
+  })().catch(e => { PV.engine = null; throw e; }));
+}
+function pvSession(){
+  return PV.sess || (PV.sess = (async () => {
+    await pvEngine();
+    const c = await pvCache(), [cf, md] = pvFiles();
+    PV.cfg = await (await c.match(pvKey(cf.k))).json();
+    return ort.InferenceSession.create(await (await c.match(pvKey(md.k))).arrayBuffer(), {executionProviders:['wasm']});
+  })().catch(e => { PV.sess = null; throw e; }));
+}
+function pvPhonemize(text){
+  const run = () => { PV.phOut = []; PV.ph.callMain(['-l', (PV.cfg.espeak && PV.cfg.espeak.voice) || 'ca', '--input', JSON.stringify([{text}]), '--espeak_data', '/espeak-ng-data']);
+    const out = []; for (const l of PV.phOut) { try { const j = JSON.parse(l); if (j.phoneme_ids && j.phoneme_ids.length) out.push(j.phoneme_ids); } catch(e) {} } return out; };
+  try { return run(); } catch(e) { return []; }
+}
+async function pvSynth(text){
+  const key = cfg.rate + '|' + text;
+  if (PV.mem.has(key)) return PV.mem.get(key);
+  const sess = await pvSession(), inf = PV.cfg.inference || {};
+  let lines = pvPhonemize(text);
+  if (!lines.length) { await pvNewPhonemizer(); lines = pvPhonemize(text); }
+  if (!lines.length) throw new Error('phonemes');
+  const pcms = [];
+  for (const ids of lines) {
+    const out = await sess.run({input:new ort.Tensor('int64', BigInt64Array.from(ids, x => BigInt(x)), [1, ids.length]),
+      input_lengths:new ort.Tensor('int64', BigInt64Array.from([BigInt(ids.length)]), [1]),
+      scales:new ort.Tensor('float32', Float32Array.from([inf.noise_scale ?? 0.667, (inf.length_scale ?? 1) * 1.05 / (cfg.rate / 0.95), inf.noise_w ?? 0.8]), [3])});
+    pcms.push(Object.values(out)[0].data);
+  }
+  const pcm = new Float32Array(pcms.reduce((n, x) => n + x.length, 0)); let o = 0; pcms.forEach(x => { pcm.set(x, o); o += x.length; });
+  const res = {pcm, sr:(PV.cfg.audio && PV.cfg.audio.sample_rate) || 22050};
+  PV.mem.set(key, res); if (PV.mem.size > 200) PV.mem.delete(PV.mem.keys().next().value);
+  return res;
+}
+function pvSay(text){
+  return new Promise(async (res, rej) => {
+    const my = ++PV.tok; let fin = false;
+    const done = () => { if (fin) return; fin = true; if (PV.done === done) PV.done = null; res(); };
+    if (PV.done) PV.done(); PV.done = done;
+    try {
+      const {pcm, sr} = await pvSynth(text);
+      if (my !== PV.tok) return done();
+      const a = ac(); if (!a) throw new Error('audio');
+      const buf = a.createBuffer(1, Math.max(1, pcm.length), sr); buf.getChannelData(0).set(pcm);
+      const src = a.createBufferSource(), g = a.createGain(); g.gain.value = Math.min(1, cfg.vol + .2) / Math.max(.05, cfg.sound ? cfg.vol : 1);
+      src.buffer = buf; src.connect(g); g.connect(cfg.sound ? master : a.destination); PV.src = src;
+      src.onended = () => { if (PV.src === src) PV.src = null; done(); };
+      src.start();
+      setTimeout(() => { if (PV.src === src) PV.src = null; done(); }, buf.duration * 1000 + 2000);
+    } catch(e) { fin = true; if (PV.done === done) PV.done = null; rej(e); }
+  });
+}
+function pvStop(){ PV.tok++; const src = PV.src; PV.src = null; if (src) { try { src.onended = null; src.stop(); } catch(e) {} } if (PV.done) PV.done(); }
 
 /* =====================  FX (canvas particles)  ===================== */
 const fxC = $('#fx'), fxX = fxC.getContext('2d');
@@ -1294,7 +1449,7 @@ function polaroid(){
   return `<div class="polaroid"><div class="ph">${girlSVG(outfit, {pose:'wave', vb:'20 -10 260 450'})}</div><div class="cap">★ ${cfg.name || t.star} ★</div></div>`;
 }
 
-/* every Catalan sentence the game speaks (used to pre-record the Ona voice) */
+/* every Catalan sentence the game speaks (used to pre-record the built-in Catalan voice) */
 function phrasesCa(){
   const t = TXT.ca, P = new Set();
   P.add(t.helloSay('')); P.add(t.g1intro); t.g1more.forEach(x => P.add(x)); for (let n=1;n<=20;n++) P.add(t.g1end(n,''));
@@ -1322,10 +1477,10 @@ function fillVoiceSelect(){
   const sel = $('#c-voiceName'); if (!sel) return;
   const keep = cfg.voiceName;
   const vs = voices.filter(v => /^(ca|es)/i.test(v.lang));
-  sel.innerHTML = '<option value="__ona">Ona (veu catalana integrada al joc)</option><option value="">Veu de l\'ordinador (automàtica)</option>' + vs.map(v => `<option value="${v.name.replace(/"/g,'&quot;')}">${v.name} (${v.lang})</option>`).join('');
+  sel.innerHTML = (window.PV && PV.st === 'ready' ? '<option value="__ona_dl">Ona descarregada (diu també el nom)</option>' : '') + '<option value="__ona">Veu catalana gravada al joc</option><option value="">Veu de l\'ordinador (automàtica)</option>' + vs.map(v => `<option value="${v.name.replace(/"/g,'&quot;')}">${v.name} (${v.lang})</option>`).join('');
   sel.value = keep;
   const hasCa = voices.some(v => /^ca/i.test(v.lang));
-  $('#voiceInfo').textContent = cfg.voiceName === '__ona' ? (cfg.lang === 'ca' ? "Ona ja va dins del joc: no cal instal·lar res." : "Ona només parla català: en castellà es fa servir la veu de l'ordinador.") : hasCa ? 'Hi ha veu en català en aquest ordinador.' : "No s'ha trobat veu en català a l'ordinador: es farà servir una veu castellana.";
+  $('#voiceInfo').textContent = cfg.voiceName === '__ona_dl' ? (cfg.lang === 'ca' ? "Ona descarregada: diu totes les frases, també el nom de la nena." : "Ona només parla català: en castellà es fa servir la veu de l'ordinador.") : cfg.voiceName === '__ona' ? (cfg.lang === 'ca' ? "Veu catalana gravada dins del joc: no cal instal·lar res (no diu el nom de la nena)." : "La veu gravada només parla català: en castellà es fa servir la veu de l'ordinador.") : hasCa ? 'Hi ha veu en català en aquest ordinador.' : "No s'ha trobat veu en català a l'ordinador: es farà servir una veu castellana.";
 }
 function buildSettings(){
   $('#g2Checks').innerHTML = '<b style="width:100%">Vocabulari a l\'escenari:</b>' + Object.entries(G2GROUPS).map(([id, g]) => `<label class="chk"><input type="checkbox" id="g2-${id}" data-k="g2groups" data-v="${id}"> ${g.name}</label>`).join('');
@@ -1359,6 +1514,8 @@ function closeSettings(){ $('#settings').hidden = true; if (!$('#home').hidden) 
 $('#gearBtn').addEventListener('click', e => { e.stopPropagation(); openSettings(); });
 $('#closeCfg').addEventListener('click', closeSettings);
 $('#resetCfg').addEventListener('click', () => { cfg = Object.assign({}, DEF, {name:cfg.name}); saveCfg(); applyCfg(); openSettings(); });
+$('#pvDl').addEventListener('click', () => { ac(); pvDownload(); });
+$('#pvDel').addEventListener('click', pvRemove);
 $('#testVoice').addEventListener('click', () => { ac(); say(T().helloSay(cfg.name), T().helloSay('')); });
 $('#homeBtn').addEventListener('click', e => { e.stopPropagation(); goHome(); });
 $('#skipBtn').addEventListener('click', e => { e.stopPropagation(); skip(); });
@@ -1381,13 +1538,14 @@ fileGet('song').then(b => b && setSong(b, b.name));
 fileGet('photo').then(b => b && setPhoto(b, b.name));
 
 /* =====================  START  ===================== */
-buildSettings(); applyCfg();
+buildSettings(); applyCfg(); pvCheck();
 $('#splashGirl').innerHTML = girlSVG(outfit, {pose:'wave'});
 $('#splashFloats').innerHTML = floats(14);
 $('#startBtn').textContent = T().start;
 $('#startBtn').addEventListener('click', e => {
   e.stopPropagation();
   ac(); sfx.yay(); confetti(100);
+  if (PV.st === 'ready' && cfg.voiceName === '__ona_dl') pvSession().catch(() => {});
   try { if (document.documentElement.requestFullscreen && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); } catch(err) {}
   try { if (navigator.wakeLock) navigator.wakeLock.request('screen').catch(()=>{}); } catch(err) {}
   goHome();
