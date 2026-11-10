@@ -16,6 +16,8 @@ També hi ha l'opció **Tots els jocs**, que els juga seguits. En acabar, el joc
 ## Configuració (botó ⚙ a la pantalla inicial)
 - Temps de mirada (0,3–5 s), tolerància si la mirada surt un moment, i com s'activa: mirant, amb el clic de TD Control o de les dues maneres.
 - De 2 a 8 opcions per triar i de 2 a 8 respostes a les preguntes (6 per defecte).
+- Targeta **«Més opcions»** al Joc 3: si hi ha més opcions de les que caben, la nena la pot mirar per veure les altres. Es pot activar o desactivar.
+- El **rosa** surt sempre entre els colors del pony i del vestit (es pot desactivar).
 - Quines coses pot triar al Joc 3, i quants objectes hi ha i quants ha de buscar al Joc 2.
 - Nom de la nena, idioma (català o castellà), veu, mida dels objectes, i el cercle i el punt de mirada.
 - Una cançó i una foto pròpies per al concert. Es guarden només en aquell navegador.
