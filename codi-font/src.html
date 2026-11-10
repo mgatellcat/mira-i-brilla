@@ -122,7 +122,7 @@ div > svg{width:100%;height:100%;display:block}
 .si.dim .bob{filter:grayscale(.8) brightness(.5);transition:filter .6s}
 .si.lit .bob{filter:drop-shadow(0 0 1.5vmin #fff6a8) drop-shadow(0 0 3vmin var(--pink));animation:dance 1s ease-in-out infinite}
 .si.lit > .tb{background:radial-gradient(circle,rgba(255,240,170,.55),rgba(255,240,170,0) 68%)}
-.si.hint .bob{animation:hintp 1.1s ease-in-out infinite;filter:grayscale(.2) brightness(.95) drop-shadow(0 0 1.6vmin #fff)}
+.si.hint .bob{animation:hintp 1.1s ease-in-out infinite;filter:drop-shadow(0 0 1.6vmin #fff) drop-shadow(0 0 2.4vmin var(--gold))}
 .si.boom .bob{animation:boom .8s cubic-bezier(.3,1.6,.5,1)}
 @keyframes dance{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.08)}}
 @keyframes hintp{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
@@ -165,7 +165,6 @@ div > svg{width:100%;height:100%;display:block}
 .opt .lbl{font:800 clamp(16px,3.2vmin,40px)/1 var(--display);color:var(--plum);text-align:center}
 .opt .mini{position:absolute;right:.8vmin;top:.8vmin;width:clamp(48px,11vmin,130px);border:.3vmin solid var(--plum);border-radius:1.2vmin;background:var(--white)}
 .opt.wrong > .tb{opacity:.3;filter:grayscale(1);animation:shake .5s}
-.opt.more > .tb{background:#fff7d1;border-style:dashed}
 .opt.right > .tb{background:#e6fff4;border-color:#1f9e6c;box-shadow:0 .8vmin 0 #1f9e6c}
 .opt.hint > .tb{animation:hintp 1.1s ease-in-out infinite;border-color:var(--pink-deep)}
 @keyframes shake{0%,100%{translate:0}25%{translate:-1.4vmin}75%{translate:1.4vmin}}
@@ -327,18 +326,19 @@ body.gz-paused .opts{border-radius:3.4vmin;box-shadow:0 0 0 .8vmin #fff3b0}
       <label>Objectes a l'escenari <output data-for="g2items"></output><input type="range" id="c-g2items" data-k="g2items" min="2" max="8" step="1"></label>
       <label>Quants objectes ha de buscar <output data-for="g2searches"></output><input type="range" id="c-g2searches" data-k="g2searches" min="1" max="8" step="1"></label>
       <label>Ajuda si no el troba (l'objecte brilla) <output data-for="g2hint"></output><input type="range" id="c-g2hint" data-k="g2hint" min="0" max="40" step="5"></label>
+      <div class="cats wide" id="g2Checks"></div>
       <label class="chk"><input type="checkbox" id="c-g2picto" data-k="g2picto"> Mostrar el pictograma del que ha de buscar</label>
       <label>Durada del concert final <output data-for="songSecs"></output><input type="range" id="c-songSecs" data-k="songSecs" min="5" max="90" step="5"></label>
     </fieldset>
 
     <fieldset><legend>Joc 3 · Vesteix-te d'estrella</legend>
       <div class="cats wide" id="catChecks"></div>
-      <label>Opcions per triar en cada pas <output data-for="g3opts"></output><input type="range" id="c-g3opts" data-k="g3opts" min="2" max="8" step="1"></label>
-      <label class="chk"><input type="checkbox" id="c-g3pictos" data-k="g3pictos"> Pictograma petit a cada opció</label>
-      <label class="chk"><input type="checkbox" id="c-g3more" data-k="g3more"> Targeta «Més opcions» per veure les altres opcions</label>
+      <label>Opcions per triar en cada pas
+        <select id="c-g3opts" data-k="g3opts" data-num=""><option value="4">4 opcions</option><option value="6">6 opcions</option><option value="8">8 opcions</option></select></label>
       <label class="chk"><input type="checkbox" id="c-g3pink" data-k="g3pink"> El rosa surt sempre als colors (pony i vestit)</label>
       <label class="chk"><input type="checkbox" id="c-g3q" data-k="g3q"> Preguntes sobre la foto al final</label>
-      <label>Opcions de resposta a les preguntes <output data-for="g3qopts"></output><input type="range" id="c-g3qopts" data-k="g3qopts" min="2" max="8" step="1"></label>
+      <label>Opcions de resposta a les preguntes
+        <select id="c-g3qopts" data-k="g3qopts" data-num=""><option value="4">4 opcions</option><option value="6">6 opcions</option><option value="8">8 opcions</option></select></label>
     </fieldset>
 
     <fieldset><legend>Personalitzar (opcional)</legend>
@@ -415,18 +415,40 @@ const STICKERS = [
   {id:'lluna',    p:2933, ca:['llunes','llunes'], es:['lunas','lunas']},
   {id:'sol',      p:2798, ca:['sols','sols'], es:['soles','soles']},
 ];
-const STAGE = [
-  {id:'micro',   p:2912,  ca:['micròfon','el micròfon'], es:['micrófono','el micrófono']},
-  {id:'guitarra',p:2417,  ca:['guitarra','la guitarra'], es:['guitarra','la guitarra']},
-  {id:'estrella',p:2752,  ca:['estrella',"l'estrella"], es:['estrella','la estrella']},
-  {id:'cor',     p:4613,  ca:['cor','el cor'], es:['corazón','el corazón']},
-  {id:'globus',  p:2408,  ca:['globus','el globus'], es:['globo','el globo']},
-  {id:'nota',    p:9123,  ca:['nota musical','la nota musical'], es:['nota musical','la nota musical']},
-  {id:'tambor',  p:2578,  ca:['tambor','el tambor'], es:['tambor','el tambor']},
-  {id:'piano',   p:2521,  ca:['piano','el piano'], es:['piano','el piano']},
-  {id:'focus',   p:10321, ca:['focus','el focus'], es:['foco','el foco']},
-  {id:'altaveu', p:8336,  ca:['altaveu',"l'altaveu"], es:['altavoz','el altavoz']},
+const ROBA = [
+  {id:'samarreta', p:2309, ca:['samarreta','la samarreta'], es:['camiseta','la camiseta']},
+  {id:'pantalons', p:2565, ca:['pantalons','els pantalons'], es:['pantalón','el pantalón']},
+  {id:'faldilla',  p:2391, ca:['faldilla','la faldilla'], es:['falda','la falda']},
+  {id:'jersei',    p:2436, ca:['jersei','el jersei'], es:['jersey','el jersey']},
+  {id:'jaqueta',   p:4872, ca:['jaqueta','la jaqueta'], es:['chaqueta','la chaqueta']},
+  {id:'abric',     p:2242, ca:['abric',"l'abric"], es:['abrigo','el abrigo']},
+  {id:'mitjons',   p:2298, ca:['mitjons','els mitjons'], es:['calcetines','los calcetines']},
+  {id:'bufanda',   p:2290, ca:['bufanda','la bufanda'], es:['bufanda','la bufanda']},
+  {id:'guants',    p:2415, ca:['guants','els guants'], es:['guantes','los guantes']},
+  {id:'pijama',    p:2522, ca:['pijama','el pijama'], es:['pijama','el pijama']},
+  {id:'vestit',    p:2613, ca:['vestit','el vestit'], es:['vestido','el vestido']},
+  {id:'barret',    p:2572, ca:['barret','el barret'], es:['sombrero','el sombrero']},
 ];
+const INSTR = [
+  {id:'guitarra',  p:2417, ca:['guitarra','la guitarra'], es:['guitarra','la guitarra']},
+  {id:'tambor',    p:2578, ca:['tambor','el tambor'], es:['tambor','el tambor']},
+  {id:'piano',     p:2521, ca:['piano','el piano'], es:['piano','el piano']},
+  {id:'violi',     p:2615, ca:['violí','el violí'], es:['violín','el violín']},
+  {id:'flauta',    p:2396, ca:['flauta','la flauta'], es:['flauta','la flauta']},
+  {id:'trompeta',  p:2607, ca:['trompeta','la trompeta'], es:['trompeta','la trompeta']},
+  {id:'xilofon',   p:2616, ca:['xilòfon','el xilòfon'], es:['xilófono','el xilófono']},
+  {id:'maraques',  p:2463, ca:['maraques','les maraques'], es:['maracas','las maracas']},
+  {id:'pandereta', p:2564, ca:['pandereta','la pandereta'], es:['pandereta','la pandereta']},
+  {id:'bateria',   p:5923, ca:['bateria','la bateria'], es:['batería','la batería']},
+  {id:'acordio',   p:5895, ca:['acordió',"l'acordió"], es:['acordeón','el acordeón']},
+  {id:'micro',     p:2912, ca:['micròfon','el micròfon'], es:['micrófono','el micrófono']},
+];
+const G2GROUPS = {
+  colors: {name:'Colors', items: COLORS.map(c => ({id:'c-' + c.id, p:c.p, ca:[c.ca[0], 'el color ' + c.ca[0]], es:[c.es[0], 'el color ' + c.es[0]]}))},
+  roba:   {name:'Roba', items: ROBA},
+  instr:  {name:'Instruments musicals', items: INSTR},
+};
+const STAGE = Object.values(G2GROUPS).flatMap(g => g.items);
 const CATS = [
   {id:'hair',  items:HAIR,  subj:[16331], view:'head',
     ca:{name:'Pentinat', choose:'Quin pentinat vols?', q:'Quin pentinat has triat?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
@@ -455,7 +477,7 @@ const TXT = {
     g1end:(n,nm)=>`Molt bé${nm?', '+nm:''}! Has agafat ${n} estrelles!`,
     g2intro:'Anem a encendre el concert!', g2find:a=>`Busca ${a}!`, g2found:a=>`Molt bé! Has trobat ${a}!`, g2show:'Comença el concert!', bravo:'Bravo! Bravo!',
     g3intro:"Anem a vestir-nos d'estrella per al concert!", photo:'Foto! Somriu!', photoNice:n=>`Que guapa${n?', '+n:''}! Ets una superestrella!`, star:'Superestrella',
-    qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', pauseOn:'Descansa la mirada. Mira-ho tot amb calma.', pauseOff:'Som-hi! Ara pots triar.', pauseNote:'⏸ Mirada en pausa: mira-ho tot amb calma', moreLbl:'Més opcions', moreSay:'Mira, més opcions!', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!',
+    qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', pauseOn:'Descansa la mirada. Mira-ho tot amb calma.', pauseOff:'Som-hi! Ara pots triar.', pauseNote:'⏸ Mirada en pausa: mira-ho tot amb calma', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!',
     sumTitle:'Què he fet avui?', sumG1:'He passejat amb el pony', sumG1b:n=>`${n} estrelles`, sumG2:'He encès el concert', sumG3:"M'he vestit d'estrella", sumFeel:'Com ha anat?',
     home:'Inici', again:'Tornar a jugar', walk:'caminar', pony:'pony', star1:'estrella', concert:'concert', sing:'cantar', dance:'ballar', clap:'aplaudir', dressv:'vestir', photoW:'foto', look2:'mirar', search:'buscar',
     feel:[[21917,"M'agrada"],[38890,"No m'agrada"],[24735,'Divertit'],[4645,'Fàcil'],[4629,'Difícil'],[5508,'Més'],[28429,'Prou']],
@@ -466,7 +488,7 @@ const TXT = {
     g1end:(n,nm)=>`¡Muy bien${nm?', '+nm:''}! ¡Has cogido ${n} estrellas!`,
     g2intro:'¡Vamos a encender el concierto!', g2find:a=>`¡Busca ${a}!`, g2found:a=>`¡Muy bien! ¡Has encontrado ${a}!`, g2show:'¡Empieza el concierto!', bravo:'¡Bravo! ¡Bravo!',
     g3intro:'¡Vamos a vestirnos de estrella para el concierto!', photo:'¡Foto! ¡Sonríe!', photoNice:n=>`¡Qué guapa${n?', '+n:''}! ¡Eres una superestrella!`, star:'Superestrella',
-    qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', pauseOn:'Descansa la mirada. Míralo todo con calma.', pauseOff:'¡Vamos! Ahora puedes elegir.', pauseNote:'⏸ Mirada en pausa: míralo todo con calma', moreLbl:'Más opciones', moreSay:'¡Mira, más opciones!', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!',
+    qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', pauseOn:'Descansa la mirada. Míralo todo con calma.', pauseOff:'¡Vamos! Ahora puedes elegir.', pauseNote:'⏸ Mirada en pausa: míralo todo con calma', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!',
     sumTitle:'¿Qué he hecho hoy?', sumG1:'He paseado con el pony', sumG1b:n=>`${n} estrellas`, sumG2:'He encendido el concierto', sumG3:'Me he vestido de estrella', sumFeel:'¿Cómo ha ido?',
     home:'Inicio', again:'Volver a jugar', walk:'caminar', pony:'pony', star1:'estrella', concert:'concierto', sing:'cantar', dance:'bailar', clap:'aplaudir', dressv:'vestir', photoW:'foto', look2:'mirar', search:'buscar',
     feel:[[21917,'Me gusta'],[38890,'No me gusta'],[24735,'Divertido'],[4645,'Fácil'],[4629,'Difícil'],[5508,'Más'],[28429,'Terminar']],
@@ -474,17 +496,19 @@ const TXT = {
 };
 
 /* =====================  CONFIG  ===================== */
-const DEF = {v:3, name:'', lang:'ca', voice:true, voiceName:'__ona', rate:0.95, sound:true, vol:0.8,
+const DEF = {v:4, name:'', lang:'ca', voice:true, voiceName:'__ona', rate:0.95, sound:true, vol:0.8,
   dwell:1000, grace:250, act:'both', size:1, ring:true, dot:true, hideCursor:false,
   g1count:8, g1simul:1, g1pos:'prog',
-  g2items:4, g2searches:4, g2hint:10, g2picto:true, songSecs:20,
-  g3cats:['hair','dress','shoes','head','pony','stick'], g3opts:4, g3pictos:true, g3more:true, g3pink:true, g3q:true, g3qopts:6};
+  g2items:4, g2searches:4, g2groups:['colors','roba','instr'], g2hint:10, g2picto:true, songSecs:20,
+  g3cats:['hair','dress','shoes','head','pony','stick'], g3opts:4, g3pink:true, g3q:true, g3qopts:6};
 let cfg = Object.assign({}, DEF);
-try { const s = JSON.parse(localStorage.getItem('miraBrillaCfg') || 'null'); if (s) { cfg = Object.assign({}, DEF, s); if (!s.v) cfg.voiceName = '__ona'; if (!s.v || s.v < 3) { cfg.v = 3; cfg.g3qopts = 6; } } } catch(e) {}
+try { const s = JSON.parse(localStorage.getItem('miraBrillaCfg') || 'null'); if (s) { cfg = Object.assign({}, DEF, s); if (!s.v) cfg.voiceName = '__ona'; if (!s.v || s.v < 3) cfg.g3qopts = 6; cfg.v = 4; } } catch(e) {}
+const snap468 = v => [4,6,8].reduce((b, x) => Math.abs(x - v) < Math.abs(b - v) ? x : b, 4);
+cfg.g3opts = snap468(+cfg.g3opts); cfg.g3qopts = snap468(+cfg.g3qopts);
 const saveCfg = () => { try { localStorage.setItem('miraBrillaCfg', JSON.stringify(cfg)); } catch(e) {} };
+// the outfit starts neutral every time the program opens and stays as she built it during the session
 let outfit = {hair:'llarg', dress:'rosa', shoes:'vambes', head:'diadema', pony:'rosa', stick:'estrella'};
-try { const o = JSON.parse(localStorage.getItem('miraBrillaOutfit') || 'null'); if (o) outfit = Object.assign(outfit, o); } catch(e) {}
-const saveOutfit = () => { try { localStorage.setItem('miraBrillaOutfit', JSON.stringify(outfit)); } catch(e) {} };
+try { localStorage.removeItem('miraBrillaOutfit'); } catch(e) {}
 const T = () => TXT[cfg.lang] || TXT.ca;
 const L = it => (it[cfg.lang] || it.ca);           // [label, phrase]
 const CL = c => (c[cfg.lang] || c.ca);
@@ -1086,7 +1110,9 @@ const SLOTS = {
   7:[[16,40],[39,40],[61,40],[84,40],[25,74],[50,74],[75,74]], 8:[[16,40],[39,40],[61,40],[84,40],[16,74],[39,74],[61,74],[84,74]] };
 async function game2(){
   const t = T(), n = clamp(cfg.g2items, 2, 8), m = Math.min(cfg.g2searches, n);
-  const items = shuffle(STAGE).slice(0, n), slots = SLOTS[n];
+  const groups = cfg.g2groups.filter(g => G2GROUPS[g]);
+  const pool = (groups.length ? groups : ['instr']).flatMap(g => G2GROUPS[g].items);
+  const items = shuffle(pool).slice(0, n), slots = SLOTS[n];
   const game = $('#game');
   const sweeps = ['#ff5fa8','#ffcf3f','#7cc8ff','#c6a4ff'].map((c,i) => `<div class="sweep" style="left:${8+i*24}%;background:linear-gradient(180deg,${c}cc,${c}00);animation-delay:${-i*0.7}s"></div>`).join('');
   game.innerHTML = `<div class="scene stage" id="stg">${stageBG()}${sweeps}<div class="marquee">★ ${t.g2.split(' ').pop().toUpperCase()} ★</div>
@@ -1097,7 +1123,7 @@ async function game2(){
   const els = {};
   items.forEach((it, i) => {
     const el = document.createElement('div');
-    el.className = 'si dim'; el.style.left = slots[i][0] + '%'; el.style.top = slots[i][1] + '%'; el.style.setProperty('--sz', big + 'vmin');
+    el.className = 'si'; el.style.left = slots[i][0] + '%'; el.style.top = slots[i][1] + '%'; el.style.setProperty('--sz', big + 'vmin');
     el.innerHTML = `<div class="tb"><div class="bob"><div class="pcard"><img alt="" src="${pic(it.p)}"></div></div></div>`;
     $('#sitems').appendChild(el); els[it.id] = el;
   });
@@ -1113,7 +1139,7 @@ async function game2(){
     await waitGaze([el]);
     if (ht) stopEvery(ht);
     lock = true;
-    el.classList.remove('dim','hint'); el.classList.add('boom');
+    el.classList.remove('hint'); el.classList.add('boom');
     const r = el.getBoundingClientRect(), sr = $('#stg').getBoundingClientRect();
     const beam = document.createElement('div'); beam.className = 'beam';
     const bw = r.width*1.5; beam.style.left = (r.left - sr.left + r.width/2 - bw/2) + 'px'; beam.style.width = bw + 'px'; beam.style.height = (r.top - sr.top + r.height*.8) + 'px';
@@ -1131,7 +1157,7 @@ async function game2(){
   // finale: the show
   prompt.hidden = true;
   const ARC = [[10,30],[90,30],[11,56],[89,56],[13,82],[87,82],[28,90],[72,90]];
-  Object.values(els).forEach((e, i) => { e.classList.remove('dim','hint'); e.classList.add('lit'); e.style.left = ARC[i][0] + '%'; e.style.top = ARC[i][1] + '%'; e.style.setProperty('--sz', '13vmin'); });
+  Object.values(els).forEach((e, i) => { e.classList.remove('hint'); e.classList.add('lit'); e.style.left = ARC[i][0] + '%'; e.style.top = ARC[i][1] + '%'; e.style.setProperty('--sz', '13vmin'); });
   $('#beams').innerHTML = '';
   await say(t.g2show);
   $('#stg').classList.add('show'); playMusic(); confetti(120);
@@ -1184,42 +1210,25 @@ async function game3(){
   await say(t.g3intro);
   for (const cat of cats){
     const c = CL(cat);
-    // options are split into pages; pink (her favourite) is always on the first page of colours
+    // pictogram-only options; pink (her favourite) is always among the colours
     const nn = Math.min(cfg.g3opts, cat.items.length);
-    let order = shuffle(cat.items);
-    if (cfg.g3pink && cat.items === COLORS) { const pk = order.find(x => x.id === 'rosa'); order = [pk, ...order.filter(x => x !== pk)]; }
-    const pages = [];
-    for (let i = 0; i < order.length; i += nn) pages.push(order.slice(i, i + nn));
-    const last = pages[pages.length - 1];
-    for (let k = 0; last.length < nn && k < order.length; k++) if (!last.includes(order[k])) last.push(order[k]);
-    const withMore = cfg.g3more && pages.length > 1;
-    pages.forEach(pg => pg.sort((a, b) => cat.items.indexOf(a) - cat.items.indexOf(b)));
+    let pickd = shuffle(cat.items).slice(0, nn);
+    if (cfg.g3pink && cat.items === COLORS && !pickd.some(x => x.id === 'rosa')) pickd[0] = cat.items.find(x => x.id === 'rosa');
+    const list = cat.items.filter(x => pickd.includes(x));
     ask.classList.remove('pop'); void ask.offsetWidth; ask.classList.add('pop');
     ask.innerHTML = cat.subj.map(p => `<img alt="" src="${pic(p)}">`).join('') + `<h2>${c.choose}</h2>`;
-    let pi = 0, cards, hit, afterMore = false;
-    for (;;) {
-      const list = pages[pi];
-      opts.style.gridTemplateColumns = `repeat(${gridCols(list.length + (withMore ? 1 : 0))},minmax(0,1fr))`;
-      opts.innerHTML = '';
-      cards = list.map(item => {
-        const el = document.createElement('div'); el.className = 'opt';
-        el.innerHTML = `<div class="tb"><div class="art ringat">${optArt(cat, item)}</div><div class="lbl">${L(item)[0]}</div>${cfg.g3pictos ? `<img class="mini" alt="" src="${pic(item.p)}">` : ''}</div>`;
-        el._item = item; opts.appendChild(el); return el;
-      });
-      if (withMore) {
-        const m = document.createElement('div'); m.className = 'opt more'; m._more = true;
-        m.innerHTML = `<div class="tb"><div class="art ringat"><img alt="" src="${pic(5508)}"></div><div class="lbl">${t.moreLbl}</div></div>`;
-        opts.appendChild(m); cards.push(m);
-        if (afterMore) G.cool = m;   // the new card appears under her gaze: she must look away before it works again
-      }
-      sfx.pop(); say(pi === 0 ? c.choose : t.moreSay);
-      hit = await waitGaze(cards);
-      if (hit._more) { pi = (pi + 1) % pages.length; afterMore = true; sfx.sparkle(); continue; }
-      break;
-    }
+    opts.style.gridTemplateColumns = `repeat(${gridCols(list.length)},minmax(0,1fr))`;
+    opts.innerHTML = '';
+    const cards = list.map(item => {
+      const el = document.createElement('div'); el.className = 'opt';
+      el.innerHTML = `<div class="tb"><div class="art ringat"><img alt="" src="${pic(item.p)}"></div><div class="lbl">${L(item)[0]}</div></div>`;
+      el._item = item; opts.appendChild(el); return el;
+    });
+    sfx.pop(); say(c.choose);
+    const hit = await waitGaze(cards);
     lock = true;
     const item = hit._item;
-    outfit[cat.id] = item.id; saveOutfit();
+    outfit[cat.id] = item.id;
     hit.classList.add('right');
     drawAv(); av.classList.remove('pop'); void av.offsetWidth; av.classList.add('pop');
     sfx.sparkle(); { const [x,y] = centerOf(av); burst(x, y, {n:40}); }
@@ -1291,7 +1300,7 @@ function phrasesCa(){
   P.add(t.helloSay('')); P.add(t.g1intro); t.g1more.forEach(x => P.add(x)); for (let n=1;n<=20;n++) P.add(t.g1end(n,''));
   P.add(t.g2intro); STAGE.forEach(it => { P.add(t.g2find(it.ca[1])); P.add(t.g2found(it.ca[1])); }); P.add(t.g2show); P.add(t.bravo);
   P.add(t.g3intro); CATS.forEach(c => { P.add(c.ca.choose); P.add(c.ca.q); c.items.forEach(it => { P.add(c.ca.say(it.ca[1])); P.add(t.yes + c.ca.ok(it.ca[1])); }); });
-  P.add(t.photo); P.add(t.photoNice('')); P.add(t.qintro); P.add(t.look); P.add(t.qend); P.add(t.pauseOn); P.add(t.pauseOff); P.add(t.bye); P.add(t.moreSay);
+  P.add(t.photo); P.add(t.photoNice('')); P.add(t.qintro); P.add(t.look); P.add(t.qend); P.add(t.pauseOn); P.add(t.pauseOff); P.add(t.bye);
   return [...P].map(x => x.trim());
 }
 
@@ -1319,22 +1328,23 @@ function fillVoiceSelect(){
   $('#voiceInfo').textContent = cfg.voiceName === '__ona' ? (cfg.lang === 'ca' ? "Ona ja va dins del joc: no cal instal·lar res." : "Ona només parla català: en castellà es fa servir la veu de l'ordinador.") : hasCa ? 'Hi ha veu en català en aquest ordinador.' : "No s'ha trobat veu en català a l'ordinador: es farà servir una veu castellana.";
 }
 function buildSettings(){
+  $('#g2Checks').innerHTML = '<b style="width:100%">Vocabulari a l\'escenari:</b>' + Object.entries(G2GROUPS).map(([id, g]) => `<label class="chk"><input type="checkbox" id="g2-${id}" data-k="g2groups" data-v="${id}"> ${g.name}</label>`).join('');
   $('#catChecks').innerHTML = '<b style="width:100%">Què pot triar:</b>' + CATS.map(c => `<label class="chk"><input type="checkbox" id="cat-${c.id}" data-k="g3cats" data-v="${c.id}"> ${c.ca.name}</label>`).join('');
   document.querySelectorAll('#settings [data-k]').forEach(inp => {
     const k = inp.dataset.k;
     const sync = () => {
       if (inp.type === 'checkbox' && inp.dataset.v) inp.checked = cfg[k].includes(inp.dataset.v);
       else if (inp.type === 'checkbox') inp.checked = !!cfg[k];
-      else inp.value = cfg[k];
+      else inp.value = String(cfg[k]);
       const out = document.querySelector(`#settings output[data-for="${k}"]`); if (out) out.textContent = fmt(k, cfg[k]);
     };
     inp._sync = sync; sync();
     inp.addEventListener(inp.tagName === 'SELECT' || inp.type === 'checkbox' ? 'change' : 'input', () => {
       if (inp.type === 'checkbox' && inp.dataset.v) {
         const set = new Set(cfg[k]); inp.checked ? set.add(inp.dataset.v) : set.delete(inp.dataset.v);
-        cfg[k] = CATS.map(c => c.id).filter(id => set.has(id));
+        cfg[k] = (k === 'g2groups' ? Object.keys(G2GROUPS) : CATS.map(c => c.id)).filter(id => set.has(id));
       } else if (inp.type === 'checkbox') cfg[k] = inp.checked;
-      else if (inp.type === 'range') cfg[k] = parseFloat(inp.value);
+      else if (inp.type === 'range' || inp.dataset.num !== undefined) cfg[k] = parseFloat(inp.value);
       else cfg[k] = inp.value;
       if (k === 'g2items' && cfg.g2searches > cfg.g2items) { cfg.g2searches = cfg.g2items; $('#c-g2searches')._sync(); }
       if (k === 'g2searches' && cfg.g2searches > cfg.g2items) { cfg.g2items = cfg.g2searches; $('#c-g2items')._sync(); }

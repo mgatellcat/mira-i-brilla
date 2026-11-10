@@ -6,8 +6,8 @@ Joc kawaii per practicar el control amb la mirada (Tobii + TD Control). És per 
 
 ## Jocs
 1. **Passeig amb el pony.** Mira l'estrella i la nena s'hi gira de perfil i hi va caminant amb el pony (mou les cames i giren les rodes).
-2. **Encén el concert.** A l'escenari hi ha pictogrames ARASAAC apagats. El joc diu què ha de buscar («Busca el globus!») i ensenya el pictograma. Només s'encén el que se li demana. Al final hi ha un concert.
-3. **Vesteix-te d'estrella.** Tria el pentinat, el vestit, les sabates, què porta al cap, el color del pony i els adhesius. Després li fan una foto, que queda a l'esquerra, i a la dreta li pregunten què ha triat («Quin pentinat has triat?») amb 6 opcions en pictogrames ARASAAC. Si encerta, la nena de la foto balla i surten estrelles. Si s'equivoca, el joc diu «Mira bé la foto i torna-ho a intentar!».
+2. **Encén el concert.** A l'escenari hi ha pictogrames ARASAAC de colors, roba i instruments, sempre visibles. El joc diu què ha de buscar («Busca la guitarra!») i ensenya el pictograma. Només reacciona el que se li demana: li cau el focus, balla i surten estrelles. Al final hi ha un concert.
+3. **Vesteix-te d'estrella.** Amb opcions que són només pictogrames ARASAAC, tria el pentinat, el vestit, les sabates, què porta al cap, el color del pony i els adhesius. Després li fan una foto, que queda a l'esquerra, i a la dreta li pregunten què ha triat («Quin pentinat has triat?») amb 4, 6 o 8 opcions en pictogrames ARASAAC. Si encerta, la nena de la foto balla i surten estrelles. Si s'equivoca, el joc diu «Mira bé la foto i torna-ho a intentar!».
 
    Al costat de la nena hi ha el botó **«Descansar la mirada»**. Mentre està en pausa, la mirada no tria res i pot mirar les opcions amb calma. Es torna a activar mirant el botó, tocant-lo a la pantalla o amb el ratolí.
 
@@ -15,12 +15,13 @@ També hi ha l'opció **Tots els jocs**, que els juga seguits. En acabar, el joc
 
 ## Configuració (botó ⚙ a la pantalla inicial)
 - Temps de mirada (0,3–5 s), tolerància si la mirada surt un moment, i com s'activa: mirant, amb el clic de TD Control o de les dues maneres.
-- De 2 a 8 opcions per triar i de 2 a 8 respostes a les preguntes (6 per defecte).
-- Targeta **«Més opcions»** al Joc 3: si hi ha més opcions de les que caben, la nena la pot mirar per veure les altres. Es pot activar o desactivar.
+- Joc 3: 4, 6 o 8 opcions per triar i 4, 6 o 8 respostes a les preguntes.
 - El **rosa** surt sempre entre els colors del pony i del vestit (es pot desactivar).
-- Quines coses pot triar al Joc 3, i quants objectes hi ha i quants ha de buscar al Joc 2.
+- Quines coses pot triar al Joc 3. Al Joc 2, quin vocabulari surt a l'escenari (colors, roba, instruments), quants pictogrames hi ha i quants n'ha de buscar.
 - Nom de la nena, idioma (català o castellà), veu, mida dels objectes, i el cercle i el punt de mirada.
 - Una cançó i una foto pròpies per al concert. Es guarden només en aquell navegador.
+
+Cada vegada que s'obre el programa, la nena comença amb la roba inicial; el que tria es manté fins que es tanca.
 
 Durant el joc, els botons «⌂ Inici» i «⏭ Següent» són per a l'adult i només funcionen amb clic.
 
