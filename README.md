@@ -26,6 +26,14 @@ A **totes les pantalles** hi ha el botó **«Descansar la mirada»**. Cada panta
 
 També hi ha l'opció **Tots els jocs**, que els juga seguits. En acabar, el joc felicita l'alumne/a i torna a l'inici.
 
+## Plafó de comunicació (`plafo/`)
+Plafó monogràfic per parlar de l'activitat, en **3 fulls A4 apaïsats** (`plafo/plafo-mira-i-brilla.pdf`, 180 caselles amb pictogrames ARASAAC):
+1. **Parlem de Mira i Brilla:** el plafó general.
+2. **Vestir-me d'estrella o de rocker:** roba, complements Aitana i Rock, cabells, colors i com és.
+3. **El passeig i el concert:** el passeig, l'escenari, els instruments i els sentiments.
+
+L'organització segueix el vocabulari **CACE-UTAC** (UTAC, Universitat de Barcelona): categories semàntiques ordenades d'esquerra a dreta com una frase, **qui → què fa → què → com → expressions → preguntes**. A cada full hi ha persones i pronoms, accions, noms per categories, qualitats i sentiments, expressions socials, preguntes i temps, i la casella «No tinc la paraula». Les vores segueixen la **clau de colors Fitzgerald** que fa servir ARASAAC: persones en groc, verbs en verd, noms en taronja, qualitats en blau, expressions en rosa i la resta en gris. El model és el plafó monogràfic «Vestir la nina» de la UTAC.
+
 ## Configuració (botó ⚙ a la pantalla inicial)
 - Nom de l'alumne/a, mode i personatge fixos o triats per l'alumne/a, idioma (català o castellà) i veu.
 - Temps de mirada (0,3–5 s), tolerància si la mirada surt un moment, i com s'activa: mirant, amb el clic de TD Control o de les dues maneres.
@@ -49,6 +57,7 @@ Durant el joc, els botons «⌂ Inici» i «⏭ Següent» són per a l'adult i 
 - `frases.js` i `phrases.json`: la llista de totes les frases que diu el joc.
 - `veu_ona.py`: grava cada frase amb Ona (Python 3.11 amb `piper-phonemize==1.1.0` i `onnxruntime`), tres preses per frase.
 - `tria_millor_presa.py`: escull la presa que s'entén millor (comprovat amb Whisper).
+- `build_plafo.py` i `topdf.js`: generen el plafó de comunicació en PDF.
 
 ## Crèdits
 - **Pictogrames:** Sergio Palao. Origen: ARASAAC (https://arasaac.org). Llicència: CC BY-NC-SA. Propietat: Govern d'Aragó.
