@@ -1,7 +1,7 @@
 <title>Mira i Brilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Bungee&family=Nunito:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Bungee&family=Playfair+Display:wght@800&family=Righteous&family=Nunito:wght@700;900&display=swap">
 <style>
 /* Layout: one full-screen stage; every screen is a layer floating on a pink sky. Single, deliberate kawaii look (no dark theme). */
 :root{
@@ -165,7 +165,7 @@ div > svg{width:100%;height:100%;display:block}
 .opt .art{width:100%;height:100%;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .opt .art svg,.opt .art img{width:100%;height:100%;object-fit:contain;display:block}
 .opt .lbl{font:800 clamp(16px,3.2vmin,40px)/1 var(--display);color:var(--plum);text-align:center}
-.opt .mini{position:absolute;right:.8vmin;top:.8vmin;width:clamp(48px,11vmin,130px);border:.3vmin solid var(--plum);border-radius:1.2vmin;background:var(--white)}
+.opt .mini{display:none;position:absolute;right:.8vmin;top:.8vmin;width:clamp(48px,11vmin,130px);border:.3vmin solid var(--plum);border-radius:1.2vmin;background:var(--white)}
 .opt.wrong > .tb{opacity:.3;filter:grayscale(1);animation:shake .5s}
 .opt.right > .tb{background:#e6fff4;border-color:#1f9e6c;box-shadow:0 .8vmin 0 #1f9e6c}
 .opt.hint > .tb{animation:hintp 1.1s ease-in-out infinite;border-color:var(--pink-deep)}
@@ -243,13 +243,10 @@ body[data-mode=rock] .sky{background:
   radial-gradient(circle at 60% 80%,rgba(255,255,255,.9) 0 2px,transparent 3px),
   radial-gradient(ellipse at 50% 120%,rgba(255,45,85,.45),transparent 60%),
   linear-gradient(160deg,#1a1024 0%,#3b0d24 55%,#16102a 100%)}
-body[data-mode=rock] .hello{color:#fff;text-shadow:0 .08em 0 #000}
-body[data-mode=rock] .hello b{color:var(--gold)}
 body[data-mode=rock] .m1 > .tb{background:linear-gradient(180deg,#3a2a5c,#1b1430)}
 body[data-mode=rock] .m2 > .tb{background:linear-gradient(180deg,#4a0f26,#140f1c)}
 body[data-mode=rock] .m3 > .tb{background:linear-gradient(180deg,#5a0f22,#240812)}
 body[data-mode=rock] .m4 > .tb{background:linear-gradient(180deg,#3d2a00,#171005)}
-body[data-mode=rock] .mbtn > .tb,body[data-mode=rock] .opt > .tb,body[data-mode=rock] .ask,body[data-mode=rock] .topbar,body[data-mode=rock] .pausebtn > .tb,body[data-mode=rock] .sheetprev{border-color:#000;box-shadow:0 .9vmin 0 #ff2d55}
 body[data-mode=rock] .dress{background:linear-gradient(160deg,#1d1426,#3a0f22 50%,#140f22)}
 body[data-mode=rock] .polaroid .ph{background:radial-gradient(circle at 20% 20%,#fff 0 1.5%,transparent 2%),radial-gradient(circle at 80% 25%,#fff 0 1.5%,transparent 2%),linear-gradient(180deg,#4a0f26,#2a1442)}
 body[data-mode=rock] .polaroid .cap{color:#d1123a}
@@ -257,7 +254,74 @@ body[data-mode=rock] .count{text-shadow:0 1vmin 0 #d1123a,0 0 4vmin #ff6a2a}
 body[data-mode=rock] .marquee{color:#6a2a3a;border-color:#6a2a3a}
 body[data-mode=rock] .show .marquee{color:#ffd23f;border-color:#ff2d55;text-shadow:0 0 1vmin #ff2d55,0 0 3vmin #ff6a2a}
 body[data-mode=rock] .idol{border-color:#ff2d55;box-shadow:0 0 4vmin #ff6a2a}
-body[data-mode=rock] .pausebtn.on > .tb{background:#ffd23f}
+/* ---------- Fitzgerald key: every ARASAAC pictogram has a frame of the colour of its word type ---------- */
+.fz{box-sizing:border-box;border:.55vmin solid var(--fzc,#f08a1c);border-radius:1.6vmin;background:#fff;padding:.3vmin;object-fit:contain}
+.pcard{border-color:var(--fzc,var(--plum))!important}
+.opt .art{container-type:size}
+.opt .art .fz{width:min(100cqw,100cqh);height:min(100cqw,100cqh);padding:3%;border-width:clamp(4px,.75vmin,10px);border-radius:2vmin}
+.ask img.fz,.topbar img.fz{border-width:clamp(4px,.7vmin,9px);padding:.4vmin}
+.tok img.fz{border-width:clamp(3px,.45vmin,6px);border-radius:1vmin}
+.pausebtn img.fz{border-width:clamp(3px,.45vmin,6px);padding:.2vmin}
+.mbtn .art{container-type:size}
+.mbtn .art > div{max-height:100cqh;max-width:100cqh}
+.mbtn .pcard{padding:4%}
+.badgesvg{position:absolute;right:1.4vmin;top:1.4vmin;width:clamp(44px,8vmin,100px);aspect-ratio:120/150;background:var(--white);border:.4vmin solid var(--plum);border-radius:2vmin;padding:.4vmin}
+.seq{height:100%;width:100%;display:flex;align-items:center;justify-content:center;gap:1vmin}
+.mbtn .art > .seq{max-width:100%;max-height:100%}
+.seq .pcard{width:min(24%,66cqh);height:auto;aspect-ratio:1;padding:4%;flex:none}
+.seq span{font:800 clamp(16px,3vmin,34px)/1 var(--display);color:var(--plum)}
+/* dress-up: she sits in her wheelchair with the walker beside her (wider picture) */
+.g3{grid-template-columns:minmax(0,40fr) minmax(0,60fr)}
+.avatar-stage{aspect-ratio:auto;width:100%;height:100%}
+.qphoto .polaroid{aspect-ratio:1/1.12}
+.photoshow .polaroid .ph{aspect-ratio:1}
+#pauseFab[data-pos=g3]{left:calc(2.5vw + 18.6vw)}
+/* ---------- dark styles (rock and disco) ---------- */
+body.dark .hello{color:#fff;text-shadow:0 .08em 0 #000}
+body.dark .hello b{color:var(--gold)}
+body.dark .mbtn > .tb,body.dark .opt > .tb,body.dark .ask,body.dark .topbar,body.dark .pausebtn > .tb,body.dark .sheetprev{border-color:#000;box-shadow:0 .9vmin 0 var(--pink)}
+body.dark .pausebtn.on > .tb{background:#ffd23f}
+/* ---------- style: classical (ivory, burgundy and gold) ---------- */
+body[data-mode=classica] #app{--pink:#b3264a;--pink-deep:#8c1c3a;--blush:#f3e3c8;--cream:#fbf5ea;--lilac:#c9a86a;--plum:#3a2418;--gold:#d4a017;
+  --display:'Playfair Display','Baloo 2',Georgia,serif}
+body[data-mode=classica] .sky{background:
+  radial-gradient(circle at 15% 20%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+  radial-gradient(circle at 80% 30%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+  radial-gradient(ellipse at 50% 110%,rgba(212,160,23,.35),transparent 60%),
+  linear-gradient(160deg,#fff8ea 0%,#f6e2bf 55%,#ecd0a4 100%)}
+body[data-mode=classica] .m1 > .tb{background:linear-gradient(180deg,#e8f2dc,#c9dfb2)}
+body[data-mode=classica] .m2 > .tb{background:linear-gradient(180deg,#8c1c3a,#5a0e22)}
+body[data-mode=classica] .m3 > .tb{background:linear-gradient(180deg,#fff4dc,#efd29c)}
+body[data-mode=classica] .m4 > .tb{background:linear-gradient(180deg,#fbe7b0,#d9b25c)}
+body[data-mode=classica] .dress{background:linear-gradient(160deg,#fff8ea,#f6e2bf 50%,#efd6b0)}
+body[data-mode=classica] .stage{background:linear-gradient(180deg,#2a0d14 0%,#4a1622 55%,#6a2030 100%)}
+body[data-mode=classica] .polaroid .ph{background:radial-gradient(circle at 20% 20%,#fff 0 1.5%,transparent 2%),radial-gradient(circle at 80% 25%,#fff 0 1.5%,transparent 2%),linear-gradient(180deg,#f6e2b8,#d9a96a)}
+body[data-mode=classica] .marquee{color:#8a5a3a;border-color:#8a5a3a}
+body[data-mode=classica] .show .marquee{color:#ffe9a8;border-color:#d4a017;text-shadow:0 0 1vmin #d4a017,0 0 3vmin #b3264a}
+body[data-mode=classica] .idol{border-color:#d4a017;box-shadow:0 0 4vmin #ffe9a8}
+body[data-mode=classica] .count{text-shadow:0 1vmin 0 #8c1c3a,0 0 4vmin #d4a017}
+/* ---------- style: disco (night, neon and a mirror ball) ---------- */
+body[data-mode=disco] #app{--pink:#ff3df2;--pink-deep:#c400c4;--blush:#3a1460;--cream:#140a2a;--lilac:#7a5cff;--plum:#12061f;--gold:#ffe14d;--mint:#3df2ff;
+  --display:'Righteous','Baloo 2',system-ui,sans-serif}
+body[data-mode=disco] .sky{background:
+  radial-gradient(circle at 15% 20%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+  radial-gradient(circle at 80% 30%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+  radial-gradient(circle at 60% 80%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+  radial-gradient(ellipse at 20% 100%,rgba(255,61,242,.4),transparent 55%),
+  radial-gradient(ellipse at 85% 0%,rgba(61,242,255,.35),transparent 50%),
+  linear-gradient(160deg,#140a2e 0%,#2a0f52 55%,#120a2e 100%)}
+body[data-mode=disco] .m1 > .tb{background:linear-gradient(180deg,#2a1d50,#140a2e)}
+body[data-mode=disco] .m2 > .tb{background:linear-gradient(180deg,#55127a,#1a0a3a)}
+body[data-mode=disco] .m3 > .tb{background:linear-gradient(180deg,#7a1a8a,#2a0f52)}
+body[data-mode=disco] .m4 > .tb{background:linear-gradient(180deg,#3a2a7a,#140a2e)}
+body[data-mode=disco] .dress{background:linear-gradient(160deg,#1a0f3a,#3a1460 50%,#140a2e)}
+body[data-mode=disco] .stage{background:linear-gradient(180deg,#0b0420 0%,#1e0a40 55%,#2a0a4a 100%)}
+body[data-mode=disco] .polaroid .ph{background:radial-gradient(circle at 20% 20%,#fff 0 1.5%,transparent 2%),radial-gradient(circle at 80% 25%,#fff 0 1.5%,transparent 2%),linear-gradient(180deg,#2a0f52,#7a1a8a)}
+body[data-mode=disco] .polaroid .cap{color:#c400c4}
+body[data-mode=disco] .marquee{color:#5a3a8a;border-color:#5a3a8a}
+body[data-mode=disco] .show .marquee{color:#ffe14d;border-color:#ff3df2;text-shadow:0 0 1vmin #ff3df2,0 0 3vmin #3df2ff}
+body[data-mode=disco] .idol{border-color:#3df2ff;box-shadow:0 0 4vmin #ff3df2}
+body[data-mode=disco] .count{text-shadow:0 1vmin 0 #c400c4,0 0 4vmin #3df2ff}
 /* ---------- settings ---------- */
 #settings{position:fixed;inset:0;z-index:90;background:rgba(42,20,66,.55);display:grid;place-items:center;padding:16px}
 .panel{background:var(--cream);color:var(--plum);border:4px solid var(--plum);border-radius:24px;max-width:980px;width:100%;max-height:92vh;overflow:auto;padding:20px max(16px,2.4vw) 24px;box-shadow:0 10px 0 var(--plum);user-select:text}
@@ -345,10 +409,14 @@ body[data-mode=rock] .pausebtn.on > .tb{background:#ffd23f}
 
     <fieldset><legend>General</legend>
       <label>Nom de l'alumne/a <input type="text" id="c-name" data-k="name" maxlength="24" placeholder="Ex.: Laia"></label>
-      <label>Música (mode) en començar
-        <select id="c-fixMode" data-k="fixMode"><option value="">Que la triï l'alumne/a</option><option value="aitana">Sempre mode Aitana</option><option value="rock">Sempre mode Rock</option></select></label>
+      <label>Estil de música en començar
+        <select id="c-fixMode" data-k="fixMode"><option value="">Que la triï l'alumne/a</option><option value="pop">Sempre pop (Aitana)</option><option value="rock">Sempre rock</option><option value="classica">Sempre clàssica</option><option value="disco">Sempre disco</option></select></label>
       <label>Personatge en començar
-        <select id="c-fixChar" data-k="fixChar"><option value="">Que el triï l'alumne/a</option><option value="nena1">Sempre la nena</option><option value="nena2">Sempre la nena amb ulleres</option><option value="nen">Sempre el nen</option></select></label>
+        <select id="c-fixChar" data-k="fixChar"><option value="">Que el triï l'alumne/a</option><option value="nena1">Sempre el personatge 1</option><option value="nena2">Sempre el personatge 2</option><option value="nen">Sempre el personatge 3</option></select></label>
+      <label>Nom del personatge 1 (nena de pell morena i cabells negres) <input type="text" id="c-nm1" data-k="nm1" maxlength="18" placeholder="Lluna"></label>
+      <label>Nom del personatge 2 (nena amb ulleres blaves i dues cues) <input type="text" id="c-nm2" data-k="nm2" maxlength="18" placeholder="Mar"></label>
+      <label>Nom del personatge 3 (nen amb pigues) <input type="text" id="c-nm3" data-k="nm3" maxlength="18" placeholder="Nil"></label>
+      <p class="wide" style="margin:0;font:700 14px/1.4 var(--body)">Els noms es guarden només en aquest navegador. Si no n'hi poseu cap, surten Lluna, Mar i Nil. La veu gravada diu aquests tres noms; per sentir els noms que escriviu, cal la veu Ona descarregable.</p>
       <label>Idioma del joc
         <select id="c-lang" data-k="lang"><option value="ca">Català</option><option value="es">Castellà</option></select></label>
       <label class="chk"><input type="checkbox" id="c-voice" data-k="voice"> Veu que llegeix les consignes</label>
@@ -382,7 +450,7 @@ body[data-mode=rock] .pausebtn.on > .tb{background:#ffd23f}
       <label class="chk wide"><input type="checkbox" id="c-startPaused" data-k="startPaused"> Cada pantalla i pregunta nova comença amb la mirada en pausa (per mirar-ho tot amb calma)</label>
     </fieldset>
 
-    <fieldset><legend>Joc 1 · Passeig amb el pony</legend>
+    <fieldset><legend>Joc 1 · Passeig amb el poni</legend>
       <label>Estrelles per agafar <output data-for="g1count"></output><input type="range" id="c-g1count" data-k="g1count" min="3" max="20" step="1"></label>
       <label>Estrelles alhora a la pantalla <output data-for="g1simul"></output><input type="range" id="c-g1simul" data-k="g1simul" min="1" max="3" step="1"></label>
       <label>On surten les estrelles
@@ -402,10 +470,11 @@ body[data-mode=rock] .pausebtn.on > .tb{background:#ffd23f}
       <label>Durada del concert final <output data-for="songSecs"></output><input type="range" id="c-songSecs" data-k="songSecs" min="5" max="90" step="5"></label>
     </fieldset>
 
-    <fieldset><legend>Joc 3 · Vesteix-te (d'estrella o de rocker)</legend>
+    <fieldset><legend>Joc 3 · Vesteix-te per al concert</legend>
       <div class="cats wide" id="catChecks"></div>
       <label>Opcions per triar en cada pas
         <select id="c-g3opts" data-k="g3opts" data-num=""><option value="4">4 opcions</option><option value="6">6 opcions</option><option value="8">8 opcions</option></select></label>
+      <label class="chk wide"><input type="checkbox" id="c-g3color" data-k="g3color"> Després de la part de dalt, la part de baix i el calçat, triar-ne el color</label>
       <label class="chk"><input type="checkbox" id="c-g3pink" data-k="g3pink"> El rosa i el blau surten sempre als colors</label>
       <label class="chk"><input type="checkbox" id="c-g3q" data-k="g3q"> Preguntes sobre la foto al final</label>
       <label>Opcions de resposta a les preguntes
@@ -413,10 +482,7 @@ body[data-mode=rock] .pausebtn.on > .tb{background:#ffd23f}
     </fieldset>
 
     <fieldset><legend>Personalitzar (opcional)</legend>
-      <label>Cançó per al concert · mode Aitana<input type="file" id="songFile" accept="audio/*"><small id="songInfo">Sense cançó: sona una melodia del joc.</small></label>
-      <label>Foto per a la pantalla del concert · mode Aitana<input type="file" id="photoFile" accept="image/*"><small id="photoInfo">Sense foto.</small></label>
-      <label>Cançó per al concert · mode Rock<input type="file" id="songRockFile" accept="audio/*"><small id="songRockInfo">Sense cançó: sona un riff de rock del joc.</small></label>
-      <label>Foto per a la pantalla del concert · mode Rock<input type="file" id="photoRockFile" accept="image/*"><small id="photoRockInfo">Sense foto.</small></label>
+      <div class="wide" id="mediaBox" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 22px"></div>
       <div class="row wide"><button class="pbtn" type="button" id="clearFiles">Treure les cançons i les fotos</button></div>
     </fieldset>
 
@@ -441,99 +507,129 @@ const $ = s => document.querySelector(s);
 const PL = '#4a2348';
 
 /* =====================  DATA  ===================== */
-let MODE = 'aitana';                                   // 'aitana' | 'rock' — chosen at the start of each session
+// four music styles, each with its own world (colours, scenes, music, sounds, clothes, accessories, stickers, texts)
+const STYLES = ['pop','rock','classica','disco'];
+const SL = {pop:'p', rock:'r', classica:'c', disco:'d'};          // letters used in the "m" field of items
+const SUF = {pop:'', rock:'R', classica:'C', disco:'D'};          // suffix of the texts of each style
+const DARK = {rock:true, disco:true};
+let MODE = 'pop';
 const ROCK = () => MODE === 'rock';
-const inMode = it => !it.m || it.m.includes(ROCK() ? 'r' : 'a');
-const mainPic = it => Array.isArray(it.p) ? it.p[0] : it.p;
-const pics = it => Array.isArray(it.p) ? it.p : [it.p];
-// colours: [label, masculine, feminine] (feminine is used in the sentences of the printable sheet)
+const inMode = it => !it.m || it.m.includes(SL[MODE]);
+const mainPic = it => it.p;
+// colours: [label, masc., fem., masc. plural, fem. plural] (used in the sentences of the printable sheet)
 const COLORS = [
-  {id:'rosa',   hex:'#ff5fa8', dark:'#d93a8a', p:2807, ca:['rosa','rosa','rosa'], es:['rosa','rosa','rosa']},
-  {id:'blau',   hex:'#4aa8ff', dark:'#1f7fdc', p:4869, ca:['blau','blau','blava'], es:['azul','azul','azul']},
-  {id:'lila',   hex:'#b57cf0', dark:'#8e55d6', p:2940, ca:['lila','lila','lila'], es:['lila','lila','lila']},
-  {id:'vermell',hex:'#ff4d5e', dark:'#d92b3d', p:2808, ca:['vermell','vermell','vermella'], es:['rojo','rojo','roja']},
-  {id:'taronja',hex:'#ff9a3c', dark:'#e07614', p:2888, ca:['taronja','taronja','taronja'], es:['naranja','naranja','naranja']},
-  {id:'groc',   hex:'#ffd23f', dark:'#e0ab10', p:2648, ca:['groc','groc','groga'], es:['amarillo','amarillo','amarilla']},
-  {id:'verd',   hex:'#4cd37a', dark:'#25ad55', p:4886, ca:['verd','verd','verda'], es:['verde','verde','verde']},
-  {id:'daurat', hex:'#f2c230', dark:'#c4920c', p:2739, ca:['daurat','daurat','daurada'], es:['dorado','dorado','dorada']},
-  {id:'negre',  hex:'#36303d', dark:'#16121a', p:2886, ca:['negre','negre','negra'], es:['negro','negro','negra']},
-  {id:'blanc',  hex:'#f6f3f8', dark:'#cbc3d3', p:8043, ca:['blanc','blanc','blanca'], es:['blanco','blanco','blanca']},
-  {id:'gris',   hex:'#a7a3b0', dark:'#77727f', p:3340, ca:['gris','gris','grisa'], es:['gris','gris','gris']},
+  {id:'rosa',   hex:'#ff5fa8', dark:'#d93a8a', p:2807, ca:['rosa','rosa','rosa','roses','roses'], es:['rosa','rosa','rosa','rosas','rosas']},
+  {id:'blau',   hex:'#4aa8ff', dark:'#1f7fdc', p:4869, ca:['blau','blau','blava','blaus','blaves'], es:['azul','azul','azul','azules','azules']},
+  {id:'lila',   hex:'#b57cf0', dark:'#8e55d6', p:2940, ca:['lila','lila','lila','liles','liles'], es:['lila','lila','lila','lilas','lilas']},
+  {id:'vermell',hex:'#ff4d5e', dark:'#d92b3d', p:2808, ca:['vermell','vermell','vermella','vermells','vermelles'], es:['rojo','rojo','roja','rojos','rojas']},
+  {id:'taronja',hex:'#ff9a3c', dark:'#e07614', p:2888, ca:['taronja','taronja','taronja','taronges','taronges'], es:['naranja','naranja','naranja','naranjas','naranjas']},
+  {id:'groc',   hex:'#ffd23f', dark:'#e0ab10', p:2648, ca:['groc','groc','groga','grocs','grogues'], es:['amarillo','amarillo','amarilla','amarillos','amarillas']},
+  {id:'verd',   hex:'#4cd37a', dark:'#25ad55', p:4886, ca:['verd','verd','verda','verds','verdes'], es:['verde','verde','verde','verdes','verdes']},
+  {id:'daurat', hex:'#f2c230', dark:'#c4920c', p:2739, ca:['daurat','daurat','daurada','daurats','daurades'], es:['dorado','dorado','dorada','dorados','doradas']},
+  {id:'platejat',hex:'#cfd3de', dark:'#9a9fb0', p:2827, ca:['platejat','platejat','platejada','platejats','platejades'], es:['plateado','plateado','plateada','plateados','plateadas']},
+  {id:'negre',  hex:'#36303d', dark:'#16121a', p:2886, ca:['negre','negre','negra','negres','negres'], es:['negro','negro','negra','negros','negras']},
+  {id:'blanc',  hex:'#f6f3f8', dark:'#cbc3d3', p:8043, ca:['blanc','blanc','blanca','blancs','blanques'], es:['blanco','blanco','blanca','blancos','blancas']},
+  {id:'gris',   hex:'#a7a3b0', dark:'#77727f', p:3340, ca:['gris','gris','grisa','grisos','grises'], es:['gris','gris','gris','grises','grises']},
 ];
+// colours that each style offers more often (blue and pink are always there)
+const STYLE_COLORS = {pop:['lila','daurat'], rock:['negre','vermell'], classica:['blanc','daurat','negre'], disco:['daurat','platejat','lila']};
 const HAIR = [
   {id:'llarg',   p:38535, ca:['cabells llargs','cabells llargs'], es:['pelo largo','el pelo largo']},
   {id:'cua',     p:5429,  ca:['cua','una cua'], es:['coleta','una coleta']},
   {id:'duescues',p:2484,  ca:['dues cues','dues cues'], es:['dos coletas','dos coletas']},
   {id:'trena',   p:5599,  ca:['trena','una trena'], es:['trenza','una trenza']},
-  {id:'monyo',   p:26230, m:'a', ca:['monyo','un monyo'], es:['moño','un moño']},
+  {id:'monyo',   p:26230, m:'pc', ca:['monyo','un monyo'], es:['moño','un moño']},
   {id:'cresta',  p:7069,  m:'r', ca:['cresta','una cresta'], es:['cresta','una cresta']},
   {id:'curt',    p:28683, ca:['cabells curts','cabells curts'], es:['pelo corto','el pelo corto']},
   {id:'arrissat',p:38538, ca:['cabells arrissats','cabells arrissats'], es:['pelo rizado','el pelo rizado']},
 ];
-// what she wears; the colour is chosen in the next step and goes on the main garment
-const OUTFITS = [
-  {id:'samrock',   p:[2309,2819], m:'r', ca:['samarreta amb llamp','una samarreta amb un llamp'], es:['camiseta con rayo','una camiseta con un rayo'],
-    sx:{ca:{art:'una', n:'samarreta', g:'f', rest:[['amb'],['un'],['llamp',2819]]}, es:{art:'una', n:'camiseta', g:'f', rest:[['con'],['un'],['rayo',2819]]}}},
-  {id:'vestit',    p:[2613], ca:['vestit','un vestit'], es:['vestido','un vestido'],
-    sx:{ca:{art:'un', n:'vestit', g:'m', rest:[]}, es:{art:'un', n:'vestido', g:'m', rest:[]}}},
-  {id:'tutu',      p:[2653], m:'a', ca:['tutú','un tutú'], es:['tutú','un tutú'],
-    sx:{ca:{art:'un', n:'tutú', g:'m', rest:[]}, es:{art:'un', n:'tutú', g:'m', rest:[]}}},
-  {id:'samfal',    p:[2309,2391], ca:['samarreta i faldilla','una samarreta i una faldilla'], es:['camiseta y falda','una camiseta y una falda'],
-    sx:{ca:{art:'una', n:'samarreta', g:'f', rest:[['i'],['una'],['faldilla',2391]]}, es:{art:'una', n:'camiseta', g:'f', rest:[['y'],['una'],['falda',2391]]}}},
-  {id:'sampan',    p:[2309,2565], ca:['samarreta i pantalons','una samarreta i pantalons'], es:['camiseta y pantalón','una camiseta y un pantalón'],
-    sx:{ca:{art:'una', n:'samarreta', g:'f', rest:[['i'],['pantalons',2565]]}, es:{art:'una', n:'camiseta', g:'f', rest:[['y'],['un'],['pantalón',2565]]}}},
-  {id:'jersei',    p:[2436,2565], ca:['jersei i pantalons','un jersei i pantalons'], es:['jersey y pantalón','un jersey y un pantalón'],
-    sx:{ca:{art:'un', n:'jersei', g:'m', rest:[['i'],['pantalons',2565]]}, es:{art:'un', n:'jersey', g:'m', rest:[['y'],['un'],['pantalón',2565]]}}},
-  {id:'dessuadora',p:[8701,2565], ca:['dessuadora i pantalons','una dessuadora i pantalons'], es:['sudadera y pantalón','una sudadera y un pantalón'],
-    sx:{ca:{art:'una', n:'dessuadora', g:'f', rest:[['i'],['pantalons',2565]]}, es:{art:'una', n:'sudadera', g:'f', rest:[['y'],['un'],['pantalón',2565]]}}},
-  {id:'jaqueta',   p:[23921,2565], ca:['jaqueta i pantalons','una jaqueta i pantalons'], es:['cazadora y pantalón','una cazadora y un pantalón'],
-    sx:{ca:{art:'una', n:'jaqueta', g:'f', rest:[['i'],['pantalons',2565]]}, es:{art:'una', n:'cazadora', g:'f', rest:[['y'],['un'],['pantalón',2565]]}}},
+// garments: [label, with "a/an", with "the", gender+number: m, f, mp, fp]
+const TOPS = [
+  {id:'samarreta', p:2309,  ca:['samarreta','una samarreta','la samarreta','f'], es:['camiseta','una camiseta','la camiseta','f']},
+  {id:'jersei',    p:2436,  ca:['jersei','un jersei','el jersei','m'], es:['jersey','un jersey','el jersey','m']},
+  {id:'brusa',     p:2280,  ca:['brusa','una brusa','la brusa','f'], es:['blusa','una blusa','la blusa','f']},
+  {id:'vestit',    p:2613,  ca:['vestit','un vestit','el vestit','m'], es:['vestido','un vestido','el vestido','m']},
+  {id:'dessuadora',p:8701,  ca:['dessuadora','una dessuadora','la dessuadora','f'], es:['sudadera','una sudadera','la sudadera','f']},
+  {id:'jaqueta',   p:23921, ca:['jaqueta','una jaqueta','la jaqueta','f'], es:['cazadora','una cazadora','la cazadora','f']},
+  {id:'camisa',    p:13640, ca:['camisa','una camisa','la camisa','f'], es:['camisa','una camisa','la camisa','f']},
+];
+const BOTTOMS = [
+  {id:'pantalons', p:2565,  ca:['pantalons','uns pantalons','els pantalons','mp'], es:['pantalón','un pantalón','el pantalón','m']},
+  {id:'malles',    p:39452, ca:['malles','unes malles','les malles','fp'], es:['mallas','unas mallas','las mallas','fp']},
+  {id:'tutu',      p:2653,  ca:['tutú','un tutú','el tutú','m'], es:['tutú','un tutú','el tutú','m']},
+  {id:'faldilla',  p:2391,  ca:['faldilla','una faldilla','la faldilla','f'], es:['falda','una falda','la falda','f']},
+  {id:'curts',     p:13638, ca:['pantalons curts','uns pantalons curts','els pantalons curts','mp'], es:['pantalón corto','un pantalón corto','el pantalón corto','m']},
+];
+// if the top is a dress, she chooses how it is instead of a bottom: plain, flowers, colours or drawings of the style
+const PATTERNS = [
+  {id:'llis',   p:4685,  ca:['llis','llis'], es:['liso','liso'], sx:[['llis',4685]], sxes:[['liso',4685]]},
+  {id:'flors',  p:7105,  ca:['amb flors','amb flors'], es:['con flores','con flores'], sx:[['amb'],['flors',7105]], sxes:[['con'],['flores',7105]]},
+  {id:'colors', p:5968,  ca:['de colors','de colors'], es:['de colores','de colores'], sx:[['de'],['colors',5968]], sxes:[['de'],['colores',5968]]},
+  {id:'cors',   p:4613,  m:'p', ca:['amb cors','amb cors'], es:['con corazones','con corazones'], sx:[['amb'],['cors',4613]], sxes:[['con'],['corazones',4613]]},
+  {id:'llamps', p:2819,  m:'r', ca:['amb llamps','amb llamps'], es:['con rayos','con rayos'], sx:[['amb'],['llamps',2819]], sxes:[['con'],['rayos',2819]]},
+  {id:'notes',  p:9123,  m:'c', ca:['amb notes musicals','amb notes musicals'], es:['con notas musicales','con notas musicales'], sx:[['amb'],['notes musicals',9123]], sxes:[['con'],['notas musicales',9123]]},
+  {id:'boles',  p:36353, m:'d', ca:['amb boles de miralls','amb boles de miralls'], es:['con bolas de espejos','con bolas de espejos'], sx:[['amb'],['boles de miralls',36353]], sxes:[['con'],['bolas de espejos',36353]]},
 ];
 const SHOES = [
-  {id:'vambes',  p:2621,  ca:['vambes','vambes'], es:['zapatillas','zapatillas deportivas']},
-  {id:'botes',   p:2667,  ca:['botes','botes'], es:['botas','botas']},
-  {id:'aigua',   p:2287,  ca:["botes d'aigua","botes d'aigua"], es:['botas de agua','botas de agua']},
-  {id:'sandalies',p:2556, ca:['sandàlies','sandàlies'], es:['sandalias','sandalias']},
-  {id:'xancletes',p:3077, ca:['xancletes','xancletes'], es:['chanclas','chanclas']},
-  {id:'ballet',  p:11406, ca:['sabates de ballet','sabates de ballet'], es:['zapatillas de ballet','zapatillas de ballet']},
-  {id:'talo',    p:2775,  ca:['sabates de taló','sabates de taló'], es:['zapatos de tacón','zapatos de tacón']},
-  {id:'sabates', p:2622,  ca:['sabates','sabates'], es:['zapatos','zapatos']},
+  {id:'vambes',   p:2621,  ca:['vambes','unes vambes','les vambes','fp'], es:['zapatillas','unas zapatillas','las zapatillas','fp']},
+  {id:'botes',    p:2667,  ca:['botes','unes botes','les botes','fp'], es:['botas','unas botas','las botas','fp']},
+  {id:'aigua',    p:2287,  ca:["botes d'aigua","unes botes d'aigua","les botes d'aigua",'fp'], es:['botas de agua','unas botas de agua','las botas de agua','fp']},
+  {id:'sandalies',p:2556,  ca:['sandàlies','unes sandàlies','les sandàlies','fp'], es:['sandalias','unas sandalias','las sandalias','fp']},
+  {id:'xancletes',p:3077,  ca:['xancletes','unes xancletes','les xancletes','fp'], es:['chanclas','unas chanclas','las chanclas','fp']},
+  {id:'ballet',   p:11406, ca:['sabates de ballet','unes sabates de ballet','les sabates de ballet','fp'], es:['zapatillas de ballet','unas zapatillas de ballet','las zapatillas de ballet','fp']},
+  {id:'talo',     p:2775,  ca:['sabates de taló','unes sabates de taló','les sabates de taló','fp'], es:['zapatos de tacón','unos zapatos de tacón','los zapatos de tacón','mp']},
+  {id:'sabates',  p:2622,  ca:['sabates','unes sabates','les sabates','fp'], es:['zapatos','unos zapatos','los zapatos','mp']},
 ];
-// accessories: pretty ones (Aitana) and rocker ones (Rock)
+// accessories of each style: p = pop (Aitana), r = rock, c = classical, d = disco
 const ACC = [
-  {id:'corona',    p:2718, m:'a', ca:['corona','una corona'], es:['corona','una corona']},
-  {id:'diadema',   p:3304, m:'a', ca:['diadema de cors','una diadema de cors'], es:['diadema de corazones','una diadema de corazones']},
-  {id:'pinces',    p:2975, m:'a', ca:["pinces d'estrella","unes pinces d'estrella"], es:['horquillas de estrella','unas horquillas de estrella']},
-  {id:'llac',      p:2946, m:'a', ca:['llaç','un llaç'], es:['lazo','un lazo']},
-  {id:'flor',      p:3102, m:'a', ca:['flor','una flor'], es:['flor','una flor']},
-  {id:'ulleres',   p:3330, m:'a', ca:['ulleres de cor','ulleres de cor'], es:['gafas de corazón','gafas de corazón']},
-  {id:'collaret',  p:2347, m:'a', ca:['collaret de perles','un collaret de perles'], es:['collar de perlas','un collar de perlas']},
-  {id:'arracades', p:2515, m:'a', ca:['arracades','arracades'], es:['pendientes','pendientes']},
-  {id:'guitarra',  p:8599, m:'r', ca:['guitarra elèctrica','una guitarra elèctrica'], es:['guitarra eléctrica','una guitarra eléctrica']},
-  {id:'mocador',   p:5417, m:'r', ca:['mocador','un mocador'], es:['pañuelo','un pañuelo']},
-  {id:'gorra',     p:2411, m:'r', ca:['gorra','una gorra'], es:['gorra','una gorra']},
-  {id:'ulleresf',  p:3330, m:'r', ca:['ulleres de sol','ulleres de sol'], es:['gafas de sol','gafas de sol']},
-  {id:'llamp',     p:2819, m:'r', ca:['llamp a la cara','un llamp a la cara'], es:['rayo en la cara','un rayo en la cara']},
-  {id:'diable',    p:8549, m:'r', ca:['banyes de diable','unes banyes de diable'], es:['cuernos de diablo','unos cuernos de diablo']},
-  {id:'polsera',   p:2537, m:'r', ca:['polsera de punxes','una polsera de punxes'], es:['pulsera de pinchos','una pulsera de pinchos']},
-  {id:'punxes',    p:2347, m:'r', ca:['collaret de punxes','un collaret de punxes'], es:['collar de pinchos','un collar de pinchos']},
-  {id:'auriculars',p:5915, ca:['auriculars','auriculars'], es:['auriculares','auriculares']},
+  {id:'corona',    p:2718,  m:'p',  ca:['corona','una corona'], es:['corona','una corona']},
+  {id:'diadema',   p:3304,  m:'p',  ca:['diadema de cors','una diadema de cors'], es:['diadema de corazones','una diadema de corazones']},
+  {id:'pinces',    p:2975,  m:'p',  ca:["pinces d'estrella","unes pinces d'estrella"], es:['horquillas de estrella','unas horquillas de estrella']},
+  {id:'llac',      p:2946,  m:'p',  ca:['llaç','un llaç'], es:['lazo','un lazo']},
+  {id:'flor',      p:3102,  m:'pc', ca:['flor','una flor'], es:['flor','una flor']},
+  {id:'ulleres',   p:3330,  m:'p',  ca:['ulleres de cor','ulleres de cor'], es:['gafas de corazón','gafas de corazón']},
+  {id:'collaret',  p:2347,  m:'pc', ca:['collaret de perles','un collaret de perles'], es:['collar de perlas','un collar de perlas']},
+  {id:'arracades', p:2515,  m:'pd', ca:['arracades','arracades'], es:['pendientes','pendientes']},
+  {id:'guitarra',  p:8599,  m:'r',  ca:['guitarra elèctrica','una guitarra elèctrica'], es:['guitarra eléctrica','una guitarra eléctrica']},
+  {id:'mocador',   p:5417,  m:'r',  ca:['mocador','un mocador'], es:['pañuelo','un pañuelo']},
+  {id:'gorra',     p:2411,  m:'r',  ca:['gorra','una gorra'], es:['gorra','una gorra']},
+  {id:'ulleresf',  p:3330,  m:'rd', ca:['ulleres de sol','ulleres de sol'], es:['gafas de sol','gafas de sol']},
+  {id:'llamp',     p:2819,  m:'r',  ca:['llamp a la cara','un llamp a la cara'], es:['rayo en la cara','un rayo en la cara']},
+  {id:'diable',    p:8549,  m:'r',  ca:['banyes de diable','unes banyes de diable'], es:['cuernos de diablo','unos cuernos de diablo']},
+  {id:'polsera',   p:2537,  m:'r',  ca:['polsera de punxes','una polsera de punxes'], es:['pulsera de pinchos','una pulsera de pinchos']},
+  {id:'punxes',    p:2347,  m:'r',  ca:['collaret de punxes','un collaret de punxes'], es:['collar de pinchos','un collar de pinchos']},
+  {id:'corbati',   p:4712,  m:'c',  ca:['corbatí','un corbatí'], es:['pajarita','una pajarita']},
+  {id:'ventall',   p:6871,  m:'c',  ca:['ventall','un ventall'], es:['abanico','un abanico']},
+  {id:'copa',      p:6216,  m:'c',  ca:['barret de copa','un barret de copa'], es:['sombrero de copa','un sombrero de copa']},
+  {id:'guants',    p:2415,  m:'c',  ca:['guants','uns guants'], es:['guantes','unos guantes']},
+  {id:'tiara',     p:6475,  m:'c',  ca:['diadema de brillants','una diadema de brillants'], es:['diadema de brillantes','una diadema de brillantes']},
+  {id:'violi',     p:2615,  m:'c',  ca:['violí','un violí'], es:['violín','un violín']},
+  {id:'perruca',   p:36566, m:'d',  ca:['perruca afro','una perruca afro'], es:['peluca afro','una peluca afro']},
+  {id:'purpurina', p:36437, m:'d',  ca:['purpurina','purpurina'], es:['purpurina','purpurina']},
+  {id:'boa',       p:5545,  m:'d',  ca:['boa de plomes','una boa de plomes'], es:['boa de plumas','una boa de plumas']},
+  {id:'micro',     p:2912,  m:'d',  ca:['micròfon','un micròfon'], es:['micrófono','un micrófono']},
+  {id:'cinta',     p:15357, m:'d',  ca:['cinta al cap','una cinta al cap'], es:['cinta en el pelo','una cinta en el pelo']},
+  {id:'auriculars',p:5915,  ca:['auriculars','auriculars'], es:['auriculares','auriculares']},
 ];
 const STICKERS = [
-  {id:'estrella', p:2752, ca:['estrelles','estrelles'], es:['estrellas','estrellas']},
-  {id:'cor',      p:4613, ca:['cors','cors'], es:['corazones','corazones']},
-  {id:'flor',     p:3102, m:'a', ca:['flors','flors'], es:['flores','flores']},
-  {id:'papallona',p:2465, m:'a', ca:['papallones','papallones'], es:['mariposas','mariposas']},
-  {id:'arc',      p:2986, m:'a', ca:['arcs de Sant Martí','arcs de Sant Martí'], es:['arcoíris','arcoíris']},
-  {id:'nuvol',    p:2883, m:'a', ca:['núvols','núvols'], es:['nubes','nubes']},
-  {id:'sol',      p:2798, m:'a', ca:['sols','sols'], es:['soles','soles']},
-  {id:'lluna',    p:2933, ca:['llunes','llunes'], es:['lunas','lunas']},
-  {id:'llamp',    p:2819, m:'r', ca:['llamps','llamps'], es:['rayos','rayos']},
-  {id:'foc',      p:4654, m:'r', ca:['flames','flames'], es:['llamas','llamas']},
-  {id:'nota',     p:9123, m:'r', ca:['notes musicals','notes musicals'], es:['notas musicales','notas musicales']},
-  {id:'guitarra', p:8599, m:'r', ca:['guitarres','guitarres'], es:['guitarras','guitarras']},
-  {id:'diable',   p:8549, m:'r', ca:['diables','diables'], es:['diablos','diablos']},
+  {id:'estrella', p:2752,  ca:['estrelles','estrelles'], es:['estrellas','estrellas']},
+  {id:'cor',      p:4613,  m:'pcd', ca:['cors','cors'], es:['corazones','corazones']},
+  {id:'flor',     p:3102,  m:'pc', ca:['flors','flors'], es:['flores','flores']},
+  {id:'papallona',p:2465,  m:'p', ca:['papallones','papallones'], es:['mariposas','mariposas']},
+  {id:'arc',      p:2986,  m:'pd', ca:['arcs de Sant Martí','arcs de Sant Martí'], es:['arcoíris','arcoíris']},
+  {id:'nuvol',    p:2883,  m:'p', ca:['núvols','núvols'], es:['nubes','nubes']},
+  {id:'sol',      p:2798,  m:'p', ca:['sols','sols'], es:['soles','soles']},
+  {id:'lluna',    p:2933,  ca:['llunes','llunes'], es:['lunas','lunas']},
+  {id:'llamp',    p:2819,  m:'rd', ca:['llamps','llamps'], es:['rayos','rayos']},
+  {id:'foc',      p:4654,  m:'r', ca:['flames','flames'], es:['llamas','llamas']},
+  {id:'nota',     p:9123,  m:'rcd', ca:['notes musicals','notes musicals'], es:['notas musicales','notas musicales']},
+  {id:'guitarra', p:8599,  m:'r', ca:['guitarres','guitarres'], es:['guitarras','guitarras']},
+  {id:'diable',   p:8549,  m:'r', ca:['diables','diables'], es:['diablos','diablos']},
+  {id:'clausol',  p:9129,  m:'c', ca:['claus de sol','claus de sol'], es:['claves de sol','claves de sol']},
+  {id:'violi',    p:2615,  m:'c', ca:['violins','violins'], es:['violines','violines']},
+  {id:'bola',     p:36353, m:'d', ca:['boles de miralls','boles de miralls'], es:['bolas de espejos','bolas de espejos']},
 ];
+// vocabulary of the concert: in each game all the pictograms on the stage come from one of these groups
 const ROBA = [
   {id:'samarreta', p:2309, ca:['samarreta','la samarreta'], es:['camiseta','la camiseta']},
   {id:'pantalons', p:2565, ca:['pantalons','els pantalons'], es:['pantalón','el pantalón']},
@@ -547,6 +643,18 @@ const ROBA = [
   {id:'pijama',    p:2522, ca:['pijama','el pijama'], es:['pijama','el pijama']},
   {id:'vestit',    p:2613, ca:['vestit','el vestit'], es:['vestido','el vestido']},
   {id:'barret',    p:2572, ca:['barret','el barret'], es:['sombrero','el sombrero']},
+];
+const EMO = [
+  {id:'content',  p:9907,  ca:['content','la cara contenta'], es:['contento','la cara contenta']},
+  {id:'trist',    p:2606,  ca:['trist','la cara trista'], es:['triste','la cara triste']},
+  {id:'enfadat',  p:2374,  ca:['enfadat','la cara enfadada'], es:['enfadado','la cara enfadada']},
+  {id:'cansat',   p:2314,  ca:['cansat','la cara cansada'], es:['cansado','la cara cansada']},
+  {id:'nervios',  p:11312, ca:['nerviós','la cara nerviosa'], es:['nervioso','la cara nerviosa']},
+  {id:'avorrit',  p:2245,  ca:['avorrit','la cara avorrida'], es:['aburrido','la cara aburrida']},
+  {id:'sorpres',  p:2574,  ca:['sorprès','la cara sorpresa'], es:['sorprendido','la cara sorprendida']},
+  {id:'espantat', p:2261,  ca:['espantat','la cara espantada'], es:['asustado','la cara asustada']},
+  {id:'enamorat', p:7232,  ca:['enamorat','la cara enamorada'], es:['enamorado','la cara enamorada']},
+  {id:'divertit', p:24735, ca:['divertit','la cara divertida'], es:['divertido','la cara divertida']},
 ];
 const INSTR = [
   {id:'guitarra',  p:2417, ca:['guitarra','la guitarra'], es:['guitarra','la guitarra']},
@@ -563,82 +671,110 @@ const INSTR = [
   {id:'micro',     p:2912, ca:['micròfon','el micròfon'], es:['micrófono','el micrófono']},
 ];
 const G2GROUPS = {
-  colors: {name:'Colors', items: COLORS.map(c => ({id:'c-' + c.id, p:c.p, ca:[c.ca[0], 'el color ' + c.ca[0]], es:[c.es[0], 'el color ' + c.es[0]]}))},
-  roba:   {name:'Roba', items: ROBA},
-  instr:  {name:'Instruments musicals', items: INSTR},
+  roba:     {name:'Roba', p:7233, items: ROBA},
+  emocions: {name:'Sentiments i emocions', p:11476, items: EMO},
+  colors:   {name:'Colors', p:5968, items: COLORS.map(c => ({id:'c-' + c.id, p:c.p, ca:[c.ca[0], 'el color ' + c.ca[0]], es:[c.es[0], 'el color ' + c.es[0]]}))},
+  instr:    {name:'Instruments musicals', p:8608, items: INSTR},
 };
 const STAGE = Object.values(G2GROUPS).flatMap(g => g.items);
+// steps of the dress-up game (the professional can switch them off). After the top, the bottom and the shoes
+// she chooses the colour; with a dress there is no bottom: she chooses how the dress is (plain, flowers…).
 const CATS = [
-  {id:'hair',  items:HAIR,  subj:[16331],
+  {id:'hair',  items:HAIR,  subj:16331, key:'hair',
     ca:{name:'Pentinat', choose:'Quin pentinat vols?', q:'Quin pentinat has triat?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
     es:{name:'Peinado', choose:'¿Qué peinado quieres?', q:'¿Qué peinado has elegido?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
-  {id:'roba',  items:OUTFITS, subj:[7233],
-    ca:{name:'Roba', choose:'Quina roba vols?', q:'Quina roba has triat?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
-    es:{name:'Ropa', choose:'¿Qué ropa quieres?', q:'¿Qué ropa has elegido?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
-  {id:'color', items:COLORS, subj:[7233,7075],
-    ca:{name:'Color de la roba', choose:'De quin color vols la roba?', q:'De quin color has triat la roba?', say:a=>`De color ${a}!`, ok:a=>`Has triat el color ${a}!`},
-    es:{name:'Color de la ropa', choose:'¿De qué color quieres la ropa?', q:'¿De qué color has elegido la ropa?', say:a=>`¡De color ${a}!`, ok:a=>`¡Has elegido el color ${a}!`}},
-  {id:'shoes', items:SHOES, subj:[2622],
-    ca:{name:'Sabates', choose:'Quines sabates vols?', q:'Quines sabates has triat?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
-    es:{name:'Zapatos', choose:'¿Qué zapatos quieres?', q:'¿Qué zapatos has elegido?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
-  {id:'acc',   items:ACC, subj:[25634],
+  {id:'top',   items:TOPS,  subj:7233, key:'top', color:'topColor',
+    ca:{name:'Part de dalt (i color)', choose:'Què vols portar a dalt?', q:'Què has triat per a dalt?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
+    es:{name:'Parte de arriba (y color)', choose:'¿Qué quieres llevar arriba?', q:'¿Qué has elegido para arriba?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
+  {id:'bottom',items:BOTTOMS, subj:2565, key:'bottom', color:'bottomColor',
+    ca:{name:'Part de baix (i color) o com és el vestit', choose:'Què vols portar a baix?', q:'Què has triat per a baix?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
+    es:{name:'Parte de abajo (y color) o cómo es el vestido', choose:'¿Qué quieres llevar abajo?', q:'¿Qué has elegido para abajo?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
+  {id:'shoes', items:SHOES, subj:2622, key:'shoes', color:'shoesColor',
+    ca:{name:'Calçat (i color)', choose:'Quin calçat vols?', q:'Quin calçat has triat?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
+    es:{name:'Calzado (y color)', choose:'¿Qué calzado quieres?', q:'¿Qué calzado has elegido?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
+  {id:'acc',   items:ACC, subj:25634, key:'acc',
     ca:{name:'Complements', choose:'Quin complement vols?', q:'Quin complement has triat?', say:a=>`Porta ${a}!`, ok:a=>`Has triat ${a}!`},
     es:{name:'Complementos', choose:'¿Qué complemento quieres?', q:'¿Qué complemento has elegido?', say:a=>`¡Lleva ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
-  {id:'pony',  items:COLORS, subj:[25800,7075],
-    ca:{name:'Color del pony', choose:'De quin color vols el pony?', q:'De quin color has triat el pony?', say:a=>`El pony és ${a}!`, ok:a=>`Has triat el pony ${a}!`},
-    es:{name:'Color del pony', choose:'¿De qué color quieres el pony?', q:'¿De qué color has elegido el pony?', say:a=>`¡El pony es ${a}!`, ok:a=>`¡Has elegido el pony ${a}!`}},
-  {id:'stick', items:STICKERS, subj:[25800],
-    ca:{name:'Adhesius del pony', choose:'Quins dibuixos vols per al pony?', q:'Quins dibuixos has triat per al pony?', say:a=>`El pony té ${a}!`, ok:a=>`Has triat ${a}!`},
-    es:{name:'Pegatinas del pony', choose:'¿Qué dibujos quieres para el pony?', q:'¿Qué dibujos has elegido para el pony?', say:a=>`¡El pony tiene ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
+  {id:'pony',  items:COLORS, subj:39198, key:'pony',
+    ca:{name:'Color del poni', choose:'De quin color vols el poni?', q:'De quin color has triat el poni?', say:a=>`El poni és ${a}!`, ok:a=>`Has triat el poni ${a}!`},
+    es:{name:'Color del poni', choose:'¿De qué color quieres el poni?', q:'¿De qué color has elegido el poni?', say:a=>`¡El poni es ${a}!`, ok:a=>`¡Has elegido el poni ${a}!`}},
+  {id:'stick', items:STICKERS, subj:39198, key:'stick',
+    ca:{name:'Adhesius del poni', choose:'Quins dibuixos vols per al poni?', q:'Quins dibuixos has triat per al poni?', say:a=>`El poni té ${a}!`, ok:a=>`Has triat ${a}!`},
+    es:{name:'Pegatinas del poni', choose:'¿Qué dibujos quieres para el poni?', q:'¿Qué dibujos has elegido para el poni?', say:a=>`¡El poni tiene ${a}!`, ok:a=>`¡Has elegido ${a}!`}},
 ];
+// the dress: instead of the bottom she chooses how it is
+const PATSTEP = {id:'pattern', items:PATTERNS, subj:2613, key:'pattern',
+  ca:{choose:'Com vols el vestit?', q:'Com és el vestit?', say:a=>`Un vestit ${a}!`, ok:a=>`Has triat el vestit ${a}!`},
+  es:{choose:'¿Cómo quieres el vestido?', q:'¿Cómo es el vestido?', say:a=>`¡Un vestido ${a}!`, ok:a=>`¡Has elegido el vestido ${a}!`}};
 const catItems = c => c.items.filter(inMode);
-// characters: same Motilo walker for everybody
+// characters: same Motilo walker for everybody. Their names are written in the settings (none in the public code).
 const CHARS = {
-  nena1:{skin:'#b0744a', skinD:'#8c5533', hair:'#1d1420', hairL:'#5a4466', eyes:'happy', g:'f',
-    def:{hair:'llarg', roba:'vestit', color:'rosa', shoes:'vambes', acc:'diadema', pony:'rosa', stick:'estrella'}},
-  nena2:{skin:'#f8dcca', skinD:'#e3b296', hair:'#8a5530', hairL:'#c8915e', eyes:'open', glasses:true, g:'f',
-    def:{hair:'duescues', roba:'jersei', color:'gris', shoes:'vambes', acc:'none', pony:'blau', stick:'estrella'}},
-  nen:  {skin:'#dba57e', skinD:'#b97f58', hair:'#3a2418', hairL:'#7a5440', eyes:'open', freckles:true, g:'m',
-    def:{hair:'curt', roba:'sampan', color:'blau', shoes:'vambes', acc:'none', pony:'blau', stick:'estrella'}},
+  nena1:{skin:'#b0744a', skinD:'#8c5533', hair:'#1d1420', hairL:'#5a4466', eyes:'happy', g:'f', nm:'nm1',
+    def:{hair:'llarg', top:'vestit', topColor:'rosa', bottom:'malles', bottomColor:'rosa', pattern:'llis', shoes:'vambes', shoesColor:'blanc', acc:'diadema', pony:'rosa', stick:'estrella'}},
+  nena2:{skin:'#f8dcca', skinD:'#e3b296', hair:'#8a5530', hairL:'#c8915e', eyes:'open', glasses:true, g:'f', nm:'nm2',
+    def:{hair:'duescues', top:'jersei', topColor:'gris', bottom:'pantalons', bottomColor:'blau', pattern:'llis', shoes:'vambes', shoesColor:'blanc', acc:'none', pony:'blau', stick:'estrella'}},
+  nen:  {skin:'#dba57e', skinD:'#b97f58', hair:'#3a2418', hairL:'#7a5440', eyes:'open', freckles:true, g:'m', nm:'nm3',
+    def:{hair:'curt', top:'samarreta', topColor:'blau', bottom:'pantalons', bottomColor:'gris', pattern:'llis', shoes:'vambes', shoesColor:'blanc', acc:'none', pony:'blau', stick:'estrella'}},
 };
 const charDefault = c => Object.assign({char:c}, CHARS[c].def);
+/* Fitzgerald key, as ARASAAC uses it: people yellow, nouns orange, verbs green, qualities blue, social pink, others grey */
+const FZC = {P:'#f2c500', N:'#f08a1c', V:'#2fae4e', Q:'#1e44b0', S:'#d6339a', M:'#9a9aa6'};
+const FZ = {};
+[...COLORS.map(c => c.p), ...EMO.map(e => e.p), 4675, 4615, 26392, 4685, 5968].forEach(id => FZ[id] = 'Q');
+[6627, 5581, 7271, 10146, 10138, 8649, 2652, 2439, 2474].forEach(id => FZ[id] = 'V');
+[2484, 2485, 2617].forEach(id => FZ[id] = 'P');
+const fzOf = id => FZ[id] || 'N';
+const fzCol = id => FZC[fzOf(id)];
+const pimg = (id, cls = '') => `<img alt="" class="fz${cls ? ' ' + cls : ''}" style="--fzc:${fzCol(id)}" src="${pic(id)}">`;
 
 const TXT = {
   ca:{ start:'Comencem! ✨', hello:n=>`Hola${n?', <b>'+n+'</b>':''}! A què jugem?`, helloSay:n=>`Hola${n?' '+n:''}! A què vols jugar?`,
-    g1:'Passeig amb el pony', g2:'Encén el concert', g3:"Vesteix-te d'estrella", g3R:'Vesteix-te de rocker', all:'Tots els jocs',
-    g1intro:"Anem a passejar amb el pony! Mira l'estrella.", g1top:"Mira l'estrella!", g1more:['Molt bé!','Una altra!','Genial!','Que bé que camines!','Quina estrella!'],
+    g1:'Passeig amb el poni', g2:'Encén el concert', g3:"Vesteix-te d'estrella", g3R:'Vesteix-te de rocker', g3C:'Vesteix-te de gala', g3D:'Vesteix-te de disco', all:'Tots els jocs',
+    g1intro:"Anem a passejar amb el poni! Mira l'estrella.", g1top:"Mira l'estrella!", g1more:['Molt bé!','Una altra!','Genial!','Que bé que camines!','Quina estrella!'],
     g1end:(n,nm)=>`Molt bé${nm?', '+nm:''}! Has agafat ${['zero','una','dues','tres','quatre','cinc','sis','set','vuit','nou','deu','onze','dotze','tretze','catorze','quinze','setze','disset','divuit','dinou','vint'][n] || n} estrelles!`,
-    g2intro:'Anem a encendre el concert!', g2find:a=>`Busca ${a}!`, g2found:a=>`Molt bé! Has trobat ${a}!`, g2show:'Comença el concert!', g2showR:'Comença el concert de rock!', bravo:'Bravo! Bravo!', bravoR:'Visca el rock!',
-    marquee:'CONCERT', marqueeR:'ROCK',
-    g3intro:"Anem a vestir-nos d'estrella per al concert!", g3introR:'Anem a vestir-nos de rockers per al concert!', photo:'Foto! Somriu!',
+    g2intro:'Anem a encendre el concert!', g2cat:{roba:'Busquem roba!', emocions:'Busquem sentiments i emocions!', colors:'Busquem colors!', instr:'Busquem instruments!'},
+    g2find:a=>`Busca ${a}!`, g2found:a=>`Molt bé! Has trobat ${a}!`,
+    g2show:'Comença el concert!', g2showR:'Comença el concert de rock!', g2showC:'Comença el concert de música clàssica!', g2showD:'Comença la festa disco!',
+    bravo:'Bravo! Bravo!', bravoR:'Visca el rock!', bravoC:'Bravo! Quin concert més bonic!', bravoD:'Visca la música disco!',
+    marquee:'CONCERT', marqueeR:'ROCK', marqueeC:'CLÀSSICA', marqueeD:'DISCO',
+    g3intro:"Anem a vestir-nos d'estrella per al concert!", g3introR:'Anem a vestir-nos de rockers per al concert!', g3introC:'Anem a vestir-nos de gala per al concert!', g3introD:'Anem a vestir-nos de disco per al concert!',
+    colChoose:g=>`De quin color vols ${g}?`, colQ:(g,pl)=>`De quin color ${pl ? 'són' : 'és'} ${g}?`, colSay:c=>`De color ${c}!`, colOk:c=>`Has triat el color ${c}!`,
+    photo:'Foto! Somriu!',
     photoNice:(n,g)=>`Que ${g==='m'?'guapo':'guapa'}${n?', '+n:''}! Ets una superestrella!`, photoNiceR:(n,g)=>`${g==='m'?'Quin rocker':'Quina rockera'}${n?', '+n:''}! Ets una estrella del rock!`,
-    star:'Superestrella', starR:'Estrella del rock',
-    qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', pauseOn:'Descansa la mirada. Mira-ho tot amb calma.', pauseOff:'Som-hi! Ara pots triar.', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!', sheetSay:'Mira la teva fitxa!', sheetPdf:'📄 Descarregar PDF', sheetGo:'Continuar', sheetErr:"No s'ha pogut fer el PDF.",
-    modeQ:'Quina música vols?', modeA:'Aitana', modeR:'Rock', modeSayA:'Mode Aitana!', modeSayR:'Mode rock!',
-    charQ:'Qui vols ser?', chars:{nena1:'Nena', nena2:'Nena amb ulleres', nen:'Nen'},
+    photoNiceC:(n,g)=>`Que elegant${n?', '+n:''}! Ets una estrella de la música clàssica!`, photoNiceD:(n,g)=>`${g==='m'?'Quin ballarí':'Quina ballarina'}${n?', '+n:''}! Ets una estrella de la disco!`,
+    star:'Superestrella', starR:'Estrella del rock', starC:'Estrella clàssica', starD:'Estrella disco',
+    qintro:'Ara unes preguntes sobre la foto.', look:'Mira bé la foto i torna-ho a intentar!', yes:'Sí! ', pause:'Descansar la mirada', resume:'Tornar a jugar', bye:'Molt bé! Fins a la propera!', qend:'Molt bé! Ho has fet genial!', sheetSay:'Mira la teva fitxa!', sheetPdf:'📄 Descarregar PDF', sheetGo:'Continuar', sheetErr:"No s'ha pogut fer el PDF.",
+    modeQ:'Quina música vols?', modes:{pop:'Pop (Aitana)', rock:'Rock', classica:'Clàssica', disco:'Disco'}, modeSay:{pop:'Música pop!', rock:'Música rock!', classica:'Música clàssica!', disco:'Música disco!'},
+    charQ:'Qui vols ser avui?', chars:{nena1:'Lluna', nena2:'Mar', nen:'Nil'}, charOk:'Molt bé!', charHi:n=>`Hola, ${n}!`,
     lang:'ca-ES' },
   es:{ start:'¡Empezamos! ✨', hello:n=>`¡Hola${n?', <b>'+n+'</b>':''}! ¿A qué jugamos?`, helloSay:n=>`¡Hola${n?' '+n:''}! ¿A qué quieres jugar?`,
-    g1:'Paseo con el pony', g2:'Enciende el concierto', g3:'Vístete de estrella', g3R:'Vístete de rock', all:'Todos los juegos',
-    g1intro:'¡Vamos a pasear con el pony! Mira la estrella.', g1top:'¡Mira la estrella!', g1more:['¡Muy bien!','¡Otra!','¡Genial!','¡Qué bien caminas!','¡Qué estrella!'],
+    g1:'Paseo con el poni', g2:'Enciende el concierto', g3:'Vístete de estrella', g3R:'Vístete de rock', g3C:'Vístete de gala', g3D:'Vístete de disco', all:'Todos los juegos',
+    g1intro:'¡Vamos a pasear con el poni! Mira la estrella.', g1top:'¡Mira la estrella!', g1more:['¡Muy bien!','¡Otra!','¡Genial!','¡Qué bien caminas!','¡Qué estrella!'],
     g1end:(n,nm)=>`¡Muy bien${nm?', '+nm:''}! ¡Has cogido ${['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'][n] || n} estrellas!`,
-    g2intro:'¡Vamos a encender el concierto!', g2find:a=>`¡Busca ${a}!`, g2found:a=>`¡Muy bien! ¡Has encontrado ${a}!`, g2show:'¡Empieza el concierto!', g2showR:'¡Empieza el concierto de rock!', bravo:'¡Bravo! ¡Bravo!', bravoR:'¡Viva el rock!',
-    marquee:'CONCIERTO', marqueeR:'ROCK',
-    g3intro:'¡Vamos a vestirnos de estrella para el concierto!', g3introR:'¡Vamos a vestirnos de rock para el concierto!', photo:'¡Foto! ¡Sonríe!',
+    g2intro:'¡Vamos a encender el concierto!', g2cat:{roba:'¡Buscamos ropa!', emocions:'¡Buscamos sentimientos y emociones!', colors:'¡Buscamos colores!', instr:'¡Buscamos instrumentos!'},
+    g2find:a=>`¡Busca ${a}!`, g2found:a=>`¡Muy bien! ¡Has encontrado ${a}!`,
+    g2show:'¡Empieza el concierto!', g2showR:'¡Empieza el concierto de rock!', g2showC:'¡Empieza el concierto de música clásica!', g2showD:'¡Empieza la fiesta disco!',
+    bravo:'¡Bravo! ¡Bravo!', bravoR:'¡Viva el rock!', bravoC:'¡Bravo! ¡Qué concierto tan bonito!', bravoD:'¡Viva la música disco!',
+    marquee:'CONCIERTO', marqueeR:'ROCK', marqueeC:'CLÁSICA', marqueeD:'DISCO',
+    g3intro:'¡Vamos a vestirnos de estrella para el concierto!', g3introR:'¡Vamos a vestirnos de rock para el concierto!', g3introC:'¡Vamos a vestirnos de gala para el concierto!', g3introD:'¡Vamos a vestirnos de disco para el concierto!',
+    colChoose:g=>`¿De qué color quieres ${g}?`, colQ:(g,pl)=>`¿De qué color ${pl ? 'son' : 'es'} ${g}?`, colSay:c=>`¡De color ${c}!`, colOk:c=>`¡Has elegido el color ${c}!`,
+    photo:'¡Foto! ¡Sonríe!',
     photoNice:(n,g)=>`¡Qué ${g==='m'?'guapo':'guapa'}${n?', '+n:''}! ¡Eres una superestrella!`, photoNiceR:(n,g)=>`¡Qué ${g==='m'?'rockero':'rockera'}${n?', '+n:''}! ¡Eres una estrella del rock!`,
-    star:'Superestrella', starR:'Estrella del rock',
-    qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', pauseOn:'Descansa la mirada. Míralo todo con calma.', pauseOff:'¡Vamos! Ahora puedes elegir.', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!', sheetSay:'¡Mira tu ficha!', sheetPdf:'📄 Descargar PDF', sheetGo:'Continuar', sheetErr:'No se ha podido hacer el PDF.',
-    modeQ:'¿Qué música quieres?', modeA:'Aitana', modeR:'Rock', modeSayA:'¡Modo Aitana!', modeSayR:'¡Modo rock!',
-    charQ:'¿Quién quieres ser?', chars:{nena1:'Niña', nena2:'Niña con gafas', nen:'Niño'},
+    photoNiceC:(n,g)=>`¡Qué elegante${n?', '+n:''}! ¡Eres una estrella de la música clásica!`, photoNiceD:(n,g)=>`¡Qué ${g==='m'?'bailarín':'bailarina'}${n?', '+n:''}! ¡Eres una estrella de la disco!`,
+    star:'Superestrella', starR:'Estrella del rock', starC:'Estrella clásica', starD:'Estrella disco',
+    qintro:'Ahora unas preguntas sobre la foto.', look:'¡Mira bien la foto y vuelve a intentarlo!', yes:'¡Sí! ', pause:'Descansar la mirada', resume:'Volver a jugar', bye:'¡Muy bien! ¡Hasta la próxima!', qend:'¡Muy bien! ¡Lo has hecho genial!', sheetSay:'¡Mira tu ficha!', sheetPdf:'📄 Descargar PDF', sheetGo:'Continuar', sheetErr:'No se ha podido hacer el PDF.',
+    modeQ:'¿Qué música quieres?', modes:{pop:'Pop (Aitana)', rock:'Rock', classica:'Clásica', disco:'Disco'}, modeSay:{pop:'¡Música pop!', rock:'¡Música rock!', classica:'¡Música clásica!', disco:'¡Música disco!'},
+    charQ:'¿Quién quieres ser hoy?', chars:{nena1:'Lluna', nena2:'Mar', nen:'Nil'}, charOk:'¡Muy bien!', charHi:n=>`¡Hola, ${n}!`,
     lang:'es-ES' }
 };
 
 /* =====================  CONFIG  ===================== */
-const DEF = {v:5, name:'', lang:'ca', voice:true, voiceName:'__ona', rate:0.95, sound:true, vol:0.8,
-  fixMode:'', fixChar:'', startPaused:true,
+const DEF = {v:6, name:'', lang:'ca', voice:true, voiceName:'__ona', rate:0.95, sound:true, vol:0.8,
+  fixMode:'', fixChar:'', nm1:'', nm2:'', nm3:'', startPaused:true,
   dwell:1000, grace:250, act:'both', size:1, ring:true, dot:true, hideCursor:false,
   g1count:8, g1simul:1, g1pos:'prog',
-  g2items:4, g2searches:4, g2groups:['colors','roba','instr'], g2hint:10, g2picto:true, songSecs:20,
-  g3cats:['hair','roba','color','shoes','acc','pony','stick'], g3opts:4, g3pink:true, g3q:true, g3qopts:6};
+  g2items:4, g2searches:4, g2groups:['roba','emocions','colors','instr'], g2hint:10, g2picto:true, songSecs:20,
+  g3cats:['hair','top','bottom','shoes','acc','pony','stick'], g3color:true, g3opts:4, g3pink:true, g3q:true, g3qopts:6};
 let cfg = Object.assign({}, DEF);
 try {
   const s = JSON.parse(localStorage.getItem('miraBrillaCfg') || 'null');
@@ -646,13 +782,18 @@ try {
     cfg = Object.assign({}, DEF, s);
     if (!s.v) cfg.voiceName = '__ona';
     if (!s.v || s.v < 3) cfg.g3qopts = 6;
-    if (!s.v || s.v < 5) {             // dress-up steps were renamed: dress -> clothes + colour, head -> accessories
-      const ids = [];
-      (s.g3cats || DEF.g3cats).forEach(id => (id === 'dress' ? ['roba','color'] : id === 'head' ? ['acc'] : [id]).forEach(x => { if (!ids.includes(x)) ids.push(x); }));
-      cfg.g3cats = CATS.map(c => c.id).filter(id => ids.includes(id));
-      cfg.startPaused = true;
+    if (!s.v || s.v < 5) cfg.startPaused = true;
+    if (!s.v || s.v < 6) {             // v6: four styles, separate top/bottom/shoes with colour, emotions on the stage
+      if (s.fixMode === 'aitana') cfg.fixMode = 'pop';
+      const old = s.g3cats || ['hair','roba','color','shoes','acc','pony','stick'], ids = new Set();
+      old.forEach(id => (id === 'roba' || id === 'dress' ? ['top','bottom'] : id === 'head' ? ['acc'] : id === 'color' ? [] : [id]).forEach(x => ids.add(x)));
+      cfg.g3cats = CATS.map(c => c.id).filter(id => ids.has(id));
+      cfg.g3color = !s.g3cats || s.g3cats.includes('color') || s.g3cats.includes('dress');
+      const g = new Set(s.g2groups || DEF.g2groups); g.add('emocions');
+      cfg.g2groups = Object.keys(G2GROUPS).filter(id => g.has(id));
     }
-    cfg.v = 5;
+    if (!STYLES.includes(cfg.fixMode)) cfg.fixMode = '';
+    cfg.v = 6;
   }
 } catch(e) {}
 const snap468 = v => [4,6,8].reduce((b, x) => Math.abs(x - v) < Math.abs(b - v) ? x : b, 4);
@@ -662,10 +803,12 @@ const saveCfg = () => { try { localStorage.setItem('miraBrillaCfg', JSON.stringi
 let outfit = charDefault('nena1');
 try { localStorage.removeItem('miraBrillaOutfit'); } catch(e) {}
 const T = () => TXT[cfg.lang] || TXT.ca;
-const tt = k => { const t = T(); return ROCK() && t[k + 'R'] !== undefined ? t[k + 'R'] : t[k]; };   // text for the current mode
-const L = it => (it[cfg.lang] || it.ca);           // [label, phrase]
+const tt = k => { const t = T(), x = t[k + SUF[MODE]]; return x !== undefined ? x : t[k]; };   // text for the current style
+const L = it => (it[cfg.lang] || it.ca);           // [label, phrase, ...]
 const CL = c => (c[cfg.lang] || c.ca);
 const gender = () => (CHARS[outfit.char] || CHARS.nena1).g;
+const charName = c => (cfg[(CHARS[c] || CHARS.nena1).nm] || '').trim();
+const charLabel = c => charName(c) || T().chars[c];
 
 /* =====================  HELPERS  ===================== */
 const rand = (a,b) => a + Math.random()*(b-a);
@@ -731,21 +874,56 @@ function kick(t0=0, vol=.5){
 const snare = (t0=0, v=.35) => noise(t0, .18, 'bandpass', 1800, v);
 const hat = (t0=0, v=.12) => noise(t0, .05, 'highpass', 7000, v);
 const crash = (t0=0, v=.25) => noise(t0, 1.2, 'highpass', 5000, v);
+/* classical sounds: soft bowed strings and a harp; disco sounds: clap, octave bass and synth stabs */
+function strings(m, t0, dur, vol=.06){
+  const a = ac(); if (!a || !cfg.sound) return;
+  const o = a.createOscillator(), o2 = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain(), t = a.currentTime + t0;
+  o.type = 'sawtooth'; o2.type = 'sawtooth'; o.frequency.value = mf(m); o2.frequency.value = mf(m) * 1.004;
+  f.type = 'lowpass'; f.frequency.value = 1500; o.connect(f); o2.connect(f); f.connect(g); g.connect(master);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + Math.min(.12, dur*.4)); g.gain.setValueAtTime(vol, t + dur*.7); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.start(t); o2.start(t); o.stop(t + dur + .05); o2.stop(t + dur + .05);
+}
+const harp = (m, t0=0, vol=.16) => { tone(mf(m), t0, .9, 'triangle', vol); tone(mf(m+12), t0, .5, 'sine', vol*.35); };
+const clap = (t0=0, v=.3) => { noise(t0, .09, 'bandpass', 1400, v); noise(t0 + .012, .09, 'bandpass', 1200, v*.8); };
+function stab(notes, t0, dur=.16, vol=.05){ notes.forEach(m => { tone(mf(m), t0, dur, 'sawtooth', vol); tone(mf(m+12), t0, dur, 'square', vol*.4); }); }
 const sfx = {
-  sparkle(){ if (ROCK()) { [52,55,59,64].forEach((m,i) => chord(m, i*.05, .18, .07)); return; } [88,91,95,100,103].forEach((m,i)=>tone(mf(m), i*.06, .35, 'triangle', .18)); },
-  pop(){ if (ROCK()) { kick(0, .35); hat(.02); return; } tone(520,0,.12,'sine',.25); tone(880,.05,.15,'sine',.18); },
-  step(){ if (ROCK()) { hat(0, .07); return; } tone(rand(300,360),0,.08,'sine',.08); },
-  yay(){ if (ROCK()) { chord(40,0,.2); chord(40,.16,.2); chord(43,.32,.2); chord(45,.48,.9); kick(0); kick(.32); snare(.16); snare(.48); crash(.48); return; }
+  sparkle(){
+    if (MODE === 'rock') { [52,55,59,64].forEach((m,i) => chord(m, i*.05, .18, .07)); return; }
+    if (MODE === 'classica') { [72,74,76,79,81,84,86,88].forEach((m,i) => harp(m, i*.045, .1)); return; }
+    if (MODE === 'disco') { stab([69,72,76], 0, .14); stab([71,74,79], .12, .22); hat(0, .1); return; }
+    [88,91,95,100,103].forEach((m,i)=>tone(mf(m), i*.06, .35, 'triangle', .18)); },
+  pop(){
+    if (MODE === 'rock') { kick(0, .35); hat(.02); return; }
+    if (MODE === 'classica') { harp(79, 0, .14); harp(84, .07, .12); return; }
+    if (MODE === 'disco') { clap(0, .25); tone(880, .02, .08, 'square', .06); return; }
+    tone(520,0,.12,'sine',.25); tone(880,.05,.15,'sine',.18); },
+  step(){
+    if (MODE === 'rock') { hat(0, .07); return; }
+    if (MODE === 'classica') { tone(mf(pick([67,71,74])), 0, .12, 'triangle', .06); return; }
+    if (MODE === 'disco') { hat(0, .06); return; }
+    tone(rand(300,360),0,.08,'sine',.08); },
+  yay(){
+    if (MODE === 'rock') { chord(40,0,.2); chord(40,.16,.2); chord(43,.32,.2); chord(45,.48,.9); kick(0); kick(.32); snare(.16); snare(.48); crash(.48); return; }
+    if (MODE === 'classica') { [60,64,67,72].forEach((m,i) => harp(m, i*.09, .14)); strings(72, .36, 1.1, .05); strings(76, .36, 1.1, .04); strings(79, .36, 1.1, .04); return; }
+    if (MODE === 'disco') { kick(0, .45); clap(.25); kick(.5, .45); clap(.75); [69,72,76,81,84].forEach((m,i) => tone(mf(m), i*.1, .25, 'square', .06)); stab([69,72,76,81], .55, .5, .05); return; }
     [72,76,79,84].forEach((m,i)=>tone(mf(m), i*.1, .4, 'triangle', .2)); tone(mf(88), .42, .7, 'triangle', .16); },
-  soft(){ if (ROCK()) { chord(36,0,.3,.06); return; } tone(mf(67),0,.25,'sine',.15); tone(mf(64),.18,.35,'sine',.13); },
+  soft(){
+    if (MODE === 'rock') { chord(36,0,.3,.06); return; }
+    if (MODE === 'classica') { harp(67, 0, .1); harp(64, .16, .09); return; }
+    if (MODE === 'disco') { tone(mf(57), 0, .2, 'square', .06); tone(mf(55), .16, .25, 'square', .05); return; }
+    tone(mf(67),0,.25,'sine',.15); tone(mf(64),.18,.35,'sine',.13); },
   click(){ const a=ac(); if(!a||!cfg.sound) return; const b=a.createBuffer(1,a.sampleRate*.08,a.sampleRate),d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3); const s=a.createBufferSource(); s.buffer=b; const g=a.createGain(); g.gain.value=.5; s.connect(g); g.connect(master); s.start(); },
   applause(){ const a=ac(); if(!a||!cfg.sound) return; const len=2.6, b=a.createBuffer(1,a.sampleRate*len,a.sampleRate), d=b.getChannelData(0);
     for (let k=0;k<70;k++){ const st=Math.floor(Math.random()*(d.length-3000)); for (let i=0;i<1400;i++) d[st+i]+=(Math.random()*2-1)*Math.pow(1-i/1400,4)*.5; }
     const s=a.createBufferSource(); s.buffer=b; const f=a.createBiquadFilter(); f.type='bandpass'; f.frequency.value=1800; f.Q.value=.6; const g=a.createGain(); g.gain.value=.9; s.connect(f); f.connect(g); g.connect(master); s.start();
-    if (ROCK()) { chord(40,0,1.4,.1); crash(0,.3); } }
+    if (MODE === 'rock') { chord(40,0,1.4,.1); crash(0,.3); }
+    if (MODE === 'classica') { strings(60, 0, 1.6, .05); strings(64, 0, 1.6, .04); strings(67, 0, 1.6, .04); strings(72, 0, 1.6, .04); }
+    if (MODE === 'disco') { [0,.25,.5,.75].forEach(t => kick(t, .4)); stab([69,72,76,81], 0, .8, .05); } }
 };
-/* music: the user's song for this mode if loaded, otherwise an original loop (pop or rock) */
-let musicStop = null, songURL = null, photoURL = null, songRockURL = null, photoRockURL = null;
+/* music: the user's song for this style if loaded, otherwise an original loop of the style */
+let musicStop = null;
+const MKEY = {pop:'', rock:'Rock', classica:'Classica', disco:'Disco'};   // the user's own song and photo of each style
+const MEDIA = {};
 const songEl = new Audio();
 function popLoop(){
   const mel = [72,76,79,76, 77,81,79,77, 76,79,84,79, 81,79,77,null, 72,76,79,81, 79,77,76,74, 76,77,79,76, 74,71,72,null];
@@ -775,16 +953,51 @@ function rockLoop(){
   const id = setInterval(beat, 200); beat();
   return () => clearInterval(id);
 }
+// a small original waltz: harp on the beats, strings with the tune (3/4, 6 eighths per bar)
+function classicLoop(){
+  const bars = [[48,[60,64,67]],[43,[59,62,67]],[45,[60,64,69]],[41,[60,65,69]],[48,[60,64,67]],[41,[60,65,69]],[43,[59,62,67]],[48,[60,64,67]]];
+  const mel = [[76,3],[79,2],[77,1], [74,6], [72,3],[76,2],[72,1], [77,6], [79,3],[81,2],[79,1], [77,3],[76,3], [74,3],[71,2],[74,1], [72,6]];
+  const tune = []; mel.forEach(([m, l]) => { tune.push([m, l]); for (let k = 1; k < l; k++) tune.push(null); });
+  let i = 0;
+  const beat = () => {
+    const bar = bars[Math.floor(i / 6) % bars.length], k = i % 6;
+    if (k === 0) harp(bar[0], 0, .16);
+    if (k === 2 || k === 4) bar[1].forEach(m => harp(m, 0, .06));
+    const n = tune[i % tune.length]; if (n) strings(n[0], 0, n[1] * .21, .055);
+    i++;
+  };
+  const id = setInterval(beat, 230); beat();
+  return () => clearInterval(id);
+}
+// four on the floor: kick on every beat, claps, open hi-hat on the off-beats, octave bass and string stabs
+function discoLoop(){
+  const roots = [45,45,50,50,41,41,40,40];
+  const chords = {45:[69,72,76], 50:[69,74,77], 41:[69,72,77], 40:[68,71,76]};
+  const riff = [81,null,79,81, null,84,null,81, 79,null,76,null, 79,81,null,null];
+  let i = 0;
+  const beat = () => {
+    const k = i % 16, r = roots[Math.floor(i / 8) % roots.length];
+    if (k % 4 === 0) kick(0, .45);
+    if (k === 4 || k === 12) clap(0, .22);
+    if (k % 4 === 2) noise(0, .12, 'highpass', 6000, .07); else hat(0, .03);
+    if (k % 2 === 0) tone(mf(k % 4 === 0 ? r - 12 : r), 0, .12, 'square', .09);
+    if (k === 2 || k === 10) stab(chords[r], 0, .12, .035);
+    const m = riff[k]; if (m && Math.floor(i / 16) % 2 === 1) tone(mf(m), 0, .1, 'triangle', .06);
+    i++;
+  };
+  const id = setInterval(beat, 125); beat();
+  return () => clearInterval(id);
+}
 function playMusic(){
   stopMusic();
   if (!cfg.sound) return;
-  const url = ROCK() ? songRockURL : songURL;
+  const url = MEDIA['song' + MKEY[MODE]];
   if (url) {
     songEl.src = url; songEl.currentTime = 0; songEl.volume = cfg.vol; songEl.play().catch(()=>{});
     musicStop = () => { const v0 = songEl.volume; let k = 0; const id = setInterval(()=>{ k++; songEl.volume = Math.max(0, v0*(1-k/10)); if (k>=10){ clearInterval(id); songEl.pause(); } }, 60); };
     return;
   }
-  musicStop = ROCK() ? rockLoop() : popLoop();
+  musicStop = ({rock:rockLoop, classica:classicLoop, disco:discoLoop}[MODE] || popLoop)();
 }
 function stopMusic(){ if (musicStop) { musicStop(); musicStop = null; } }
 
@@ -1092,6 +1305,13 @@ function sticker(k){
     case 'nota': return `<rect x="56" y="10" width="9" height="64" rx="3" fill="${PL}"/><path d="M62 10 Q92 20 88 48 Q82 32 62 30 Z" fill="#9b5cff" stroke="${PL}" stroke-width="4" stroke-linejoin="round"/><ellipse cx="46" cy="76" rx="20" ry="14" transform="rotate(-20 46 76)" fill="#9b5cff" stroke="${PL}" stroke-width="5"/>`;
     case 'guitarra': return `<g transform="rotate(35 50 50)"><rect x="45" y="2" width="10" height="52" rx="3" fill="#8a5530" stroke="${PL}" stroke-width="3"/><rect x="40" y="-2" width="20" height="13" rx="4" fill="${PL}"/><path d="M50 50 Q26 44 26 62 Q24 72 32 76 Q22 88 34 95 Q44 100 50 92 Q56 100 66 95 Q78 88 68 76 Q76 72 74 62 Q74 44 50 50 Z" fill="#ff2d55" stroke="${PL}" stroke-width="4" stroke-linejoin="round"/><rect x="41" y="68" width="18" height="6" rx="2" fill="#fff"/></g>`;
     case 'diable': return `<path d="M26 36 Q12 10 30 2 Q28 20 40 30 Z M74 36 Q88 10 70 2 Q72 20 60 30 Z" fill="#d1123a" stroke="${PL}" stroke-width="4" stroke-linejoin="round"/><circle cx="50" cy="58" r="34" fill="#ff4d6d" stroke="${PL}" stroke-width="5"/>${kf(50,60,1.1)}`;
+    case 'clausol': { const d = 'M56 94 Q42 96 42 84 Q44 74 54 78 M56 94 L50 10 Q64 2 64 20 Q64 36 40 54 Q26 66 32 78 Q40 92 60 86 Q76 78 70 62 Q62 50 48 58 Q42 64 48 72';
+      return `<path d="${d}" stroke="${PL}" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" stroke="#d4a017" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="88" r="7" fill="#d4a017" stroke="${PL}" stroke-width="3"/>`; }
+    case 'violi': return `<path d="M14 88 L90 18" stroke="${PL}" stroke-width="5" stroke-linecap="round"/><path d="M14 88 L90 18" stroke="#e9dcc4" stroke-width="2" stroke-linecap="round"/><g transform="rotate(-35 50 52)"><rect x="46" y="2" width="8" height="32" rx="3" fill="#3b2a1e" stroke="${PL}" stroke-width="3"/><path d="M50 30 Q36 30 36 42 Q36 50 42 52 Q32 56 32 70 Q32 90 50 90 Q68 90 68 70 Q68 56 58 52 Q64 50 64 42 Q64 30 50 30 Z" fill="#c1702c" stroke="${PL}" stroke-width="4" stroke-linejoin="round"/><path d="M44 48 Q47 55 44 62 M56 48 Q53 55 56 62" stroke="${PL}" stroke-width="2.5" fill="none"/><rect x="42" y="74" width="16" height="5" rx="2" fill="#3b2a1e"/></g>`;
+    case 'bola': return `<path d="M50 0 L50 14" stroke="${PL}" stroke-width="3"/><circle cx="50" cy="56" r="40" fill="#d9dce6" stroke="${PL}" stroke-width="5"/>`
+      + `<path d="M14 42 Q50 50 86 42 M10 58 Q50 66 90 58 M16 74 Q50 82 84 74 M50 16 L50 96 M30 20 Q20 56 30 92 M70 20 Q80 56 70 92" stroke="#8a8fa3" stroke-width="2.5" fill="none"/>`
+      + [[36,36,'#ff3df2'],[60,52,'#3df2ff'],[40,66,'#ffe14d'],[66,78,'#ff3df2'],[24,58,'#7a5cff'],[72,38,'#fff']].map(([x,y,c]) => `<rect x="${x}" y="${y}" width="10" height="9" rx="1.5" fill="${c}"/>`).join('')
+      + `<path d="M30 30 Q36 24 44 22" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/>`;
   }
   return '';
 }
@@ -1168,10 +1388,18 @@ function faceFront(c){
   if (c.glasses) s += `<g fill="rgba(255,255,255,.2)" stroke="#2f80ed" stroke-width="5"><circle cx="127" cy="111" r="17"/><circle cx="173" cy="111" r="17"/></g><path d="M144 108 Q150 103 156 108" stroke="#2f80ed" stroke-width="5" fill="none"/><path d="M110 107 L92 103 M190 107 L208 103" stroke="#2f80ed" stroke-width="4" stroke-linecap="round"/>`;
   return s;
 }
+const RAINBOW = ['#ff4d5e','#ff9a3c','#ffd23f','#4cd37a','#4aa8ff','#b57cf0'];
+const HEADPHONES = () => ({rock:['#1c1022','#ff2d55'], classica:['#3a2418','#d4a017'], disco:['#7a5cff','#3df2ff']}[MODE] || ['#ff5fa8','#ff5fa8']);
 /* accessories: drawn behind the body ('back'), at the neck ('neck'), on the face ('face') or on the head ('head') */
 function accFront(k, layer){
   if (layer === 'back') {
     if (k === 'guitarra') return `<g transform="rotate(28 236 250)"><rect x="231" y="128" width="11" height="104" rx="3" fill="#8a5530" stroke="${PL}" stroke-width="3"/><rect x="226" y="118" width="21" height="16" rx="4" fill="${PL}"/><path d="M236 228 Q206 220 204 246 Q202 260 212 266 Q198 282 214 294 Q228 302 236 290 Q244 302 258 294 Q274 282 260 266 Q270 260 268 246 Q266 220 236 228 Z" fill="#ff2d55" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/><rect x="226" y="258" width="20" height="7" rx="2" fill="#fff" stroke="${PL}" stroke-width="2"/></g>`;
+    if (k === 'violi') return `<g transform="rotate(26 238 240)"><rect x="234" y="150" width="9" height="62" rx="3" fill="#3b2a1e" stroke="${PL}" stroke-width="2.5"/><path d="M238 206 Q218 206 218 222 Q218 232 226 234 Q214 240 214 256 Q214 280 238 280 Q262 280 262 256 Q262 240 250 234 Q258 232 258 222 Q258 206 238 206 Z" fill="#c1702c" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/><path d="M230 232 Q233 240 230 248 M246 232 Q243 240 246 248" stroke="${PL}" stroke-width="2" fill="none"/><rect x="230" y="262" width="16" height="4" rx="2" fill="#3b2a1e"/></g>`;
+    if (k === 'perruca') {
+      let s = `<circle cx="150" cy="108" r="88" fill="#ff5fa8" stroke="${PL}" stroke-width="3"/>`;
+      for (let a = -210, i = 0; a <= 30; a += 20, i++) { const r = a * Math.PI / 180; s += `<circle cx="${(150 + Math.cos(r)*84).toFixed(1)}" cy="${(110 + Math.sin(r)*84).toFixed(1)}" r="28" fill="${RAINBOW[i % 6]}" stroke="${PL}" stroke-width="3"/>`; }
+      return s;
+    }
     return '';
   }
   if (layer === 'neck') {
@@ -1179,13 +1407,22 @@ function accFront(k, layer){
     if (k === 'punxes') return `<rect x="134" y="184" width="32" height="10" rx="4" fill="#1c1022" stroke="${PL}" stroke-width="2"/>` + [139,147,155,163].map(x => `<path d="M${x-3} 194 L${x} 202 L${x+3} 194 Z" fill="#c9c9d6" stroke="${PL}" stroke-width="1.5"/>`).join('');
     if (k === 'guitarra') return `<path d="M120 196 L192 272" stroke="${PL}" stroke-width="10" stroke-linecap="round"/><path d="M120 196 L192 272" stroke="#2d2833" stroke-width="6" stroke-linecap="round"/>`;
     if (k === 'polsera') return `<g transform="rotate(-55 98 222)"><rect x="86" y="216" width="24" height="11" rx="4" fill="#1c1022" stroke="${PL}" stroke-width="2"/>${[91,98,105].map(x => `<path d="M${x-3} 216 L${x} 208 L${x+3} 216 Z" fill="#c9c9d6" stroke="${PL}" stroke-width="1.5"/>`).join('')}</g>`;
+    if (k === 'corbati') return `<path d="M150 192 L128 181 L128 205 Z M150 192 L172 181 L172 205 Z" fill="#8c1c3a" stroke="${PL}" stroke-width="2.5" stroke-linejoin="round"/><circle cx="150" cy="192" r="6" fill="#5a0e22" stroke="${PL}" stroke-width="2"/>`;
+    if (k === 'boa') {
+      let s = '';
+      for (let i = 0; i <= 16; i++) { const a = Math.PI * i / 16; s += `<circle cx="${(150 - Math.cos(a)*46).toFixed(1)}" cy="${(186 + Math.sin(a)*22).toFixed(1)}" r="9.5" fill="${i % 2 ? '#ff7ec1' : '#ffb3dc'}" stroke="${PL}" stroke-width="1.5"/>`; }
+      [[112,1],[188,-1]].forEach(([x]) => { for (let y = 198; y <= 256; y += 12) s += `<circle cx="${x + (y % 24 ? 3 : -3)}" cy="${y}" r="9" fill="${y % 24 ? '#ff7ec1' : '#ffb3dc'}" stroke="${PL}" stroke-width="1.5"/>`; });
+      return s;
+    }
     return '';
   }
   if (layer === 'face') {
     if (k === 'llamp') return `<path d="M180 88 L162 114 L176 114 L164 140 L192 106 L178 106 L188 88 Z" fill="#ffd23f" stroke="#d1123a" stroke-width="3" stroke-linejoin="round" opacity=".95"/>`;
     if (k === 'ulleres') return `<path d="${heartPath(127,112,15)}" fill="#3b2a4a" stroke="#ff5fa8" stroke-width="5"/><path d="${heartPath(173,112,15)}" fill="#3b2a4a" stroke="#ff5fa8" stroke-width="5"/><path d="M142 104 Q150 98 158 104" stroke="#ff5fa8" stroke-width="5" fill="none"/><path d="M118 104 L123 99" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M164 104 L169 99" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`;
-    if (k === 'ulleresf') return `<rect x="106" y="99" width="40" height="24" rx="9" fill="#1c1022" stroke="${PL}" stroke-width="2"/><rect x="154" y="99" width="40" height="24" rx="9" fill="#1c1022" stroke="${PL}" stroke-width="2"/><path d="M146 106 L154 106" stroke="#1c1022" stroke-width="5"/><path d="M106 104 L90 101 M194 104 L210 101" stroke="#1c1022" stroke-width="4"/><path d="M114 106 L124 104 M162 106 L172 104" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>`;
+    if (k === 'ulleresf') { const f = MODE === 'disco' ? '#7a5cff' : '#1c1022';
+      return `<rect x="106" y="99" width="40" height="24" rx="9" fill="${f}" stroke="${PL}" stroke-width="2"/><rect x="154" y="99" width="40" height="24" rx="9" fill="${f}" stroke="${PL}" stroke-width="2"/><path d="M146 106 L154 106" stroke="${f}" stroke-width="5"/><path d="M106 104 L90 101 M194 104 L210 101" stroke="${f}" stroke-width="4"/><path d="M114 106 L124 104 M162 106 L172 104" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>`; }
     if (k === 'arracades') return `<path d="M88 132 L88 140" stroke="#f2c230" stroke-width="2"/><path d="${heartPath(88,146,7)}" fill="#ff5fa8" stroke="${PL}" stroke-width="2"/><path d="M212 132 L212 140" stroke="#f2c230" stroke-width="2"/><path d="${heartPath(212,146,7)}" fill="#ff5fa8" stroke="${PL}" stroke-width="2"/>`;
+    if (k === 'purpurina') return [[106,124,6,'#ffd23f'],[117,135,4,'#ff3df2'],[101,138,3.5,'#3df2ff'],[194,124,6,'#ffd23f'],[183,135,4,'#ff3df2'],[199,138,3.5,'#3df2ff'],[150,74,5,'#ffd23f']].map(([x,y,r,c]) => `<path d="${starPath(x,y,r,r*.4)}" fill="${c}" stroke="${PL}" stroke-width="1.2" stroke-linejoin="round"/>`).join('');
     return '';
   }
   switch(k){   // head
@@ -1195,10 +1432,20 @@ function accFront(k, layer){
     case 'pinces': return [[110,72,10],[130,56,8],[190,66,10]].map(([x,y,r]) => `<path d="${starPath(x,y,r,r*.45)}" fill="#ffcf3f" stroke="${PL}" stroke-width="2.5" stroke-linejoin="round"/>`).join('');
     case 'llac': return `<g transform="translate(196 54) rotate(14)"><path d="M0 0 L-34 -22 Q-42 0 -34 22 Z" fill="#ff4d5e" ${ST}/><path d="M0 0 L34 -22 Q42 0 34 22 Z" fill="#ff4d5e" ${ST}/><circle r="9" fill="#d92b3d" stroke="${PL}" stroke-width="3"/></g>`;
     case 'flor': return `<g transform="translate(196 58)">` + [0,72,144,216,288].map(a=>`<circle cx="${Math.cos(a*Math.PI/180)*14}" cy="${Math.sin(a*Math.PI/180)*14}" r="12" fill="#ff7ec1" stroke="${PL}" stroke-width="2.5"/>`).join('') + `<circle r="9" fill="#ffcf3f" stroke="${PL}" stroke-width="2.5"/></g>`;
-    case 'auriculars': return `<path d="M84 118 Q82 28 150 28 Q218 28 216 118" stroke="${PL}" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M84 118 Q82 28 150 28 Q218 28 216 118" stroke="${ROCK() ? '#1c1022' : '#ff5fa8'}" stroke-width="8" fill="none" stroke-linecap="round"/><rect x="70" y="98" width="26" height="42" rx="12" fill="${ROCK() ? '#ff2d55' : '#ff5fa8'}" ${ST}/><rect x="204" y="98" width="26" height="42" rx="12" fill="${ROCK() ? '#ff2d55' : '#ff5fa8'}" ${ST}/>`;
+    case 'auriculars': { const [a, b] = HEADPHONES(); return `<path d="M84 118 Q82 28 150 28 Q218 28 216 118" stroke="${PL}" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M84 118 Q82 28 150 28 Q218 28 216 118" stroke="${a}" stroke-width="8" fill="none" stroke-linecap="round"/><rect x="70" y="98" width="26" height="42" rx="12" fill="${b}" ${ST}/><rect x="204" y="98" width="26" height="42" rx="12" fill="${b}" ${ST}/>`; }
     case 'mocador': return `<path d="M86 86 Q150 60 214 86 L212 104 Q150 82 88 104 Z" fill="#d1123a" ${ST}/>` + [[104,90],[124,82],[146,78],[168,80],[190,86]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="3" fill="#fff"/>`).join('') + `<path d="M212 92 L236 82 L232 100 Z M212 96 L232 112 L218 116 Z" fill="#d1123a" ${ST}/>`;
     case 'diable': return `<path d="M96 70 Q150 36 204 70" stroke="#1c1022" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M112 58 Q96 30 112 14 Q112 36 128 52 Z" fill="#d1123a" ${ST}/><path d="M188 58 Q204 30 188 14 Q188 36 172 52 Z" fill="#d1123a" ${ST}/>`;
+    case 'copa': return `<rect x="114" y="2" width="72" height="54" rx="6" fill="#1c1022" ${ST}/><rect x="114" y="38" width="72" height="11" fill="#8c1c3a" stroke="${PL}" stroke-width="2"/><path d="M86 58 Q150 46 214 58 Q218 68 208 70 Q150 60 92 70 Q82 68 86 58 Z" fill="#1c1022" ${ST}/><path d="M124 10 L124 34" stroke="#fff" stroke-width="3" opacity=".35" stroke-linecap="round"/>`;
+    case 'tiara': return `<path d="M102 74 Q150 46 198 74 L192 60 L178 64 L172 44 L160 54 L150 28 L140 54 L128 44 L122 64 L108 60 Z" fill="#e3e6ef" ${ST}/><path d="${starPath(150,46,7,3)}" fill="#7cc8ff" stroke="${PL}" stroke-width="1.5"/><circle cx="128" cy="58" r="4" fill="#ff7ec1" stroke="${PL}" stroke-width="1.5"/><circle cx="172" cy="58" r="4" fill="#ff7ec1" stroke="${PL}" stroke-width="1.5"/>`;
+    case 'cinta': return `<path d="M88 94 Q150 60 212 94" stroke="${PL}" stroke-width="17" fill="none" stroke-linecap="round"/><path d="M88 94 Q150 60 212 94" stroke="#ff3df2" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M90 93 Q150 60 210 93" stroke="#3df2ff" stroke-width="3.5" fill="none" stroke-dasharray="9 9"/>`;
+    case 'perruca': { let s = ''; for (let i = 0; i < 9; i++) s += `<circle cx="${92 + i*14.5}" cy="${62 + Math.abs(i-4)*7}" r="16" fill="${RAINBOW[(i+2) % 6]}" stroke="${PL}" stroke-width="2.5"/>`; return s; }
   }
+  return '';
+}
+/* things held in the raised hand */
+function accHand(k, x, y){
+  if (k === 'ventall') return `<g transform="translate(${x} ${y})"><path d="M0 0 L-36 -30 A47 47 0 0 1 28 -38 Z" fill="#ff4d5e" ${ST}/>${[-28,-14,0,14].map(dx => `<path d="M0 0 L${dx} -42" stroke="#ffd0d6" stroke-width="2"/>`).join('')}<path d="M-36 -30 A47 47 0 0 1 28 -38" stroke="#d4a017" stroke-width="4" fill="none"/></g>`;
+  if (k === 'micro') return `<g transform="translate(${x} ${y})"><path d="M0 8 L12 -22" stroke="${PL}" stroke-width="11" stroke-linecap="round"/><path d="M0 8 L12 -22" stroke="#ff3df2" stroke-width="6" stroke-linecap="round"/><circle cx="15" cy="-29" r="12" fill="#e9e3f5" ${ST}/><path d="M9 -32 L21 -26 M9 -26 L21 -32" stroke="#8a8fa3" stroke-width="1.5"/></g>`;
   return '';
 }
 function accSide(k){
@@ -1210,8 +1457,8 @@ function accSide(k){
     case 'llac': return `<g transform="translate(104 78) rotate(-10)"><path d="M0 0 L-30 -20 Q-38 0 -30 20 Z" fill="#ff4d5e" ${ST}/><path d="M0 0 L30 -20 Q38 0 30 20 Z" fill="#ff4d5e" ${ST}/><circle r="8" fill="#d92b3d" stroke="${PL}" stroke-width="3"/></g>`;
     case 'flor': return `<g transform="translate(120 62)">` + [0,72,144,216,288].map(a=>`<circle cx="${Math.cos(a*Math.PI/180)*13}" cy="${Math.sin(a*Math.PI/180)*13}" r="11" fill="#ff7ec1" stroke="${PL}" stroke-width="2.5"/>`).join('') + `<circle r="8" fill="#ffcf3f" stroke="${PL}" stroke-width="2.5"/></g>`;
     case 'ulleres': return `<path d="${heartPath(186,110,14)}" fill="#3b2a4a" stroke="#ff5fa8" stroke-width="5"/><path d="M172 104 L140 112" stroke="#ff5fa8" stroke-width="5"/>`;
-    case 'ulleresf': return `<rect x="172" y="99" width="30" height="22" rx="8" fill="#1c1022"/><path d="M172 106 L140 112" stroke="#1c1022" stroke-width="5"/>`;
-    case 'auriculars': return `<path d="M138 120 Q128 34 190 36" stroke="${PL}" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M138 120 Q128 34 190 36" stroke="${ROCK() ? '#1c1022' : '#ff5fa8'}" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="124" y="98" width="28" height="42" rx="13" fill="${ROCK() ? '#ff2d55' : '#ff5fa8'}" ${ST}/>`;
+    case 'ulleresf': { const f = MODE === 'disco' ? '#7a5cff' : '#1c1022'; return `<rect x="172" y="99" width="30" height="22" rx="8" fill="${f}"/><path d="M172 106 L140 112" stroke="${f}" stroke-width="5"/>`; }
+    case 'auriculars': { const [a, b] = HEADPHONES(); return `<path d="M138 120 Q128 34 190 36" stroke="${PL}" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M138 120 Q128 34 190 36" stroke="${a}" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="124" y="98" width="28" height="42" rx="13" fill="${b}" ${ST}/>`; }
     case 'collaret': return Array.from({length:6}, (_, i) => `<circle cx="${150 + i*4}" cy="${188 + i*1.5}" r="3.2" fill="#fff" stroke="${PL}" stroke-width="1.5"/>`).join('');
     case 'punxes': return `<rect x="144" y="182" width="24" height="10" rx="4" fill="#1c1022"/><path d="M166 184 L174 187 L166 190 Z" fill="#c9c9d6" stroke="${PL}" stroke-width="1.5"/>`;
     case 'arracades': return `<path d="${heartPath(140,140,6)}" fill="#ff5fa8" stroke="${PL}" stroke-width="2"/>`;
@@ -1220,43 +1467,90 @@ function accSide(k){
     case 'diable': return `<path d="M140 56 Q128 28 142 12 Q142 34 156 50 Z" fill="#d1123a" ${ST}/><path d="M176 60 Q172 32 190 20 Q186 42 192 60 Z" fill="#d1123a" ${ST}/>`;
     case 'polsera': return `<rect x="190" y="220" width="12" height="16" rx="4" fill="#1c1022" transform="rotate(-35 196 228)"/>`;
     case 'guitarra': return `<g transform="rotate(-25 104 250)"><rect x="99" y="126" width="11" height="104" rx="3" fill="#8a5530" stroke="${PL}" stroke-width="3"/><path d="M104 228 Q76 222 74 246 Q72 260 82 266 Q68 282 84 294 Q98 302 104 290 Q110 302 124 294 Q140 282 126 266 Q136 260 134 246 Q132 222 104 228 Z" fill="#ff2d55" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/></g>`;
+    case 'violi': return `<g transform="rotate(-25 104 240)"><rect x="100" y="150" width="9" height="60" rx="3" fill="#3b2a1e" stroke="${PL}" stroke-width="2.5"/><path d="M104 206 Q84 206 84 222 Q84 232 92 234 Q80 240 80 256 Q80 280 104 280 Q128 280 128 256 Q128 240 116 234 Q124 232 124 222 Q124 206 104 206 Z" fill="#c1702c" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/></g>`;
+    case 'perruca': { let s = `<circle cx="150" cy="104" r="84" fill="#ff5fa8" stroke="${PL}" stroke-width="3"/>`; for (let a = -200, i = 0; a <= 40; a += 24, i++) { const r = a * Math.PI / 180; s += `<circle cx="${(150 + Math.cos(r)*80).toFixed(1)}" cy="${(106 + Math.sin(r)*80).toFixed(1)}" r="26" fill="${RAINBOW[i % 6]}" stroke="${PL}" stroke-width="3"/>`; } return s; }
+    case 'corbati': return `<path d="M176 190 L164 182 L164 198 Z M176 190 L188 182 L188 198 Z" fill="#8c1c3a" stroke="${PL}" stroke-width="2" stroke-linejoin="round"/><circle cx="176" cy="190" r="4.5" fill="#5a0e22"/>`;
+    case 'boa': return Array.from({length:8}, (_, i) => `<circle cx="${132 + i*8}" cy="${186 + Math.sin(i/7*Math.PI)*8}" r="9" fill="${i % 2 ? '#ff7ec1' : '#ffb3dc'}" stroke="${PL}" stroke-width="1.5"/>`).join('');
+    case 'copa': return `<rect x="118" y="4" width="66" height="50" rx="6" fill="#1c1022" ${ST}/><rect x="118" y="36" width="66" height="10" fill="#8c1c3a" stroke="${PL}" stroke-width="2"/><path d="M98 56 Q150 46 210 54 Q214 64 204 66 Q150 58 102 66 Q94 64 98 56 Z" fill="#1c1022" ${ST}/>`;
+    case 'tiara': return `<path d="M118 62 Q150 44 184 56 L180 44 L168 48 L160 30 L150 44 L140 32 L132 50 L120 48 Z" fill="#e3e6ef" ${ST}/><circle cx="160" cy="40" r="4" fill="#7cc8ff" stroke="${PL}" stroke-width="1.5"/>`;
+    case 'cinta': return `<path d="M100 96 Q150 62 212 86" stroke="${PL}" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M100 96 Q150 62 212 86" stroke="#ff3df2" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    case 'purpurina': return [[176,124,5,'#ffd23f'],[188,132,3.5,'#ff3df2'],[170,134,3,'#3df2ff']].map(([x,y,r,c]) => `<path d="${starPath(x,y,r,r*.4)}" fill="${c}" stroke="${PL}" stroke-width="1"/>`).join('');
   }
   return '';
 }
-function shoe(k, fx){
+function shoe(k, fx, C){
+  const c = C.hex, d = C.dark, light = C.id === 'blanc' || C.id === 'platejat';
   const R = (x,y,w,h,rx,f,extra='') => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${f}" ${ST} ${extra}/>`;
   switch(k){
-    case 'vambes': return R(fx-17,364,34,22,10,'#fff') + `<rect x="${fx-17}" y="380" width="34" height="7" rx="3.5" fill="#56c271" ${ST}/><path d="M${fx-9} 370 L${fx+9} 374 M${fx-9} 375 L${fx+9} 371" stroke="#56c271" stroke-width="3"/>`;
-    case 'botes': return R(fx-12,330,24,48,6,'#b06a35') + R(fx-17,362,34,24,10,'#b06a35') + `<rect x="${fx-12}" y="330" width="24" height="8" rx="3" fill="#ff8cc6" stroke="${PL}" stroke-width="2.5"/>`;
-    case 'aigua': return R(fx-12,336,24,42,6,'#5cc25f') + R(fx-17,362,34,24,10,'#5cc25f') + `<rect x="${fx-17}" y="381" width="34" height="6" rx="3" fill="#ffd23f" ${ST}/><path d="${heartPath(fx,352,4.5)}" fill="#fff"/>`;
-    case 'sandalies': return R(fx-14,366,28,18,9,SK) + `<path d="M${fx-12} 368 L${fx+12} 380 M${fx+12} 368 L${fx-12} 380" stroke="#b57cf0" stroke-width="4.5" stroke-linecap="round"/><rect x="${fx-17}" y="381" width="34" height="6" rx="3" fill="#b57cf0" ${ST}/>`;
-    case 'xancletes': return R(fx-14,366,28,18,9,SK) + `<path d="M${fx-11} 372 L${fx} 380 L${fx+11} 372" stroke="#2fb35a" stroke-width="4.5" fill="none" stroke-linecap="round"/><rect x="${fx-18}" y="381" width="36" height="7" rx="3.5" fill="#4cd37a" ${ST}/>`;
-    case 'ballet': return `<path d="M${fx-6} 366 L${fx+6} 348 L${fx-6} 332" stroke="#ffb3d6" stroke-width="3.5" fill="none" stroke-linecap="round"/>` + R(fx-15,364,30,22,11,'#ffc2dd') + `<path d="${heartPath(fx,372,4)}" fill="#ff5fa8"/>`;
-    case 'talo': return R(fx-15,364,30,20,9,'#ff3b53') + `<rect x="${fx-5}" y="380" width="10" height="9" rx="2" fill="#d92b3d" ${ST}/><path d="${starPath(fx,371,5,2.4)}" fill="#fff"/>`;
-    case 'sabates': return R(fx-17,364,34,22,10,'#8a5530') + `<rect x="${fx-11}" y="367" width="22" height="7" rx="3.5" fill="#c4874f" stroke="${PL}" stroke-width="2"/>`;
+    case 'vambes': return R(fx-17,364,34,22,10,c) + `<rect x="${fx-17}" y="380" width="34" height="7" rx="3.5" fill="#fff" ${ST}/><path d="M${fx-9} 370 L${fx+9} 374 M${fx-9} 375 L${fx+9} 371" stroke="${light ? '#ff5fa8' : '#fff'}" stroke-width="3"/>`;
+    case 'botes': return R(fx-12,330,24,48,6,c) + R(fx-17,362,34,24,10,c) + `<rect x="${fx-12}" y="330" width="24" height="8" rx="3" fill="${d}" stroke="${PL}" stroke-width="2.5"/>`;
+    case 'aigua': return R(fx-12,336,24,42,6,c) + R(fx-17,362,34,24,10,c) + `<rect x="${fx-17}" y="381" width="34" height="6" rx="3" fill="${d}" ${ST}/><path d="${heartPath(fx,352,4.5)}" fill="${light ? '#ff5fa8' : '#fff'}"/>`;
+    case 'sandalies': return R(fx-14,366,28,18,9,SK) + `<path d="M${fx-12} 368 L${fx+12} 380 M${fx+12} 368 L${fx-12} 380" stroke="${c}" stroke-width="4.5" stroke-linecap="round"/><rect x="${fx-17}" y="381" width="34" height="6" rx="3" fill="${d}" ${ST}/>`;
+    case 'xancletes': return R(fx-14,366,28,18,9,SK) + `<path d="M${fx-11} 372 L${fx} 380 L${fx+11} 372" stroke="${d}" stroke-width="4.5" fill="none" stroke-linecap="round"/><rect x="${fx-18}" y="381" width="36" height="7" rx="3.5" fill="${c}" ${ST}/>`;
+    case 'ballet': return `<path d="M${fx-6} 366 L${fx+6} 348 L${fx-6} 332" stroke="${tint(c,.4)}" stroke-width="3.5" fill="none" stroke-linecap="round"/>` + R(fx-15,364,30,22,11,c) + `<path d="${heartPath(fx,372,4)}" fill="${light ? '#ff5fa8' : '#fff'}"/>`;
+    case 'talo': return R(fx-15,364,30,20,9,c) + `<rect x="${fx-5}" y="380" width="10" height="9" rx="2" fill="${d}" ${ST}/><path d="${starPath(fx,371,5,2.4)}" fill="${light ? '#ff5fa8' : '#fff'}"/>`;
+    case 'sabates': return R(fx-17,364,34,22,10,c) + `<rect x="${fx-11}" y="367" width="22" height="7" rx="3.5" fill="${d}" stroke="${PL}" stroke-width="2"/>`;
   }
   return '';
 }
-/* clothes: what is drawn for each outfit; the chosen colour goes on the main garment */
-const PANTS = {denim:'#5b7bd5', beige:'#c9b28f', black:'#2d2833', grey:'#7d8597'};
+/* clothes: a top and a bottom, each one with its colour; a dress replaces both and can have a pattern */
+const SLEEVES = {samarreta:'short', jersei:'long', brusa:'puff', vestit:'puff', dessuadora:'long', jaqueta:'long', camisa:'long', top:'none'};
 function garment(o){
-  const C = col(o.color);
-  switch(o.roba){
-    case 'tutu': return {lower:'tutu', top:C, sleeves:'none'};
-    case 'samfal': return {lower:'skirt', skirt:PANTS.denim, top:C, sleeves:'short'};
-    case 'sampan': return {lower:'pants', pants:PANTS.denim, top:C, sleeves:'short'};
-    case 'jersei': return {lower:'pants', pants:PANTS.beige, top:C, sleeves:'long'};
-    case 'dessuadora': return {lower:'pants', pants:PANTS.grey, top:C, sleeves:'long', hood:true};
-    case 'jaqueta': return {lower:'pants', pants:PANTS.black, top:C, sleeves:'long', jacket:true};
-    case 'samrock': return {lower:'pants', pants:PANTS.black, top:C, sleeves:'short', bolt:true};
+  const top = SLEEVES[o.top] ? o.top : 'samarreta', dress = top === 'vestit';
+  const bottom = dress ? 'dress' : (BOTTOMS.some(b => b.id === o.bottom) ? o.bottom : 'pantalons');
+  const pattern = dress && PATTERNS.some(p => p.id === o.pattern) ? o.pattern : 'llis';
+  return {top, dress, bottom, pattern, T:col(o.topColor), B:col(o.bottomColor), sleeves:SLEEVES[top]};
+}
+const lightCol = c => ['blanc','platejat','groc','daurat'].includes(c.id);
+function motif(k, x, y, s, i, light){
+  const w = light ? '#ff5fa8' : '#fff';
+  switch(k){
+    case 'flors': return [0,72,144,216,288].map(a => `<circle cx="${(x+Math.cos(a*Math.PI/180)*4.3*s).toFixed(1)}" cy="${(y+Math.sin(a*Math.PI/180)*4.3*s).toFixed(1)}" r="${(3.4*s).toFixed(1)}" fill="${w}"/>`).join('') + `<circle cx="${x}" cy="${y}" r="${(2.5*s).toFixed(1)}" fill="#ffd23f" stroke="${PL}" stroke-width=".8"/>`;
+    case 'colors': return `<circle cx="${x}" cy="${y}" r="${(5.2*s).toFixed(1)}" fill="${RAINBOW[i % 6]}" stroke="${PL}" stroke-width="1.2"/>`;
+    case 'cors': return `<path d="${heartPath(x, y, 4.8*s)}" fill="${w}"/>`;
+    case 'llamps': return BOLT(x, y, .45*s);
+    case 'notes': return `<g transform="translate(${x-7*s} ${y-8*s}) scale(${.16*s})">${sticker('nota')}</g>`;
+    case 'boles': return `<circle cx="${x}" cy="${y}" r="${5.4*s}" fill="#e3e6ef" stroke="${PL}" stroke-width="1.2"/><path d="M${x-5.4*s} ${y}H${x+5.4*s}M${x} ${y-5.4*s}V${y+5.4*s}" stroke="${PL}" stroke-width=".9"/><circle cx="${x-2*s}" cy="${y-2*s}" r="${1.3*s}" fill="#3df2ff"/>`;
   }
-  return {lower:'dress', top:C, sleeves:'puff'};
+  return '';
+}
+const motifs = (G, pts, s = 1) => G.pattern === 'llis' ? '' : pts.map(([x, y], i) => motif(G.pattern, x, y, s, i, lightCol(G.T))).join('');
+/* the trunk with the top (same place standing and sitting) */
+function torso(G, seat){
+  const t = G.T.hex, d = G.T.dark;
+  let s = '';
+  if (G.top === 'top') s += `<rect x="121" y="194" width="58" height="78" rx="20" fill="${t}" stroke="${PL}" stroke-width="3.5"/><path d="M131 196 L128 182 M169 196 L172 182" stroke="${PL}" stroke-width="7" stroke-linecap="round"/><path d="M131 196 L128 182 M169 196 L172 182" stroke="${t}" stroke-width="3.5" stroke-linecap="round"/>`;
+  else s += `<rect x="117" y="186" width="66" height="84" rx="24" fill="${t}" stroke="${PL}" stroke-width="3.5"/>`;
+  if (G.top === 'jaqueta') s += `<path d="M141 187 L159 187 L157 268 L143 268 Z" fill="#fff" stroke="${PL}" stroke-width="2"/><path d="M141 186 L129 212 L141 212 Z M159 186 L171 212 L159 212 Z" fill="${d}" ${ST}/>`;
+  if (G.top === 'camisa') s += `<path d="M136 184 L146 200 L150 190 L154 200 L164 184 Z" fill="${tint(t,.45)}" ${ST}/>` + [214,234,254].map(y => `<circle cx="150" cy="${y}" r="3" fill="${d}" stroke="${PL}" stroke-width="1.2"/>`).join('');
+  if (G.top === 'brusa') s += `<path d="M130 186 Q136 206 150 197 Q164 206 170 186 Z" fill="#fff" ${ST}/>`;
+  if (G.top === 'jersei') s += `<path d="M137 188 Q150 197 163 188" stroke="${d}" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M121 261 L179 261" stroke="${d}" stroke-width="5" stroke-linecap="round"/>`;
+  if (G.top === 'dessuadora') s += `<path d="M130 238 L170 238 L164 262 L136 262 Z" fill="${d}" stroke="${PL}" stroke-width="2"/><path d="M144 196 L142 214 M156 196 L158 214" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>`;
+  if (G.dress) s += `<path d="M120 258 Q150 264 180 258" stroke="${d}" stroke-width="5" fill="none" stroke-linecap="round"/>` + motifs(G, seat ? [[134,216],[166,216],[150,236],[132,246],[168,246]] : [[136,196],[164,196]], .9);
+  return s;
+}
+const sleeveCaps = G => G.sleeves === 'none' ? '' : [120,180].map(x => `<circle cx="${x}" cy="198" r="${G.sleeves === 'puff' ? 15 : G.sleeves === 'short' ? 12 : 13}" fill="${G.T.hex}" ${ST}/>`).join('');
+function legsStand(G){
+  const b = G.B.hex;
+  let s = `<rect x="129" y="296" width="16" height="110" rx="8" fill="${SK}" ${ST}/><rect x="155" y="296" width="16" height="110" rx="8" fill="${SK}" ${ST}/>`;
+  if (G.bottom === 'pantalons') s += `<rect x="126" y="292" width="22" height="108" rx="9" fill="${b}" ${ST}/><rect x="152" y="292" width="22" height="108" rx="9" fill="${b}" ${ST}/>`;
+  if (G.bottom === 'malles') s += `<rect x="128" y="292" width="18" height="112" rx="8" fill="${b}" ${ST}/><rect x="154" y="292" width="18" height="112" rx="8" fill="${b}" ${ST}/>`;
+  if (G.bottom === 'curts') s += `<rect x="125" y="292" width="24" height="42" rx="9" fill="${b}" ${ST}/><rect x="151" y="292" width="24" height="42" rx="9" fill="${b}" ${ST}/>`;
+  return s;
+}
+function hipsStand(G){
+  const t = G.T.hex, b = G.B.hex;
+  if (G.dress) return `<path d="M112 256 Q150 246 188 256 L216 318 Q150 338 84 318 Z" fill="${t}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M92 314 Q150 332 208 314" stroke="#fff" stroke-width="5" fill="none" opacity=".75" stroke-dasharray="1 11" stroke-linecap="round"/>` + motifs(G, [[104,304],[196,304],[126,284],[174,284],[150,296],[150,320],[120,318],[180,318]]);
+  if (G.bottom === 'tutu') return `<path d="M98 258 Q150 248 202 258 L234 292 Q218 302 202 294 Q184 306 166 296 Q150 308 134 296 Q116 306 98 294 Q82 302 66 292 Z" fill="${tint(b,.45)}" ${ST}/><path d="M106 258 Q150 250 194 258 L218 284 Q200 292 184 286 Q166 296 150 288 Q134 296 116 286 Q100 292 82 284 Z" fill="${b}" ${ST}/>` + [[100,282],[200,282],[150,276],[126,268],[174,268]].map(([x,y]) => `<path d="${starPath(x,y,5,2.2)}" fill="#fff"/>`).join('');
+  if (G.bottom === 'faldilla') return `<path d="M114 256 Q150 248 186 256 L206 306 Q150 322 94 306 Z" fill="${b}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M120 266 L114 300 M180 266 L186 300" stroke="#fff" stroke-width="2" opacity=".5"/>`;
+  return `<path d="M116 256 Q150 248 184 256 L184 304 L116 304 Z" fill="${b}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
 }
 /* Motilo Style colours: tubes and moulded parts take the pony colour; the corset wears a light printed cover */
 function tint(hex, k){ const n = parseInt(hex.slice(1), 16); const c = [n>>16, (n>>8)&255, n&255].map(v => Math.round(v + (255-v)*k)); return '#' + c.map(v => v.toString(16).padStart(2,'0')).join(''); }
 function castor(cx, cy, r){ return `<g class="wheel"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#8d8f99" stroke="${PL}" stroke-width="2.5"/><circle cx="${cx}" cy="${cy}" r="${r*.42}" fill="#fff"/></g>`; }
 function girlSVG(o, opt={}){
-  const c = useChar(o), G = garment(o), w = col(o.pony), pose = opt.pose || 'wave', cov = tint(w.hex, .72), top = G.top.hex;
+  if (opt.seat) return girlSeat(o, opt);
+  const c = useChar(o), G = garment(o), w = col(o.pony), pose = opt.pose || 'wave', cov = tint(w.hex, .72), top = G.T.hex, SC = col(o.shoesColor), HC = o.acc === 'guants' ? '#fff' : SK;
   let s = `<ellipse cx="150" cy="432" rx="122" ry="8" fill="${PL}" opacity=".16"/>`;
   // base seen from the front: rear tubes and rear castors (behind), centre piece, front bumper and castors
   s += `<path d="M150 410 L80 402 M150 410 L220 402" stroke="${PL}" stroke-width="13" stroke-linecap="round"/><path d="M150 410 L80 402 M150 410 L220 402" stroke="${w.dark}" stroke-width="7" stroke-linecap="round"/>`;
@@ -1266,29 +1560,12 @@ function girlSVG(o, opt={}){
   s += `<path d="M54 414 Q150 436 246 414 Q252 420 246 426 Q150 448 54 426 Q48 420 54 414 Z" fill="${w.hex}" ${ST}/><path d="M70 420 Q150 438 230 420" stroke="#fff" stroke-width="3.5" opacity=".55" fill="none" stroke-linecap="round"/>`;
   s += accFront(o.acc, 'back');
   s += hairBack(o.hair);
-  // legs (trousers over them) + shoes
-  s += `<rect x="129" y="296" width="16" height="110" rx="8" fill="${SK}" ${ST}/><rect x="155" y="296" width="16" height="110" rx="8" fill="${SK}" ${ST}/>`;
-  if (G.lower === 'pants') s += `<rect x="126" y="292" width="22" height="108" rx="9" fill="${G.pants}" ${ST}/><rect x="152" y="292" width="22" height="108" rx="9" fill="${G.pants}" ${ST}/>`;
-  s += `<g transform="translate(0 30)">${shoe(o.shoes,137) + shoe(o.shoes,163)}</g>`;
-  // neck, hood, lower garment, top
+  s += legsStand(G);
+  s += `<g transform="translate(0 30)">${shoe(o.shoes,137,SC) + shoe(o.shoes,163,SC)}</g>`;
   s += `<rect x="139" y="158" width="22" height="42" rx="9" fill="${SKD}"/>`;
-  if (G.hood) s += `<path d="M106 196 Q150 160 194 196 Q150 184 106 196 Z" fill="${G.top.dark}" ${ST}/>`;
-  if (G.lower === 'dress') {
-    s += `<path d="M112 256 Q150 246 188 256 L216 318 Q150 338 84 318 Z" fill="${top}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
-    s += `<path d="M92 314 Q150 332 208 314" stroke="#fff" stroke-width="5" fill="none" opacity=".75" stroke-dasharray="1 11" stroke-linecap="round"/>`;
-    [[110,300],[190,300],[128,280],[172,282]].forEach(([x,y]) => s += `<path d="${starPath(x,y,6,2.6)}" fill="#fff" opacity=".9"/>`);
-  } else if (G.lower === 'tutu') {
-    s += `<path d="M98 258 Q150 248 202 258 L234 292 Q218 302 202 294 Q184 306 166 296 Q150 308 134 296 Q116 306 98 294 Q82 302 66 292 Z" fill="${tint(top,.45)}" ${ST}/>`;
-    s += `<path d="M106 258 Q150 250 194 258 L218 284 Q200 292 184 286 Q166 296 150 288 Q134 296 116 286 Q100 292 82 284 Z" fill="${top}" ${ST}/>`;
-    [[100,282],[200,282],[150,276],[126,268],[174,268]].forEach(([x,y]) => s += `<path d="${starPath(x,y,5,2.2)}" fill="#fff"/>`);
-  } else if (G.lower === 'skirt') {
-    s += `<path d="M114 256 Q150 248 186 256 L206 306 Q150 322 94 306 Z" fill="${G.skirt}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M120 266 L114 300 M180 266 L186 300" stroke="#fff" stroke-width="2" opacity=".5"/>`;
-  } else {
-    s += `<path d="M116 256 Q150 248 184 256 L184 304 L116 304 Z" fill="${G.pants}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
-  }
-  s += `<rect x="117" y="186" width="66" height="84" rx="24" fill="${top}" stroke="${PL}" stroke-width="3.5"/>`;
-  if (G.jacket) s += `<rect x="139" y="186" width="22" height="20" fill="#fff" stroke="${PL}" stroke-width="2"/><path d="M139 186 L130 206 L140 206 Z M161 186 L170 206 L160 206 Z" fill="${G.top.dark}" ${ST}/>`;
-  if (G.bolt) s += BOLT(150, 196, .55);
+  if (G.top === 'dessuadora') s += `<path d="M106 196 Q150 160 194 196 Q150 184 106 196 Z" fill="${G.T.dark}" ${ST}/>`;
+  s += hipsStand(G);
+  s += torso(G, false);
   // saddle of the corset (between the legs), column, braid, corset with printed cover, handlebar
   s += `<path d="M136 326 Q150 352 164 326 Q150 333 136 326 Z" fill="${cov}" ${ST}/>`;
   s += `<rect x="144" y="236" width="12" height="176" rx="5" fill="${w.dark}" ${ST}/>`;
@@ -1301,16 +1578,15 @@ function girlSVG(o, opt={}){
   s += `<rect x="92" y="232" width="116" height="9" rx="4.5" fill="#a7abb5" ${ST}/><rect x="80" y="229" width="26" height="15" rx="7.5" fill="#3b2a4a" ${ST}/><rect x="194" y="229" width="26" height="15" rx="7.5" fill="#3b2a4a" ${ST}/><circle cx="150" cy="237" r="8" fill="${w.dark}" ${ST}/>`;
   // arms (sleeves in the garment colour when they are long), hands on the grips
   const armCol = G.sleeves === 'long' ? top : SK;
-  const arm = (dd, hx, hy) => `<path d="${dd}" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="${dd}" stroke="${armCol}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="${hx}" cy="${hy}" r="10.5" fill="${SK}" ${ST}/>`;
+  const arm = (dd, hx, hy) => `<path d="${dd}" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="${dd}" stroke="${armCol}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="${hx}" cy="${hy}" r="10.5" fill="${HC}" ${ST}/>`;
   s += arm('M120 206 Q98 212 94 232', 93, 236);
   if (pose === 'mic') {
     s += arm('M180 206 Q208 196 196 168', 194, 162);
-    s += `<path d="M194 166 L182 140" stroke="${PL}" stroke-width="11" stroke-linecap="round"/><path d="M194 166 L182 140" stroke="${ROCK() ? '#1c1022' : '#ff7ab8'}" stroke-width="6" stroke-linecap="round"/><circle cx="179" cy="134" r="11" fill="#e9e3f5" ${ST}/>`;
+    s += `<path d="M194 166 L182 140" stroke="${PL}" stroke-width="11" stroke-linecap="round"/><path d="M194 166 L182 140" stroke="${{rock:'#1c1022', classica:'#3a2418', disco:'#ff3df2'}[MODE] || '#ff7ab8'}" stroke-width="6" stroke-linecap="round"/><circle cx="179" cy="134" r="11" fill="#e9e3f5" ${ST}/>`;
   } else if (pose === 'down') s += arm('M180 206 Q202 212 206 232', 207, 236);
-  else s += arm('M180 206 Q206 192 214 160', 215, 154);
+  else s += accHand(o.acc, 215, 154) + arm('M180 206 Q206 192 214 160', 215, 154);
   if (o.acc === 'polsera') s += accFront('polsera', 'neck');
-  if (G.sleeves !== 'none') s += `<circle cx="120" cy="198" r="${G.sleeves === 'short' ? 12 : 13}" fill="${top}" ${ST}/><circle cx="180" cy="198" r="${G.sleeves === 'short' ? 12 : 13}" fill="${top}" ${ST}/>`;
-  else s += `<path d="M124 204 L128 186 M176 204 L172 186" stroke="${top}" stroke-width="5" stroke-linecap="round"/>`;
+  s += sleeveCaps(G);
   // head & face
   s += `<circle cx="88" cy="120" r="12" fill="${SK}" ${ST}/><circle cx="212" cy="120" r="12" fill="${SK}" ${ST}/>`;
   s += `<circle cx="150" cy="112" r="62" fill="${SK}" ${ST}/>`;
@@ -1319,6 +1595,82 @@ function girlSVG(o, opt={}){
   s += hairFront(o.hair);
   s += accFront(o.acc, 'head');
   return `<svg viewBox="${opt.vb || '0 0 300 440'}" xmlns="http://www.w3.org/2000/svg" class="girl">${s}</svg>`;
+}
+/* dress-up game: she is sitting in her wheelchair (front view) and the walker waits beside her,
+   so the clothes are seen whole */
+function legsSeat(G){
+  const b = G.B.hex;
+  const thigh = (x, f) => `<rect x="${x}" y="282" width="28" height="40" rx="12" fill="${f}" ${ST}/>`;
+  const shin = (x, f, w = 16) => `<rect x="${x}" y="306" width="${w}" height="92" rx="8" fill="${f}" ${ST}/>`;
+  const covered = ['pantalons','malles','curts'].includes(G.bottom);
+  let s = shin(130, SK) + shin(154, SK);
+  if (G.bottom === 'pantalons') s += shin(127, b, 22) + shin(151, b, 22);
+  if (G.bottom === 'malles') s += shin(129, b, 18) + shin(153, b, 18);
+  s += thigh(121, covered ? b : SK) + thigh(151, covered ? b : SK);
+  return s;
+}
+function hipsSeat(G){
+  const t = G.T.hex, b = G.B.hex;
+  if (G.dress) return `<path d="M114 258 Q150 250 186 258 L208 334 Q150 350 92 334 Z" fill="${t}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M98 330 Q150 345 202 330" stroke="#fff" stroke-width="5" fill="none" opacity=".75" stroke-dasharray="1 11" stroke-linecap="round"/>` + motifs(G, [[118,282],[182,282],[150,276],[106,316],[194,316],[132,302],[168,302],[150,326]]);
+  if (G.bottom === 'tutu') return `<path d="M100 260 Q150 250 200 260 L236 300 Q218 312 200 302 Q184 316 166 304 Q150 318 134 304 Q116 316 100 302 Q82 312 64 300 Z" fill="${tint(b,.45)}" ${ST}/><path d="M108 260 Q150 252 192 260 L220 292 Q202 302 184 294 Q166 306 150 296 Q134 306 116 294 Q98 302 80 292 Z" fill="${b}" ${ST}/>` + [[96,290],[204,290],[150,282],[124,274],[176,274]].map(([x,y]) => `<path d="${starPath(x,y,5,2.2)}" fill="#fff"/>`).join('');
+  if (G.bottom === 'faldilla') return `<path d="M114 258 Q150 250 186 258 L202 326 Q150 340 98 326 Z" fill="${b}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/><path d="M122 270 L114 318 M178 270 L186 318" stroke="#fff" stroke-width="2" opacity=".5"/>`;
+  return `<path d="M116 258 Q150 250 184 258 L184 294 L116 294 Z" fill="${b}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
+}
+function girlSeat(o, opt={}){
+  const c = useChar(o), G = garment(o), SC = col(o.shoesColor), HC = o.acc === 'guants' ? '#fff' : SK, top = G.T.hex;
+  const FR = '#9096a6';
+  const tube = (d, w = 11) => `<path d="${d}" stroke="${PL}" stroke-width="${w}" stroke-linecap="round" fill="none"/><path d="${d}" stroke="${FR}" stroke-width="${w-5}" stroke-linecap="round" fill="none"/>`;
+  let s = `<ellipse cx="226" cy="432" rx="206" ry="8" fill="${PL}" opacity=".16"/>`;
+  s += `<g transform="translate(236 92) scale(.78)">${motiloSide(o)}</g>`;
+  // wheelchair behind her: push handles, backrest, big wheels at the sides, front frame, footplate and castors
+  s += tube('M104 296 L98 150') + tube('M196 296 L202 150');
+  s += `<rect x="88" y="138" width="18" height="26" rx="8" fill="#3b2a4a" ${ST}/><rect x="194" y="138" width="18" height="26" rx="8" fill="#3b2a4a" ${ST}/>`;
+  s += `<rect x="102" y="164" width="96" height="128" rx="16" fill="#5a4a72" ${ST}/>`;
+  const big = cx => `<ellipse cx="${cx}" cy="340" rx="18" ry="80" fill="#3b3346" ${ST}/><ellipse cx="${cx}" cy="340" rx="11" ry="68" fill="none" stroke="#c9ccd6" stroke-width="4"/><ellipse cx="${cx}" cy="340" rx="5" ry="13" fill="#c9ccd6" stroke="${PL}" stroke-width="2"/>`;
+  s += big(76) + big(224);
+  s += tube('M112 300 L118 408', 9) + tube('M188 300 L182 408', 9);
+  s += castor(114,422,8) + castor(186,422,8);
+  s += `<rect x="106" y="404" width="88" height="9" rx="3" fill="#6b7080" ${ST}/>`;
+  s += accFront(o.acc, 'back');
+  s += hairBack(o.hair);
+  s += `<rect x="102" y="280" width="96" height="22" rx="9" fill="#5a4a72" ${ST}/>`;
+  s += legsSeat(G);
+  s += `<g transform="translate(0 20)">${shoe(o.shoes,138,SC) + shoe(o.shoes,162,SC)}</g>`;
+  s += `<rect x="139" y="158" width="22" height="42" rx="9" fill="${SKD}"/>`;
+  if (G.top === 'dessuadora') s += `<path d="M106 196 Q150 160 194 196 Q150 184 106 196 Z" fill="${G.T.dark}" ${ST}/>`;
+  s += hipsSeat(G);
+  s += torso(G, true);
+  s += braidFront(o.hair);
+  if (o.acc !== 'polsera') s += accFront(o.acc, 'neck');
+  s += `<rect x="82" y="252" width="32" height="13" rx="6.5" fill="#3b2a4a" ${ST}/><rect x="186" y="252" width="32" height="13" rx="6.5" fill="#3b2a4a" ${ST}/>`;
+  const armCol = G.sleeves === 'long' ? top : SK;
+  const arm = (dd, hx, hy) => `<path d="${dd}" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="${dd}" stroke="${armCol}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="${hx}" cy="${hy}" r="10.5" fill="${HC}" ${ST}/>`;
+  s += arm('M120 206 Q102 224 100 248', 99, 252);
+  s += accHand(o.acc, 215, 154) + arm('M180 206 Q206 192 214 160', 215, 154);
+  if (o.acc === 'polsera') s += `<g transform="translate(4 26)">${accFront('polsera', 'neck')}</g>`;
+  s += sleeveCaps(G);
+  s += `<circle cx="88" cy="120" r="12" fill="${SK}" ${ST}/><circle cx="212" cy="120" r="12" fill="${SK}" ${ST}/>`;
+  s += `<circle cx="150" cy="112" r="62" fill="${SK}" ${ST}/>`;
+  s += faceFront(c);
+  s += accFront(o.acc, 'face');
+  s += hairFront(o.hair);
+  s += accFront(o.acc, 'head');
+  return `<svg viewBox="${opt.vb || '0 0 440 440'}" xmlns="http://www.w3.org/2000/svg" class="girl">${s}</svg>`;
+}
+/* the Motilo walker alone, seen from the side (same drawing as when she walks) */
+function motiloSide(o){
+  const w = col(o.pony), cov = tint(w.hex, .72);
+  let s = `<path d="M74 420 L238 420" stroke="${PL}" stroke-width="11" stroke-linecap="round"/><path d="M74 420 L238 420" stroke="${w.dark}" stroke-width="6" stroke-linecap="round"/>`;
+  s += castor(76,428,8) + castor(236,428,8);
+  s += `<path d="M206 408 Q222 400 240 404 Q258 408 256 418 Q254 426 236 426 L210 426 Q200 418 206 408 Z" fill="${w.hex}" ${ST}/>`;
+  s += `<rect x="106" y="206" width="18" height="62" rx="9" fill="${cov}" ${ST}/>`;
+  s += `<rect x="112" y="226" width="86" height="7" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2"/><rect x="112" y="250" width="86" height="7" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2"/>`;
+  s += `<path d="M182 204 Q206 204 206 226 L206 262 Q204 296 170 302 L140 304 Q130 298 140 290 L166 286 Q184 280 184 262 Z" fill="${cov}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
+  [[195,222],[195,252]].forEach(([x,y]) => s += `<g transform="translate(${x-8} ${y-8}) scale(.16)">${sticker(o.stick)}</g>`);
+  s += `<path d="M228 412 L214 238" stroke="${PL}" stroke-width="14" stroke-linecap="round"/><path d="M228 412 L214 238" stroke="${w.dark}" stroke-width="8" stroke-linecap="round"/>`;
+  s += `<rect x="204" y="262" width="16" height="12" rx="3" fill="#3b2a4a" stroke="${PL}" stroke-width="2"/>`;
+  s += `<path d="M200 232 L226 232" stroke="${PL}" stroke-width="10" stroke-linecap="round"/><path d="M200 232 L226 232" stroke="#a7abb5" stroke-width="5" stroke-linecap="round"/><circle cx="210" cy="232" r="9" fill="#3b2a4a" stroke="${PL}" stroke-width="2.5"/>`;
+  return s;
 }
 function dressIcon(c){
   const d = col(c);
@@ -1329,19 +1681,6 @@ function dressIcon(c){
 function bigStar(){
   const shades = ROCK() ? `<rect x="35" y="49" width="13" height="9" rx="3" fill="#1c1022"/><rect x="52" y="49" width="13" height="9" rx="3" fill="#1c1022"/><path d="M48 52 L52 52" stroke="#1c1022" stroke-width="2"/>` : '';
   return `<svg viewBox="0 0 100 100"><path d="${starPath(50,53,47,23)}" fill="#ffcf3f" stroke="${PL}" stroke-width="4.5" stroke-linejoin="round"/><path d="M30 36 L38 34" stroke="#fff" stroke-width="4" stroke-linecap="round"/>${kf(50,56,1)}${shades}</svg>`;
-}
-function shoeSide(k){ return `<g transform="translate(0 30)">${shoeSide0(k)}</g>`; }
-function shoeSide0(k){
-  const c = {vambes:'#ffffff', botes:'#b06a35', aigua:'#5cc25f', sandalies:SK, xancletes:SK, ballet:'#ffc2dd', talo:'#ff3b53', sabates:'#8a5530'}[k] || '#fff';
-  let s = '';
-  if (k === 'botes' || k === 'aigua') s += `<rect x="145" y="330" width="18" height="48" rx="6" fill="${c}" ${ST}/>`;
-  if (k === 'ballet') s += `<path d="M150 372 L160 352 L150 334" stroke="#ffb3d6" stroke-width="3.5" fill="none" stroke-linecap="round"/>`;
-  s += `<path d="M144 368 L164 368 Q184 370 184 382 L184 386 L144 386 Z" fill="${c}" ${ST}/>`;
-  if (k === 'vambes') s += `<rect x="144" y="381" width="40" height="6" rx="3" fill="#56c271" ${ST}/>`;
-  if (k === 'xancletes') s += `<rect x="142" y="382" width="44" height="6" rx="3" fill="#4cd37a" ${ST}/><path d="M168 370 L160 382" stroke="#2fb35a" stroke-width="4"/>`;
-  if (k === 'sandalies') s += `<path d="M150 370 L176 382 M176 370 L150 382" stroke="#b57cf0" stroke-width="4"/><rect x="142" y="382" width="44" height="6" rx="3" fill="#b57cf0" ${ST}/>`;
-  if (k === 'talo') s += `<rect x="144" y="384" width="8" height="8" rx="2" fill="#d92b3d" ${ST}/>`;
-  return s;
 }
 function hairSide(h){
   const cap = `<path d="M98 132 Q84 56 150 48 Q208 44 214 96 Q198 80 178 82 Q164 72 152 86 Q140 98 132 122 Q124 142 110 152 Z" fill="${HR}" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/><path d="M120 66 Q140 54 164 54" stroke="${HRL}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
@@ -1356,34 +1695,46 @@ function hairSide(h){
   if (h === 'cresta') front = `<path d="M98 132 Q84 56 150 48 Q208 44 214 96 Q170 70 132 122 Q124 142 110 152 Z" fill="${HR}" opacity=".55"/><path d="M116 70 L112 24 L132 48 L142 10 L156 46 L170 14 L176 50 L196 30 L194 72 Q160 56 116 70 Z" fill="${HR}" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/><path d="M112 24 L119 36 L124 34 Z M142 10 L144 26 L150 24 Z M170 14 L167 30 L173 30 Z M196 30 L187 42 L192 44 Z" fill="#ff2d55"/>`;
   return [back, front];
 }
+function shoeSide(k, C){ return `<g transform="translate(0 30)">${shoeSide0(k, C)}</g>`; }
+function shoeSide0(k, C){
+  const t = C.hex, d = C.dark, c = (k === 'sandalies' || k === 'xancletes') ? SK : t;
+  let s = '';
+  if (k === 'botes' || k === 'aigua') s += `<rect x="145" y="330" width="18" height="48" rx="6" fill="${c}" ${ST}/>`;
+  if (k === 'ballet') s += `<path d="M150 372 L160 352 L150 334" stroke="${tint(t,.4)}" stroke-width="3.5" fill="none" stroke-linecap="round"/>`;
+  s += `<path d="M144 368 L164 368 Q184 370 184 382 L184 386 L144 386 Z" fill="${c}" ${ST}/>`;
+  if (k === 'vambes') s += `<rect x="144" y="381" width="40" height="6" rx="3" fill="#fff" ${ST}/>`;
+  if (k === 'aigua') s += `<rect x="144" y="381" width="40" height="6" rx="3" fill="${d}" ${ST}/>`;
+  if (k === 'xancletes') s += `<rect x="142" y="382" width="44" height="6" rx="3" fill="${t}" ${ST}/><path d="M168 370 L160 382" stroke="${d}" stroke-width="4"/>`;
+  if (k === 'sandalies') s += `<path d="M150 370 L176 382 M176 370 L150 382" stroke="${t}" stroke-width="4"/><rect x="142" y="382" width="44" height="6" rx="3" fill="${d}" ${ST}/>`;
+  if (k === 'talo') s += `<rect x="144" y="384" width="8" height="8" rx="2" fill="${d}" ${ST}/>`;
+  return s;
+}
 /* the character seen from the side, walking with the Motilo (faces right; flipped with CSS to go left).
    The column and T handlebar are in front, the saddle corset holds the chest and goes between the legs,
    a soft back support closes it behind, and the low base has a front bumper and 4 castors. */
 function girlSide(o){
-  const c = useChar(o), G = garment(o), w = col(o.pony), cov = tint(w.hex, .72), [hb, hf] = hairSide(o.hair), top = G.top.hex;
-  const legFill = (f) => G.lower === 'pants' ? G.pants : f;
-  const leg = (cls, fill) => `<g class="leg ${cls}"><rect x="146" y="290" width="16" height="116" rx="8" fill="${legFill(fill)}" ${ST}/>${shoeSide(o.shoes)}</g>`;
+  const c = useChar(o), G = garment(o), w = col(o.pony), cov = tint(w.hex, .72), [hb, hf] = hairSide(o.hair), top = G.T.hex, b = G.B.hex, SC = col(o.shoesColor), HC = o.acc === 'guants' ? '#fff' : SK;
+  const legFill = f => (G.bottom === 'pantalons' || G.bottom === 'malles') ? b : f;
+  const leg = (cls, fill) => `<g class="leg ${cls}"><rect x="146" y="290" width="16" height="116" rx="8" fill="${legFill(fill)}" ${ST}/>${G.bottom === 'curts' ? `<rect x="143" y="288" width="22" height="44" rx="9" fill="${b}" ${ST}/>` : ''}${shoeSide(o.shoes, SC)}</g>`;
   let s = `<ellipse cx="160" cy="432" rx="120" ry="8" fill="${PL}" opacity=".16"/>`;
   s += `<path d="M74 420 L238 420" stroke="${PL}" stroke-width="11" stroke-linecap="round"/><path d="M74 420 L238 420" stroke="${w.dark}" stroke-width="6" stroke-linecap="round"/>`;
   s += castor(76,428,8) + castor(236,428,8);
-  if (o.acc === 'guitarra') s += accSide('guitarra');
+  if (['guitarra','violi','perruca'].includes(o.acc)) s += accSide(o.acc);
   s += hb;
   s += leg('leg-b', SKD) + leg('leg-f', SK);
   s += `<path d="M206 408 Q222 400 240 404 Q258 408 256 418 Q254 426 236 426 L210 426 Q200 418 206 408 Z" fill="${w.hex}" ${ST}/>`;
   s += `<rect x="146" y="156" width="20" height="42" rx="9" fill="${SKD}"/>`;
-  if (G.hood) s += `<path d="M120 196 Q130 168 156 176 Q140 184 136 200 Z" fill="${G.top.dark}" ${ST}/>`;
-  if (G.lower === 'dress') {
-    s += `<path d="M126 254 Q156 244 186 254 L204 316 Q156 334 108 316 Z" fill="${top}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
-    [[124,300],[156,316],[146,280]].forEach(([x,y]) => s += `<path d="${starPath(x,y,6,2.6)}" fill="#fff" opacity=".9"/>`);
-  } else if (G.lower === 'tutu') {
-    s += `<path d="M118 256 Q156 246 194 256 L222 290 Q156 306 90 290 Z" fill="${tint(top,.45)}" ${ST}/><path d="M124 256 Q156 248 188 256 L208 282 Q156 296 104 282 Z" fill="${top}" ${ST}/>`;
-  } else if (G.lower === 'skirt') {
-    s += `<path d="M126 254 Q156 246 186 254 L198 304 Q156 318 114 304 Z" fill="${G.skirt}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
+  if (G.top === 'dessuadora') s += `<path d="M120 196 Q130 168 156 176 Q140 184 136 200 Z" fill="${G.T.dark}" ${ST}/>`;
+  if (G.dress) {
+    s += `<path d="M126 254 Q156 244 186 254 L204 316 Q156 334 108 316 Z" fill="${top}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>` + motifs(G, [[124,300],[156,318],[146,280],[184,302],[170,278]]);
+  } else if (G.bottom === 'tutu') {
+    s += `<path d="M118 256 Q156 246 194 256 L222 290 Q156 306 90 290 Z" fill="${tint(b,.45)}" ${ST}/><path d="M124 256 Q156 248 188 256 L208 282 Q156 296 104 282 Z" fill="${b}" ${ST}/>`;
+  } else if (G.bottom === 'faldilla') {
+    s += `<path d="M126 254 Q156 246 186 254 L198 304 Q156 318 114 304 Z" fill="${b}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
   } else {
-    s += `<path d="M128 254 Q156 246 184 254 L184 302 L128 302 Z" fill="${G.pants}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
+    s += `<path d="M128 254 Q156 246 184 254 L184 302 L128 302 Z" fill="${b}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
   }
   s += `<rect x="128" y="186" width="56" height="84" rx="22" fill="${top}" stroke="${PL}" stroke-width="3.5"/>`;
-  if (G.bolt) s += BOLT(176, 196, .5);
   s += `<rect x="106" y="206" width="18" height="62" rx="9" fill="${cov}" ${ST}/>`;
   s += `<rect x="112" y="226" width="86" height="7" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2"/><rect x="112" y="250" width="86" height="7" rx="3" fill="${w.dark}" stroke="${PL}" stroke-width="2"/>`;
   s += `<path d="M182 204 Q206 204 206 226 L206 262 Q204 296 170 302 L140 304 Q130 298 140 290 L166 286 Q184 280 184 262 Z" fill="${cov}" stroke="${PL}" stroke-width="3.5" stroke-linejoin="round"/>`;
@@ -1392,10 +1743,10 @@ function girlSide(o){
   s += `<rect x="204" y="262" width="16" height="12" rx="3" fill="#3b2a4a" stroke="${PL}" stroke-width="2"/>`;
   s += `<path d="M200 232 L226 232" stroke="${PL}" stroke-width="10" stroke-linecap="round"/><path d="M200 232 L226 232" stroke="#a7abb5" stroke-width="5" stroke-linecap="round"/><circle cx="210" cy="232" r="9" fill="#3b2a4a" stroke="${PL}" stroke-width="2.5"/>`;
   const armCol = G.sleeves === 'long' ? top : SK;
-  s += `<path d="M152 206 Q182 212 206 230" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M152 206 Q182 212 206 230" stroke="${armCol}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="208" cy="231" r="10.5" fill="${SK}" ${ST}/>`;
+  s += `<path d="M152 206 Q182 212 206 230" stroke="${PL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M152 206 Q182 212 206 230" stroke="${armCol}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="208" cy="231" r="10.5" fill="${HC}" ${ST}/>`;
   if (o.acc === 'polsera') s += accSide('polsera');
-  if (G.sleeves !== 'none') s += `<circle cx="150" cy="200" r="13" fill="${top}" ${ST}/>`;
-  if (o.acc === 'collaret' || o.acc === 'punxes') s += accSide(o.acc);
+  if (G.sleeves !== 'none') s += `<circle cx="150" cy="200" r="${G.sleeves === 'puff' ? 15 : 13}" fill="${top}" ${ST}/>`;
+  if (['collaret','punxes','corbati','boa'].includes(o.acc)) s += accSide(o.acc);
   // head (profile: eye, cheek, nose and smile on the right)
   s += `<circle cx="156" cy="110" r="60" fill="${SK}" ${ST}/>`;
   s += `<path d="M210 106 Q224 114 211 122" fill="${SK}" stroke="${PL}" stroke-width="3" stroke-linejoin="round"/>`;
@@ -1405,15 +1756,23 @@ function girlSide(o){
   if (c.freckles) [[176,124],[182,128],[188,124]].forEach(([x,y]) => s += `<circle cx="${x}" cy="${y}" r="1.7" fill="${SKD}"/>`);
   s += `<path d="M188 134 Q202 156 214 133 Q201 139 188 134 Z" fill="#8a1f45" ${ST}/><path d="M194 146 Q202 152 209 144" stroke="#ff8fb3" stroke-width="4" fill="none" stroke-linecap="round"/>`;
   if (c.glasses) s += `<circle cx="184" cy="108" r="15" fill="rgba(255,255,255,.2)" stroke="#2f80ed" stroke-width="5"/><path d="M169 106 L142 112" stroke="#2f80ed" stroke-width="4" stroke-linecap="round"/>`;
-  if (['llamp','ulleres','ulleresf'].includes(o.acc)) s += accSide(o.acc);
+  if (['llamp','ulleres','ulleresf','purpurina'].includes(o.acc)) s += accSide(o.acc);
   s += hf;
   s += `<circle cx="140" cy="120" r="11" fill="${SK}" ${ST}/>`;
-  if (!['guitarra','polsera','collaret','punxes','llamp','ulleres','ulleresf'].includes(o.acc)) s += accSide(o.acc);
+  if (!['guitarra','violi','perruca','polsera','collaret','punxes','corbati','boa','llamp','ulleres','ulleresf','purpurina'].includes(o.acc)) s += accSide(o.acc);
   return `<svg viewBox="0 0 300 440" xmlns="http://www.w3.org/2000/svg" class="girl">${s}</svg>`;
 }
+/* each style has its own world */
+const MODE_PIC = {pop:11201, rock:38704, classica:11588, disco:4633};        // style cards
+const CONCERT_PIC = {pop:11586, rock:38704, classica:2870, disco:4633};      // concert card of the menu
+const TITLE_PIC = {pop:2752, rock:38704, classica:38866, disco:4633};        // title of the printable sheet
+const MODE_BG = {pop:'linear-gradient(180deg,#ffe0f0,#ffb6d9)', rock:'linear-gradient(180deg,#4a0f26,#140f1c)', classica:'linear-gradient(180deg,#fff4dc,#e9c98f)', disco:'linear-gradient(180deg,#3a1460,#120a2e)'};
+const SWEEP = {pop:['#ff5fa8','#ffcf3f','#7cc8ff','#c6a4ff'], rock:['#ff2d55','#ffd23f','#9b5cff','#ff6a2a'], classica:['#ffe9a8','#d4a017','#fff4dc','#e8879c'], disco:['#ff3df2','#3df2ff','#ffe14d','#7a5cff']};
+const IDOL = {pop:'estrella', rock:'llamp', classica:'clausol', disco:'bola'};
+const PHOTO_BG = {pop:['#ff9ccc','#c9a4ff'], rock:['#4a0f26','#2a1442'], classica:['#f6e2b8','#d9a96a'], disco:['#2a0f52','#7a1a8a']};
 function floats(n=10){
   let s = '';
-  const kinds = ROCK() ? ['llamp','estrella','nota','llamp','foc'] : ['estrella','cor','estrella','cor','nuvol'];
+  const kinds = {rock:['llamp','estrella','nota','llamp','foc'], classica:['nota','clausol','estrella','nota','violi'], disco:['bola','estrella','nota','cor','bola']}[MODE] || ['estrella','cor','estrella','cor','nuvol'];
   for (let i=0;i<n;i++){
     const k = pick(kinds), sz = rand(4,9);
     s += `<div class="float" style="left:${rand(2,94)}%;top:${rand(4,90)}%;width:${sz}vmin;height:${sz}vmin;animation-delay:${-rand(0,7)}s;opacity:.55">${stickerSVG(k)}</div>`;
@@ -1421,29 +1780,61 @@ function floats(n=10){
   return s;
 }
 function parkBG(){
-  const R = ROCK();
-  const P = R ? {sky:['#1b1030','#3a1a4a','#5a1d3c'], hill1:'#3b2f5e', hill2:'#2c2448', path:'#4a3a5a', pathDot:'#5d4b70', trees:['#9b5cff','#ff2d55'], flowers:['#ff2d55','#ffd23f','#9b5cff','#fff']}
-              : {sky:['#ffd6ec','#e6dcff','#cdeeff'], hill1:'#a8ecd0', hill2:'#86dfb9', path:'#ffe2c4', pathDot:'#f5c9a0', trees:['#ff9fcf','#c6a4ff'], flowers:['#ff8cc6','#ffcf3f','#c6a4ff','#fff']};
+  const S = MODE;
+  const P = {
+    pop:{sky:['#ffd6ec','#e6dcff','#cdeeff'], hill1:'#a8ecd0', hill2:'#86dfb9', path:'#ffe2c4', dots:['#f5c9a0'], trees:['#ff9fcf','#c6a4ff'], trunk:'#b07a4a', flowers:['#ff8cc6','#ffcf3f','#c6a4ff','#fff']},
+    rock:{sky:['#1b1030','#3a1a4a','#5a1d3c'], hill1:'#3b2f5e', hill2:'#2c2448', path:'#4a3a5a', dots:['#5d4b70'], trees:['#9b5cff','#ff2d55'], trunk:'#4a3346', flowers:['#ff2d55','#ffd23f','#9b5cff','#fff']},
+    classica:{sky:['#fff3d6','#ffdcb0','#f7c48e'], hill1:'#b5d394', hill2:'#94c27a', path:'#efe0c0', dots:['#d9c49a'], trees:['#4f8f55','#6aa86a'], trunk:'#7a4e2c', flowers:['#fff','#ffcf3f','#e8879c','#c9a86a']},
+    disco:{sky:['#100828','#2a0f52','#55127a'], hill1:'#2b1d5c', hill2:'#1f1548', path:'#2a1d50', dots:['#ff3df2','#3df2ff','#ffe14d','#7a5cff'], trees:['#3df2ff','#ff3df2'], trunk:'#2a1a40', flowers:['#ff3df2','#3df2ff','#ffe14d','#7a5cff']},
+  }[S];
   const flowers = Array.from({length:22},()=>{const x=rand(20,1580),y=rand(640,760),c=pick(P.flowers);return `<circle cx="${x}" cy="${y}" r="9" fill="${c}" stroke="${PL}" stroke-width="2"/><circle cx="${x}" cy="${y}" r="3.5" fill="#ffcf3f"/>`}).join('');
-  const tree = (x,y,s,c) => `<rect x="${x-10*s}" y="${y}" width="${20*s}" height="${90*s}" rx="${8*s}" fill="${R ? '#4a3346' : '#b07a4a'}" stroke="${PL}" stroke-width="4"/><circle cx="${x}" cy="${y-10*s}" r="${60*s}" fill="${c}" stroke="${PL}" stroke-width="4"/><circle cx="${x-20*s}" cy="${y-30*s}" r="${10*s}" fill="#fff" opacity=".5"/>`;
-  const sky = R ? `<g transform="translate(1380 50) scale(1.6)">${sticker('lluna')}</g>` + Array.from({length:40},()=>`<circle cx="${rand(0,1600)}" cy="${rand(20,460)}" r="${rand(1.5,3.5)}" fill="#fff" opacity="${rand(.4,.95)}"/>`).join('') + [[200,90,1.2],[700,60,.9],[1050,140,1.1]].map(([x,y,s]) => `<g transform="translate(${x} ${y}) scale(${s})">${sticker('llamp')}</g>`).join('')
-                : `<g transform="translate(1380 60) scale(1.7)">${sticker('sol')}</g>` + [[120,80,1.6],[620,40,1.2],[980,120,1.4]].map(([x,y,s]) => `<g transform="translate(${x} ${y}) scale(${s})">${sticker('nuvol')}</g>`).join('');
+  const tree = (x,y,s,c) => `<rect x="${x-10*s}" y="${y}" width="${20*s}" height="${90*s}" rx="${8*s}" fill="${P.trunk}" stroke="${PL}" stroke-width="4"/><circle cx="${x}" cy="${y-10*s}" r="${60*s}" fill="${c}" stroke="${PL}" stroke-width="4"/><circle cx="${x-20*s}" cy="${y-30*s}" r="${10*s}" fill="#fff" opacity=".5"/>`;
+  const stars = (n, y1) => Array.from({length:n},()=>`<circle cx="${rand(0,1600)}" cy="${rand(20,y1)}" r="${rand(1.5,3.5)}" fill="#fff" opacity="${rand(.4,.95)}"/>`).join('');
+  const st = (k, x, y, sc) => `<g transform="translate(${x} ${y}) scale(${sc})">${sticker(k)}</g>`;
+  let sky = '', back = '', mid = '';
+  if (S === 'rock') sky = st('lluna',1380,50,1.6) + stars(40,460) + [[200,90,1.2],[700,60,.9],[1050,140,1.1]].map(([x,y,s]) => st('llamp',x,y,s)).join('');
+  else if (S === 'classica') {
+    sky = `<circle cx="1360" cy="190" r="120" fill="#fff1b8" opacity=".85"/><circle cx="1360" cy="190" r="86" fill="#ffe08a"/>` + [[160,90,'nota',1],[520,60,'clausol',1.1],[880,120,'nota',.9],[1080,50,'violi',1]].map(([x,y,k,s]) => st(k,x,y,s)).join('');
+    mid = `<g transform="translate(1180 420)"><path d="M-120 44 L0 -40 L120 44 Z" fill="#8c1c3a" stroke="${PL}" stroke-width="4" stroke-linejoin="round"/><path d="M-120 44 Q0 66 120 44" fill="#d4a017" stroke="${PL}" stroke-width="4"/>${[-96,-32,32,96].map(x => `<rect x="${x-6}" y="50" width="12" height="84" fill="#fff8ec" stroke="${PL}" stroke-width="3"/>`).join('')}<rect x="-130" y="132" width="260" height="24" rx="4" fill="#fff8ec" stroke="${PL}" stroke-width="4"/><circle cx="0" cy="-48" r="10" fill="#d4a017" stroke="${PL}" stroke-width="3"/></g>`;
+  } else if (S === 'disco') {
+    sky = stars(70, 420) + ['#ff3df2','#3df2ff','#ffe14d','#7a5cff'].map((c,i) => `<path d="M1300 110 L${160+i*300} 900 L${260+i*300} 900 Z" fill="${c}" opacity=".13"/>`).join('') + `<path d="M1300 0 L1300 50" stroke="#c9ccd6" stroke-width="4"/>` + st('bola',1230,40,1.4);
+    for (let i = 0; i < 15; i++) { const x = i*112 - 20, h = 120 + ((i*53) % 140), wd = 84 + ((i*31) % 30);
+      back += `<rect x="${x}" y="${560-h}" width="${wd}" height="${h+80}" fill="#1a0f3a" stroke="#3a2a7a" stroke-width="3"/>`;
+      for (let r = 560-h+16; r < 548; r += 26) for (let cx = x+12; cx < x+wd-14; cx += 22) if ((cx*7 + r*3) % 5 < 2) back += `<rect x="${cx}" y="${r}" width="10" height="12" fill="${['#ffe14d','#3df2ff','#ff3df2'][(cx+r) % 3]}" opacity=".85"/>`; }
+  } else sky = st('sol',1380,60,1.7) + [[120,80,1.6],[620,40,1.2],[980,120,1.4]].map(([x,y,s]) => st('nuvol',x,y,s)).join('');
+  const dots = Array.from({length:12},(_,i)=> S === 'disco' ? `<rect x="${50+i*135}" y="${828+(i%2)*18}" width="44" height="20" rx="5" fill="${P.dots[i % 4]}" opacity=".8"/>` : `<ellipse cx="${70+i*135}" cy="${840+(i%2)*18}" rx="22" ry="7" fill="${P.dots[0]}"/>`).join('');
   return `<svg class="bgsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
   <defs><linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.sky[0]}"/><stop offset=".6" stop-color="${P.sky[1]}"/><stop offset="1" stop-color="${P.sky[2]}"/></linearGradient></defs>
   <rect width="1600" height="900" fill="url(#skyg)"/>
-  ${sky}
-  <path d="M0 560 Q300 440 640 540 Q980 640 1300 500 Q1480 440 1600 500 L1600 900 L0 900 Z" fill="${P.hill1}" stroke="${PL}" stroke-width="4"/>
-  <path d="M0 640 Q400 560 800 640 Q1200 720 1600 620 L1600 900 L0 900 Z" fill="${P.hill2}" stroke="${PL}" stroke-width="4"/>
-  ${tree(140,520,1,P.trees[0])}${tree(1460,540,1.1,P.trees[1])}${tree(1180,560,.7,P.trees[0])}${tree(380,580,.6,P.trees[1])}
+  ${sky}${back}
+  <path d="M0 560 Q300 440 640 540 Q980 640 1300 500 Q1480 440 1600 500 L1600 900 L0 900 Z" fill="${P.hill1}" stroke="${S === 'disco' ? '#ff3df2' : PL}" stroke-width="4"/>
+  ${mid}
+  <path d="M0 640 Q400 560 800 640 Q1200 720 1600 620 L1600 900 L0 900 Z" fill="${P.hill2}" stroke="${S === 'disco' ? '#3df2ff' : PL}" stroke-width="4"/>
+  ${tree(140,520,1,P.trees[0])}${tree(1460,540,1.1,P.trees[1])}${S === 'classica' ? '' : tree(1180,560,.7,P.trees[0])}${tree(380,580,.6,P.trees[1])}
   ${flowers}
   <path d="M0 790 Q400 760 800 790 Q1200 820 1600 780 L1600 900 L0 900 Z" fill="${P.path}" stroke="${PL}" stroke-width="4"/>
-  ${Array.from({length:12},(_,i)=>`<ellipse cx="${70+i*135}" cy="${840+(i%2)*18}" rx="22" ry="7" fill="${P.pathDot}"/>`).join('')}
+  ${dots}
   </svg>`;
 }
 function stageBG(){
-  const R = ROCK();
-  const C = R ? {cur:'#241628', fold:'#3d2244', trim:'#ff2d55', val:'#d1123a', bulb:'#ff2d55', floor:'#2a1a30', floorLine:'#4a2a50'}
-              : {cur:'#e0338a', fold:'#b81e6d', trim:'#ffcf3f', val:'#ff5fa8', bulb:'#ffe066', floor:'#7a3fa0', floorLine:'#9a5cc4'};
+  const S = MODE;
+  const stars = Array.from({length:40},()=>`<circle cx="${rand(0,1600)}" cy="${rand(80,520)}" r="${rand(1.5,3.5)}" fill="#fff" opacity="${rand(.3,.9)}"/>`).join('');
+  if (S === 'disco') {
+    const cols = ['#ff3df2','#3df2ff','#ffe14d','#7a5cff','#4cd37a'];
+    let tiles = '';
+    for (let r = 0; r < 4; r++) { const y = 720 + r*46, n = 10 + r*2, w = 1600 / n; for (let i = 0; i < n; i++) tiles += `<rect x="${(i*w+3).toFixed(1)}" y="${y+3}" width="${(w-6).toFixed(1)}" height="40" rx="5" fill="${cols[(i+r) % 5]}" opacity="${(.35 + ((i*7+r*3) % 5)*.12).toFixed(2)}"/>`; }
+    const rays = cols.map((c,i) => `<path d="M800 130 L${60+i*340} 900 L${200+i*340} 900 Z" fill="${c}" opacity=".12"/>`).join('');
+    const speaker = x => `<g transform="translate(${x} 520)"><rect width="150" height="200" rx="14" fill="#1a0f3a" stroke="#ff3df2" stroke-width="5"/><circle cx="75" cy="60" r="34" fill="#2a1d50" stroke="#3df2ff" stroke-width="4"/><circle cx="75" cy="145" r="40" fill="#2a1d50" stroke="#3df2ff" stroke-width="4"/></g>`;
+    return `<svg class="bgsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">${stars}
+      <rect x="40" y="40" width="1520" height="660" rx="40" fill="none" stroke="#ff3df2" stroke-width="6" opacity=".55"/><rect x="60" y="60" width="1480" height="620" rx="32" fill="none" stroke="#3df2ff" stroke-width="3" opacity=".45"/>
+      ${rays}<rect x="0" y="716" width="1600" height="184" fill="#140a2e"/>${tiles}${speaker(140)}${speaker(1310)}
+      <path d="M800 0 L800 70" stroke="#c9ccd6" stroke-width="4"/><g transform="translate(730 60) scale(1.4)">${sticker('bola')}</g></svg>`;
+  }
+  const C = {
+    pop:{cur:'#e0338a', fold:'#b81e6d', trim:'#ffcf3f', val:'#ff5fa8', bulb:'#ffe066', floor:'#7a3fa0', floorLine:'#9a5cc4'},
+    rock:{cur:'#241628', fold:'#3d2244', trim:'#ff2d55', val:'#d1123a', bulb:'#ff2d55', floor:'#2a1a30', floorLine:'#4a2a50'},
+    classica:{cur:'#7a1430', fold:'#5a0e22', trim:'#d4a017', val:'#8c1c3a', bulb:'#ffe9a8', floor:'#8a5a34', floorLine:'#a8744a'},
+  }[S];
   const curtain = (flip) => {
     let s = `<path d="M0 0 L300 0 Q260 300 330 620 Q220 760 0 900 Z" fill="${C.cur}" stroke="${PL}" stroke-width="5"/>`;
     for (let i=1;i<5;i++) s += `<path d="M${i*60} 0 Q${i*60-30} 420 ${i*45} 860" stroke="${C.fold}" stroke-width="9" fill="none" opacity=".7"/>`;
@@ -1453,23 +1844,27 @@ function stageBG(){
   let val = '';
   for (let i=0;i<10;i++) val += `<path d="M${i*160} 0 L${i*160+160} 0 L${i*160+160} 60 Q${i*160+80} 130 ${i*160} 60 Z" fill="${C.val}" stroke="${PL}" stroke-width="5"/>`;
   let bulbs = ''; for (let i=0;i<16;i++) bulbs += `<circle cx="${80+i*96}" cy="${30+(i%2)*6}" r="9" fill="${C.bulb}" stroke="${PL}" stroke-width="3"/>`;
-  let rock = '';
-  if (R) {
+  let extra = '';
+  if (S === 'rock') {
     const amp = x => `<g transform="translate(${x} 560)"><rect width="190" height="120" rx="10" fill="#1c1022" stroke="#5a4a66" stroke-width="5"/><rect x="0" y="125" width="190" height="120" rx="10" fill="#1c1022" stroke="#5a4a66" stroke-width="5"/>${[[48,60],[142,60],[48,185],[142,185]].map(([cx,cy]) => `<circle cx="${cx}" cy="${cy}" r="38" fill="#2d2833" stroke="#5a4a66" stroke-width="4"/><circle cx="${cx}" cy="${cy}" r="12" fill="#ff2d55"/>`).join('')}</g>`;
-    rock = amp(330) + amp(1080);
-    for (let i=0;i<16;i++) { const x = i*104 + 20; rock += `<path d="M${x} 900 Q${x-10} 850 ${x+10} 820 Q${x+10} 850 ${x+26} 856 Q${x+24} 830 ${x+40} 808 Q${x+52} 850 ${x+60} 900 Z" fill="#ff6a2a" stroke="${PL}" stroke-width="3"/><path d="M${x+14} 900 Q${x+10} 870 ${x+24} 856 Q${x+28} 876 ${x+40} 880 Q${x+44} 892 ${x+44} 900 Z" fill="#ffd23f"/>`; }
+    extra = amp(330) + amp(1080);
+    for (let i=0;i<16;i++) { const x = i*104 + 20; extra += `<path d="M${x} 900 Q${x-10} 850 ${x+10} 820 Q${x+10} 850 ${x+26} 856 Q${x+24} 830 ${x+40} 808 Q${x+52} 850 ${x+60} 900 Z" fill="#ff6a2a" stroke="${PL}" stroke-width="3"/><path d="M${x+14} 900 Q${x+10} 870 ${x+24} 856 Q${x+28} 876 ${x+40} 880 Q${x+44} 892 ${x+44} 900 Z" fill="#ffd23f"/>`; }
+  }
+  if (S === 'classica') {
+    const stand = x => `<g transform="translate(${x} 560)"><path d="M-46 0 L46 0 L38 44 L-38 44 Z" fill="#2a1a10" stroke="#d4a017" stroke-width="3"/><rect x="-4" y="44" width="8" height="120" fill="#2a1a10"/><path d="M-34 186 L0 160 L34 186" stroke="#2a1a10" stroke-width="7" fill="none" stroke-linecap="round"/></g>`;
+    let keys = ''; for (let i = 0; i < 14; i++) keys += `<rect x="${8+i*13}" y="84" width="12" height="18" fill="#fff" stroke="#1c1022" stroke-width="1"/>`;
+    extra = `<g transform="translate(360 590)"><path d="M0 0 L230 0 Q300 0 300 56 Q300 104 240 104 L0 104 Z" fill="#1c1022" stroke="#d4a017" stroke-width="4"/><path d="M6 0 L70 -88 L88 -84 L34 0 Z" fill="#2a1a10" stroke="#d4a017" stroke-width="3"/>${keys}<rect x="12" y="104" width="12" height="80" fill="#1c1022"/><rect x="240" y="104" width="12" height="80" fill="#1c1022"/></g>` + stand(1130) + stand(1290);
+    extra += `<g opacity=".9"><path d="M800 0 L800 60" stroke="#d4a017" stroke-width="4"/>${[-60,-30,0,30,60].map(dx => `<path d="M800 70 Q${800+dx} 96 ${800+dx*1.4} 120" stroke="#d4a017" stroke-width="4" fill="none"/><circle cx="${800+dx*1.4}" cy="124" r="8" fill="#ffe9a8" stroke="#d4a017" stroke-width="2"/>`).join('')}<ellipse cx="800" cy="72" rx="30" ry="12" fill="#d4a017"/></g>`;
   }
   return `<svg class="bgsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-    ${Array.from({length:40},()=>`<circle cx="${rand(0,1600)}" cy="${rand(80,520)}" r="${rand(1.5,3.5)}" fill="#fff" opacity="${rand(.3,.9)}"/>`).join('')}
+    ${stars}
     <path d="M0 760 Q800 690 1600 760 L1600 900 L0 900 Z" fill="${C.floor}" stroke="${PL}" stroke-width="5"/>
     <path d="M0 790 Q800 730 1600 790" stroke="${C.floorLine}" stroke-width="6" fill="none"/>
-    ${R ? rock : ''}${curtain(false)}${curtain(true)}${val}${bulbs}
+    ${extra}${curtain(false)}${curtain(true)}${val}${bulbs}
   </svg>`;
 }
-function modeArt(m){
-  return m === 'rock' ? `<div style="height:100%;display:flex;align-items:center;justify-content:center;gap:3%"><div style="height:70%;aspect-ratio:1">${stickerSVG('guitarra')}</div><div style="height:55%;aspect-ratio:1">${stickerSVG('llamp')}</div></div>`
-                      : `<div style="height:100%;display:flex;align-items:center;justify-content:center;gap:3%"><div style="height:70%;aspect-ratio:1">${stickerSVG('estrella')}</div><div style="height:55%;aspect-ratio:1">${stickerSVG('cor')}</div></div>`;
-}
+const bigPic = (id, h = 90) => `<div style="height:${h}%;aspect-ratio:1;max-width:100%"><div class="pcard" style="--fzc:${fzCol(id)}"><img alt="" src="${pic(id)}"></div></div>`;
+function modeArt(m){ return `<div style="height:100%;width:100%;display:flex;align-items:center;justify-content:center">${bigPic(MODE_PIC[m], 94)}</div>`; }
 
 /* =====================  SCREENS  ===================== */
 function show(id){
@@ -1479,22 +1874,21 @@ function show(id){
   clearCur(); armAt = performance.now() + 700;
 }
 /* "rest your eyes" button, on every screen: while paused only this button answers (gaze, touch or mouse).
-   Every new screen or question can start paused, so she can look at everything calmly first. */
+   It is silent: no voice and no sound. Every new screen or question can start paused, so she can look at everything calmly first. */
 const fab = $('#pauseFab');
-function drawFab(){ const t = T(); fab.classList.toggle('on', paused); fab.innerHTML = `<div class="tb"><img alt="" class="ringat" src="${pic(paused ? 10138 : 10146)}"><span>${paused ? t.resume : t.pause}</span></div>`; }
+function drawFab(){ const t = T(); fab.classList.toggle('on', paused); fab.innerHTML = `<div class="tb">${pimg(paused ? 10138 : 10146, 'ringat')}<span>${paused ? t.resume : t.pause}</span></div>`; }
 function placeFab(pos){ fab.dataset.pos = pos; fab.hidden = false; drawFab(); }
 function hideFab(){ fab.hidden = true; }
 function unpause(){ paused = false; document.body.classList.remove('gz-paused'); drawFab(); }
 function autoPause(){ if (!cfg.startPaused) return; paused = true; document.body.classList.add('gz-paused'); clearCur(); drawFab(); }
 function togglePause(){
   const now = performance.now(); if (now - pauseAt < 1200) return; pauseAt = now;
-  paused = !paused; document.body.classList.toggle('gz-paused', paused); drawFab();
-  clearCur(); sfx.pop(); say(paused ? T().pauseOn : T().pauseOff);
+  paused = !paused; document.body.classList.toggle('gz-paused', paused); drawFab(); clearCur();
 }
 onGaze(fab, () => togglePause());
 fab.addEventListener('click', e => { e.stopPropagation(); if (!lock) { clearCur(); G.cool = fab; togglePause(); } });
 
-function applyMode(m){ MODE = m === 'rock' ? 'rock' : 'aitana'; document.body.dataset.mode = MODE; }
+function applyMode(m){ MODE = STYLES.includes(m) ? m : 'pop'; document.body.dataset.mode = MODE; document.body.classList.toggle('dark', !!DARK[MODE]); }
 function setCharacter(c){ outfit = charDefault(CHARS[c] ? c : 'nena1'); }
 /* the two choices at the start of a session: music style, then who she wants to be */
 async function pickScreen(q, items){
@@ -1506,7 +1900,7 @@ async function pickScreen(q, items){
   opts.innerHTML = '';
   const cards = items.map(it => {
     const el = document.createElement('div'); el.className = 'opt pickcard';
-    el.innerHTML = `<div class="tb"${it.bg ? ` style="background:${it.bg}"` : ''}><div class="art ringat">${it.art}</div><div class="lbl">${it.label}</div>${it.badge ? `<img class="mini" alt="" src="${pic(it.badge)}">` : ''}</div>`;
+    el.innerHTML = `<div class="tb"${it.bg ? ` style="background:${it.bg}"` : ''}><div class="art ringat">${it.art}</div><div class="lbl">${it.label}</div></div>`;
     el._val = it.val; opts.appendChild(el); return el;
   });
   placeFab('bc'); autoPause();
@@ -1522,16 +1916,14 @@ async function startFlow(){
     if (cfg.fixMode) applyMode(cfg.fixMode);
     else {
       const t = T();
-      const m = await pickScreen(t.modeQ, [
-        {val:'aitana', label:t.modeA, art:modeArt('aitana'), bg:'linear-gradient(180deg,#ffe0f0,#ffb6d9)', badge:11201},
-        {val:'rock', label:t.modeR, art:modeArt('rock'), bg:'linear-gradient(180deg,#4a0f26,#140f1c)', badge:38704}]);
-      applyMode(m); await say(m === 'rock' ? t.modeSayR : t.modeSayA);
+      const m = await pickScreen(t.modeQ, STYLES.map(s => ({val:s, label:t.modes[s], art:modeArt(s), bg:MODE_BG[s]})));
+      applyMode(m); sfx.yay(); await say(t.modeSay[m]);
     }
     if (cfg.fixChar) setCharacter(cfg.fixChar);
     else {
       const t = T();
-      const c = await pickScreen(t.charQ, ['nena1','nena2','nen'].map(id => ({val:id, label:t.chars[id], art:girlSVG(charDefault(id), {pose:'wave'}), badge:id === 'nen' ? 2485 : 2484})));
-      setCharacter(c); await say(t.chars[c] + '!');
+      const c = await pickScreen(t.charQ, ['nena1','nena2','nen'].map(id => ({val:id, label:charLabel(id), art:girlSVG(charDefault(id), {pose:'wave'})})));
+      setCharacter(c); await say(t.charHi(charLabel(c)), t.charOk);
     }
   } catch(e) { if (e instanceof Abort) return; throw e; }
   if (tok === RUN) goHome();
@@ -1547,17 +1939,19 @@ function buildHome(){
   $('#homeGirl').innerHTML = girlSVG(outfit, {pose:'wave'});
   $('#hello').innerHTML = t.hello(cfg.name);
   $('#homeFloats').innerHTML = floats(12);
+  const seq = [39198, 6627, CONCERT_PIC[MODE]];
+  // same order as "all the games": walk, dress up for the concert, concert
   const items = [
-    {k:1, cls:'m1', lbl:t.g1, art:`<div style="height:100%;display:flex;align-items:flex-end;justify-content:center;gap:2%"><div style="height:92%;aspect-ratio:300/440">${girlSVG(outfit,{pose:'down'})}</div><div style="height:40%;aspect-ratio:1;align-self:center">${bigStar()}</div></div>`, badge:32946},
-    {k:2, cls:'m2', lbl:t.g2, art:`<div style="height:80%;aspect-ratio:1"><div class="pcard"><img alt="" src="${pic(ROCK() ? 8599 : 2912)}"></div></div>`, badge:ROCK() ? 38704 : 11586},
-    {k:3, cls:'m3', lbl:tt('g3'), art:ROCK() ? `<div style="height:80%;aspect-ratio:1">${stickerSVG('guitarra')}</div>` : `<div style="height:84%;aspect-ratio:120/150">${dressIcon(outfit.color)}</div>`, badge:32135},
-    {k:'all', cls:'m4', lbl:t.all, art:`<div style="height:84%;display:flex;align-items:center;gap:4%"><div style="height:60%;aspect-ratio:1">${bigStar()}</div><div style="height:80%;aspect-ratio:1">${bigStar()}</div><div style="height:60%;aspect-ratio:1">${bigStar()}</div></div>`},
+    {k:1, cls:'m1', lbl:t.g1, art:bigPic(39198, 100)},
+    {k:3, cls:'m3', lbl:tt('g3'), art:bigPic(6627, 100), small:`<div class="badgesvg">${dressIcon(outfit.topColor)}</div>`},
+    {k:2, cls:'m2', lbl:t.g2, art:bigPic(CONCERT_PIC[MODE], 100)},
+    {k:'all', cls:'m4', lbl:t.all, art:`<div class="seq">${seq.map(id => `<div class="pcard" style="--fzc:${fzCol(id)}"><img alt="" src="${pic(id)}"></div>`).join('<span>▶</span>')}</div>`},
   ];
   const menu = $('#menu'); menu.innerHTML = '';
   items.forEach(it => {
     const el = document.createElement('div');
     el.className = 'mbtn ' + it.cls;
-    el.innerHTML = `<div class="tb"><div class="art">${it.art}</div><div class="lbl">${it.lbl}</div>${it.badge ? `<img class="badge" alt="" src="${pic(it.badge)}">` : ''}</div>`;
+    el.innerHTML = `<div class="tb"><div class="art">${it.art}</div><div class="lbl">${it.lbl}</div>${it.small || ''}</div>`;
     onGaze(el, () => { sfx.sparkle(); const [x,y] = centerOf(el); burst(x,y,{n:30}); play(it.k); });
     menu.appendChild(el);
   });
@@ -1567,7 +1961,7 @@ function buildHome(){
 let queue = [], log = {};
 function play(k){
   RUN++; const tok = RUN; lock = false; unpause(); hush(); stopMusic();
-  queue = k === 'all' ? [1,2,3] : [k];
+  queue = k === 'all' ? [1,3,2] : [k];          // walk, dress up for the concert, concert
   log = {played:[], date:new Date()};
   show('game'); nextGame(tok);
 }
@@ -1594,12 +1988,12 @@ function skip(){
   nextGame(tok);
 }
 
-/* ---------- GAME 1: walk with the pony ---------- */
+/* ---------- GAME 1: walk with the walker (her "poni") ---------- */
 const PROG = [[50,36],[30,32],[70,32],[50,24],[18,28],[82,28],[34,52],[66,52],[12,46],[88,46],[50,52],[22,22],[78,22]];
 async function game1(){
   const t = T(), total = cfg.g1count, k = cfg.g1simul;
   const game = $('#game');
-  game.innerHTML = `<div class="scene park">${parkBG()}<div class="topbar pop" id="g1top"><img alt="" src="${pic(2752)}"><span class="txt">${t.g1top}</span></div>
+  game.innerHTML = `<div class="scene park">${parkBG()}<div class="topbar pop" id="g1top">${pimg(2752)}<span class="txt">${t.g1top}</span></div>
     <div class="hud" id="g1hud">${'<i></i>'.repeat(total)}</div>
     <div class="walker" id="g1girl" style="left:50%;transition-duration:1s"><div class="flip">${girlSVG(outfit,{pose:'down'})}</div></div><div id="g1stars"></div></div>`;
   game.querySelectorAll('#g1hud i').forEach(i => i.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(bigStar())}")`);
@@ -1654,40 +2048,43 @@ async function game1(){
   await say(t.g1end(got, cfg.name), t.g1end(got, '')); await wait(700);
 }
 
-/* ---------- GAME 2: light up the concert ---------- */
+/* ---------- GAME 2: light up the concert. All the pictograms on the stage come from one group (clothes,
+   feelings and emotions, colours or instruments) and she has to find the one that is asked for ---------- */
 const SLOTS = {
   2:[[30,56],[70,56]], 3:[[20,56],[50,56],[80,56]], 4:[[26,40],[74,40],[26,74],[74,74]],
   5:[[20,40],[50,40],[80,40],[33,74],[67,74]], 6:[[20,40],[50,40],[80,40],[20,74],[50,74],[80,74]],
   7:[[16,40],[39,40],[61,40],[84,40],[25,74],[50,74],[75,74]], 8:[[16,40],[39,40],[61,40],[84,40],[16,74],[39,74],[61,74],[84,74]] };
 async function game2(){
-  const t = T(), n = clamp(cfg.g2items, 2, 8), m = Math.min(cfg.g2searches, n);
+  const t = T();
   const groups = cfg.g2groups.filter(g => G2GROUPS[g]);
-  const pool = (groups.length ? groups : ['instr']).flatMap(g => G2GROUPS[g].items);
-  const items = shuffle(pool).slice(0, n), slots = SLOTS[n];
+  const gid = pick(groups.length ? groups : ['instr']), grp = G2GROUPS[gid];
+  const items = shuffle(grp.items).slice(0, clamp(cfg.g2items, 2, 8)), n = items.length, m = Math.min(cfg.g2searches, n), slots = SLOTS[n];
   const game = $('#game');
-  const sw = ROCK() ? ['#ff2d55','#ffd23f','#9b5cff','#ff6a2a'] : ['#ff5fa8','#ffcf3f','#7cc8ff','#c6a4ff'];
-  const sweeps = sw.map((c,i) => `<div class="sweep" style="left:${8+i*24}%;background:linear-gradient(180deg,${c}cc,${c}00);animation-delay:${-i*0.7}s"></div>`).join('');
+  const sweeps = SWEEP[MODE].map((c,i) => `<div class="sweep" style="left:${8+i*24}%;background:linear-gradient(180deg,${c}cc,${c}00);animation-delay:${-i*0.7}s"></div>`).join('');
   game.innerHTML = `<div class="scene stage" id="stg">${stageBG()}${sweeps}<div class="marquee">★ ${tt('marquee')} ★</div>
     <div class="idol" id="idol"></div><div id="beams"></div><div id="sitems"></div>
     <div class="topbar" id="prompt" hidden></div><div class="singer" id="singer">${girlSVG(outfit,{pose:'mic'})}</div></div>`;
-  const ph = ROCK() ? photoRockURL : photoURL;
-  if (ph) $('#idol').style.backgroundImage = `url("${ph}")`; else $('#idol').innerHTML = `<div style="width:100%;height:100%;padding:12%">${stickerSVG(ROCK() ? 'llamp' : 'estrella')}</div>`;
+  const ph = MEDIA['photo' + MKEY[MODE]];
+  if (ph) $('#idol').style.backgroundImage = `url("${ph}")`; else $('#idol').innerHTML = `<div style="width:100%;height:100%;padding:12%">${stickerSVG(IDOL[MODE])}</div>`;
   const big = (n <= 3 ? 24 : n <= 4 ? 21 : n <= 6 ? 18 : 15) * cfg.size;
   const els = {};
   items.forEach((it, i) => {
     const el = document.createElement('div');
     el.className = 'si'; el.style.left = slots[i][0] + '%'; el.style.top = slots[i][1] + '%'; el.style.setProperty('--sz', big + 'vmin');
-    el.innerHTML = `<div class="tb"><div class="bob"><div class="pcard"><img alt="" src="${pic(it.p)}"></div></div></div>`;
+    el.innerHTML = `<div class="tb"><div class="bob"><div class="pcard" style="--fzc:${fzCol(it.p)}"><img alt="" src="${pic(it.p)}"></div></div></div>`;
     $('#sitems').appendChild(el); els[it.id] = el;
   });
   placeFab('bl');
-  await say(t.g2intro);
-  const order = shuffle(items).slice(0, m), found = [];
   const prompt = $('#prompt');
+  await say(t.g2intro);
+  prompt.hidden = false; prompt.classList.remove('pop','done'); void prompt.offsetWidth; prompt.classList.add('pop');
+  prompt.innerHTML = `${pimg(grp.p)}<span class="txt">${t.g2cat[gid]}</span>`;
+  await say(t.g2cat[gid]);
+  const order = shuffle(items).slice(0, m), found = [];
   for (const it of order){
     const el = els[it.id], [lbl, art] = L(it);
     prompt.hidden = false; prompt.classList.remove('pop','done'); void prompt.offsetWidth; prompt.classList.add('pop');
-    prompt.innerHTML = `${cfg.g2picto ? `<img alt="" src="${pic(it.p)}">` : ''}<span class="txt">${t.g2find(art)}</span>`;
+    prompt.innerHTML = `${cfg.g2picto ? pimg(it.p) : ''}<span class="txt">${t.g2find(art)}</span>`;
     autoPause();
     sfx.pop(); say(t.g2find(art));
     const ht = cfg.g2hint > 0 ? every(cfg.g2hint*1000, () => { if (paused) return; el.classList.add('hint'); say(t.g2find(art)); }) : null;
@@ -1708,7 +2105,7 @@ async function game2(){
     lock = false;
     await wait(500);
   }
-  log.g2 = {found};
+  log.g2 = {group:gid, found};
   // finale: the show
   hideFab(); unpause();
   prompt.hidden = true;
@@ -1724,21 +2121,30 @@ async function game2(){
   await say(tt('bravo')); await wait(900);
 }
 
-/* ---------- GAME 3: dress up + photo + questions ---------- */
+/* ---------- GAME 3: dress up for the concert + photo + questions ---------- */
 function gridCols(n){ return n <= 2 ? 2 : n === 3 ? 3 : n === 4 ? 2 : n <= 6 ? 3 : 4; }
-const optArt = item => `<div class="art ringat${pics(item).length > 1 ? ' multi' : ''}">${pics(item).map(p => `<img alt="" src="${pic(p)}">`).join('')}</div>`;
-/* options for one step: blue and pink are always among the colours; then some colours that suit the mode */
-function pickOptions(cat, n, must){
-  const all = catItems(cat), keep = [];
+const optArt = item => `<div class="art ringat">${pimg(item.p)}</div>`;     // one pictogram per option
+/* options for one step: blue and pink are always among the colours; then some colours that suit the style */
+function pickOptions(st, n, must){
+  const all = st.items.filter(inMode), keep = [];
   n = Math.min(n, all.length);
   const add = it => { if (it && !keep.includes(it) && keep.length < n) keep.push(it); };
   add(must);
-  if (cat.items === COLORS) {
+  if (st.items === COLORS) {
     if (cfg.g3pink) ['rosa','blau'].forEach(id => add(all.find(x => x.id === id)));
-    (ROCK() ? ['negre','vermell'] : ['lila','daurat']).forEach(id => { if (Math.random() < .75) add(all.find(x => x.id === id)); });
+    STYLE_COLORS[MODE].forEach(id => { if (Math.random() < .75) add(all.find(x => x.id === id)); });
   }
   shuffle(all).forEach(add);
-  return keep;
+  return all.filter(x => keep.includes(x));
+}
+/* a step of the game: what she chooses, its options and its sentences */
+function stepOf(cat){
+  const st = cat.id === 'bottom' && outfit.top === 'vestit' ? PATSTEP : cat;      // with a dress: how is the dress?
+  return {key:st.key, items:st.items, subj:st.subj, tx:CL(st), color:st === cat ? cat.color : null};
+}
+function colorStepOf(key, colorKey, items){
+  const t = T(), g = items.find(x => x.id === outfit[key]) || items[0], gl = L(g), pl = /p$/.test(gl[3]);
+  return {key:colorKey, items:COLORS, subj:g.p, tx:{choose:t.colChoose(gl[2]), q:t.colQ(gl[2], pl), say:t.colSay, ok:t.colOk}};
 }
 async function game3(){
   const t = T(), game = $('#game');
@@ -1747,17 +2153,16 @@ async function game3(){
   if (!cats.length) cats.push(CATS[0]);
   game.innerHTML = `<div class="scene dress">${floats(8)}<div class="g3"><div class="g3-left" id="g3left"><div class="avatar-stage" id="av"></div><div class="fabspace"></div></div><div class="g3-right"><div class="ask" id="ask"></div><div class="opts" id="opts"></div></div></div></div>`;
   const left = $('#g3left'), av = $('#av'), ask = $('#ask'), opts = $('#opts'), space = left.querySelector('.fabspace');
-  const drawAv = () => { av.innerHTML = girlSVG(outfit, {pose:'wave'}); };
+  const drawAv = () => { av.innerHTML = girlSVG(outfit, {seat:true, pose:'wave'}); };
   drawAv();
   placeFab('g3');
-  ask.innerHTML = `<img alt="" src="${pic(32135)}"><h2>${tt('g3intro')}</h2>`;
+  ask.innerHTML = `${pimg(6627)}<h2>${tt('g3intro')}</h2>`;
   await say(tt('g3intro'));
-  for (const cat of cats){
-    const c = CL(cat), all = catItems(cat);
-    const keep = pickOptions(cat, cfg.g3opts);
-    const list = all.filter(x => keep.includes(x));
+  const done = [];
+  const choose = async st => {
+    const list = pickOptions(st, cfg.g3opts);
     ask.classList.remove('pop'); void ask.offsetWidth; ask.classList.add('pop');
-    ask.innerHTML = cat.subj.map(p => `<img alt="" src="${pic(p)}">`).join('') + `<h2>${c.choose}</h2>`;
+    ask.innerHTML = `${pimg(st.subj)}<h2>${st.tx.choose}</h2>`;
     opts.style.gridTemplateColumns = `repeat(${gridCols(list.length)},minmax(0,1fr))`;
     opts.innerHTML = '';
     const cards = list.map(item => {
@@ -1766,22 +2171,28 @@ async function game3(){
       el._item = item; opts.appendChild(el); return el;
     });
     autoPause();
-    sfx.pop(); say(c.choose);
+    sfx.pop(); say(st.tx.choose);
     const hit = await waitGaze(cards);
     lock = true;
     const item = hit._item;
-    outfit[cat.id] = item.id;
+    outfit[st.key] = item.id;
     hit.classList.add('right');
     drawAv(); av.classList.remove('pop'); void av.offsetWidth; av.classList.add('pop');
     sfx.sparkle(); { const [x,y] = centerOf(av); burst(x, y, {n:40}); }
     cards.filter(x => x !== hit).forEach(x => x.style.opacity = .35);
-    await say(c.say(L(item)[1]));
+    await say(st.tx.say(L(item)[1]));
     lock = false;
     await wait(350);
+    done.push(st);
+  };
+  for (const cat of cats){
+    const st = stepOf(cat);
+    await choose(st);
+    if (st.color && cfg.g3color) await choose(colorStepOf(st.key, st.color, st.items));   // then its colour
   }
   // photo: it stays on the left side of the screen
   unpause(); hideFab();
-  opts.innerHTML = ''; ask.innerHTML = `<img alt="" src="${pic(7107)}"><h2>${t.photo}</h2>`;
+  opts.innerHTML = ''; ask.innerHTML = `${pimg(7107)}<h2>${t.photo}</h2>`;
   say(t.photo);
   const scene = game.querySelector('.scene');
   for (const num of [3,2,1]){ const c = document.createElement('div'); c.className = 'count'; c.innerHTML = `<span>${num}</span>`; scene.appendChild(c); sfx.pop(); await wait(900); c.remove(); }
@@ -1789,17 +2200,18 @@ async function game3(){
   av.remove();
   const qph = document.createElement('div'); qph.className = 'qphoto drop'; qph.innerHTML = polaroid(); left.insertBefore(qph, space);
   confetti(); sfx.yay();
-  await say(tt('photoNice')(cfg.name, gender()), tt('photoNice')('', gender()));
+  const who = charName(outfit.char) || cfg.name;
+  await say(tt('photoNice')(who, gender()), tt('photoNice')('', gender()));
   placeFab('g3');
   if (!cfg.g3q) { await wait(800); await sheetScreen(left, ask, opts); return; }
-  ask.innerHTML = `<img alt="" src="${pic(7107)}"><h2>${t.qintro}</h2>`;
+  ask.innerHTML = `${pimg(7107)}<h2>${t.qintro}</h2>`;
   await say(t.qintro);
-  for (const cat of cats){
-    const c = CL(cat), right = cat.items.find(i => i.id === outfit[cat.id]);
+  for (const st of done){
+    const right = st.items.find(i => i.id === outfit[st.key]);
     if (!right) continue;
-    const list = shuffle(pickOptions(cat, cfg.g3qopts, right));
+    const list = shuffle(pickOptions(st, cfg.g3qopts, right));
     ask.classList.remove('pop'); void ask.offsetWidth; ask.classList.add('pop');
-    ask.innerHTML = cat.subj.map(p => `<img alt="" src="${pic(p)}">`).join('') + `<h2>${c.q}</h2>`;
+    ask.innerHTML = `${pimg(st.subj)}<h2>${st.tx.q}</h2>`;
     opts.style.gridTemplateColumns = `repeat(${gridCols(list.length)},minmax(0,1fr))`;
     opts.innerHTML = '';
     const cards = list.map(item => {
@@ -1808,7 +2220,7 @@ async function game3(){
       el._item = item; opts.appendChild(el); return el;
     });
     autoPause();
-    sfx.pop(); say(c.q);
+    sfx.pop(); say(st.tx.q);
     let tries = 0, ok = false, live = cards.slice();
     while (!ok){
       const hit = await waitGaze(live);
@@ -1820,7 +2232,7 @@ async function game3(){
         qph.classList.remove('dance','pulse'); void qph.offsetWidth; qph.classList.add('dance');
         const r = qph.getBoundingClientRect();
         [[.2,.25],[.8,.3],[.5,.1],[.25,.75],[.75,.7]].forEach(([fx,fy], i) => setTimeout(() => burst(r.left + r.width*fx, r.top + r.height*fy, {n:18, shapes:['star'], speed:8}), i*160));
-        await say(t.yes + c.ok(L(right)[1]));
+        await say(t.yes + st.tx.ok(L(right)[1]));
         lock = false; await wait(300);
       } else {
         hit.classList.add('wrong'); sfx.soft();
@@ -1835,7 +2247,7 @@ async function game3(){
   await sheetScreen(left, ask, opts);
 }
 /* ---- Printable sheet: the photo + one sentence per choice, first person, capitals,
-   ARASAAC pictograms only on nouns, adjectives and verbs ---- */
+   ARASAAC pictograms (with their Fitzgerald colour) only on nouns, adjectives and verbs ---- */
 const ART = new Set(['un','una','unes','uns','el','la','els','les','los','las','unos','unas']);
 function phraseTokens(item, lang){            // "una cua" -> [UNA][CUA+picto]; "botes d'aigua" stays one unit with its picto
   const ph = (item[lang] || item.ca)[1].split(' ');
@@ -1844,11 +2256,22 @@ function phraseTokens(item, lang){            // "una cua" -> [UNA][CUA+picto]; 
   out.push({w:ph.join(' '), p:mainPic(item)});
   return out;
 }
+const P_WEAR = 6627;          // "vestir": the simplest, generic pictogram
 function sheetData(){
-  const es = cfg.lang === 'es', lg = es ? 'es' : 'ca', P_WEAR = 32135, P_BE = 5581, P_HAVE = 7271, P_PONY = 25800;
-  const wear = es ? 'llevo' : 'porto', my = es ? ['mi'] : ['el','meu'], be = es ? 'es' : 'és', have = es ? 'tiene' : 'té', pony = es ? 'poni' : 'pony';
+  const es = cfg.lang === 'es', lg = es ? 'es' : 'ca', P_BE = 5581, P_HAVE = 7271, P_PONY = 39198;
+  const wear = es ? 'llevo' : 'porto', my = es ? ['mi'] : ['el','meu'], be = es ? 'es' : 'és', have = es ? 'tiene' : 'té', pony = 'poni';
   const find = (list, id) => list.find(x => x.id === id);
   const on = id => cfg.g3cats.includes(id);
+  const CI = {m:1, f:2, mp:3, fp:4};
+  // "porto una samarreta rosa", "porto uns pantalons blaus", "porto un vestit rosa amb flors"
+  const garmentRow = (g, colorId, rest = [], noColor = false) => {
+    const gl = g[lg], words = gl[1].split(' '), art = words.shift();
+    const r = [{w:wear, p:P_WEAR}, {w:art}, {w:words.join(' '), p:g.p}];
+    const c = cfg.g3color && !noColor && find(COLORS, colorId);
+    if (c) r.push({w:c[lg][CI[gl[3]]], p:c.p});
+    rest.forEach(([w, p]) => r.push(p ? {w, p} : {w}));
+    return r;
+  };
   const rows = [];
   const hair = on('hair') && find(HAIR, outfit.hair);
   if (hair) {
@@ -1857,17 +2280,15 @@ function sheetData(){
       rows.push([{w:wear, p:P_WEAR}, {w:es ? 'el' : 'els'}, {w:es ? 'pelo' : 'cabells', p:2851}, {w:adj[0], p:adj[1]}]);
     } else rows.push([{w:wear, p:P_WEAR}, ...phraseTokens(hair, lg)]);
   }
-  // clothes + colour in one sentence, with the colour agreeing with the garment ("una samarreta negra")
-  const robe = on('roba') && find(OUTFITS, outfit.roba), clr = on('color') && find(COLORS, outfit.color);
-  if (robe) {
-    const sx = robe.sx[lg];
-    const r = [{w:wear, p:P_WEAR}, {w:sx.art}, {w:sx.n, p:mainPic(robe)}];
-    if (clr) r.push({w:clr[lg][sx.g === 'f' ? 2 : 1], p:clr.p});
-    sx.rest.forEach(([w, p]) => r.push(p ? {w, p} : {w}));
-    rows.push(r);
-  } else if (clr) rows.push([{w:es ? 'mi' : 'la'}, ...(es ? [] : [{w:'meva'}]), {w:es ? 'ropa' : 'roba', p:7233}, {w:be, p:P_BE}, {w:clr[lg][2], p:clr.p}]);
+  const top = find(TOPS, outfit.top) || TOPS[0], dress = top.id === 'vestit';
+  const pat = dress && on('bottom') && find(PATTERNS, outfit.pattern);
+  const patRest = pat ? (es ? pat.sxes : pat.sx) : [];
+  if (on('top')) rows.push(garmentRow(top, outfit.topColor, patRest, pat && pat.id === 'colors'));
+  else if (pat) rows.push([{w:wear, p:P_WEAR}, ...garmentRow(top, null, patRest, true).slice(1)]);
+  const bot = !dress && on('bottom') && find(BOTTOMS, outfit.bottom);
+  if (bot) rows.push(garmentRow(bot, outfit.bottomColor));
   const sh = on('shoes') && find(SHOES, outfit.shoes);
-  if (sh) rows.push([{w:wear, p:P_WEAR}, ...phraseTokens(sh, lg)]);
+  if (sh) rows.push(garmentRow(sh, outfit.shoesColor));
   const ac2 = on('acc') && find(ACC, outfit.acc);
   if (ac2) rows.push([{w:wear, p:P_WEAR}, ...phraseTokens(ac2, lg)]);
   const pc = on('pony') && find(COLORS, outfit.pony);
@@ -1876,21 +2297,21 @@ function sheetData(){
   if (stk) rows.push([...my.map(w => ({w})), {w:pony, p:P_PONY}, {w:have, p:P_HAVE}, ...phraseTokens(stk, lg)]);
   const up = w => w.toLocaleUpperCase(es ? 'es' : 'ca');
   rows.forEach(r => { r.forEach(t => t.w = up(t.w)); r[r.length - 1].w += '.'; });
-  const title = (ROCK()
-    ? (es ? [{w:'me'}, {w:'he'}, {w:'vestido', p:P_WEAR}, {w:'de'}, {w:'rock', p:38704}] : [{w:"m'he"}, {w:'vestit', p:P_WEAR}, {w:'de'}, {w:'rocker', p:38704}])
-    : (es ? [{w:'me'}, {w:'he'}, {w:'vestido', p:P_WEAR}, {w:'de'}, {w:'estrella', p:2752}] : [{w:"m'he"}, {w:'vestit', p:P_WEAR}, {w:"d'estrella", p:2752}])).map(t => ({...t, w:up(t.w)}));
+  const what = {pop:es ? ['de','estrella'] : ["d'estrella"], rock:es ? ['de','rock'] : ['de','rocker'], classica:['de','gala'], disco:['de','disco']}[MODE];
+  const title = [...(es ? [{w:'me'}, {w:'he'}, {w:'vestido', p:P_WEAR}] : [{w:"m'he"}, {w:'vestit', p:P_WEAR}]),
+    ...what.map((w, i) => i === what.length - 1 ? {w, p:TITLE_PIC[MODE]} : {w})].map(t => ({...t, w:up(t.w)}));
   return {title, rows};
 }
 function sheetHTML(d){
-  const tok = t => `<div class="tok">${t.p ? `<img alt="" src="${pic(t.p)}">` : ''}<span>${t.w}</span></div>`;
+  const tok = t => `<div class="tok">${t.p ? pimg(t.p) : ''}<span>${t.w}</span></div>`;
   return d.rows.map(r => `<div class="srow2">${r.map(tok).join('')}</div>`).join('');
 }
 function svgToPng(svg, w, h){
   return new Promise((res, rej) => {
     const url = URL.createObjectURL(new Blob([svg], {type:'image/svg+xml'})), im = new Image();
     im.onload = () => { const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
-      const g = x.createLinearGradient(0, 0, 0, h);
-      if (ROCK()) { g.addColorStop(0, '#4a0f26'); g.addColorStop(1, '#2a1442'); } else { g.addColorStop(0, '#ff9ccc'); g.addColorStop(1, '#c9a4ff'); }
+      const g = x.createLinearGradient(0, 0, 0, h), bg = PHOTO_BG[MODE];
+      g.addColorStop(0, bg[0]); g.addColorStop(1, bg[1]);
       x.fillStyle = g; x.fillRect(0, 0, w, h);
       x.fillStyle = 'rgba(255,255,255,.9)'; [[.15,.12],[.82,.18],[.5,.06],[.1,.5],[.9,.55]].forEach(([a,b]) => { x.beginPath(); x.arc(a*w, b*h, w*.012, 0, 7); x.fill(); });
       const s = Math.min(w / im.width, h / im.height) * .96; x.drawImage(im, (w - im.width*s)/2, h - im.height*s - h*.02, im.width*s, im.height*s);
@@ -1904,6 +2325,7 @@ function flatPic(id){   // pictograms on a white background (PNG transparency pr
     const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0); res(c.toDataURL('image/jpeg', 0.92)); };
     im.onerror = () => res(pic(id)); im.src = pic(id); });
 }
+const rgb = hex => [1,3,5].map(i => parseInt(hex.slice(i, i + 2), 16));
 async function makePdf(){
   const d = sheetData(), es = cfg.lang === 'es';
   const flat = {};
@@ -1911,7 +2333,7 @@ async function makePdf(){
   const doc = new window.jspdf.jsPDF({unit:'mm', format:'a4'});
   const W = 210, M = 14, PL_RGB = [74,35,72];
   const pt2mm = pt => pt * 0.3528;
-  // one row of words, each with its pictogram above (AraWord style); wraps if needed
+  // one row of words, each with its pictogram above (AraWord style) in a frame of its Fitzgerald colour; wraps if needed
   const row = (toks, y, ps, fs, center, x0 = M, width = W - 2*M) => {
     doc.setFont('helvetica', 'bold'); doc.setFontSize(fs);
     const cells = toks.map(t => ({t, w:Math.max(t.p ? ps : 0, doc.getTextWidth(t.w)) + 3}));
@@ -1922,7 +2344,7 @@ async function makePdf(){
       for (const c of ln){
         if (c.t.p) {
           doc.addImage(flat[c.t.p], 'JPEG', x + (c.w - ps) / 2, y, ps, ps, 'p' + c.t.p);
-          doc.setDrawColor(...PL_RGB); doc.setLineWidth(0.3); doc.roundedRect(x + (c.w - ps) / 2, y, ps, ps, 1.5, 1.5, 'S');
+          doc.setDrawColor(...rgb(fzCol(c.t.p))); doc.setLineWidth(Math.max(0.6, ps * 0.05)); doc.roundedRect(x + (c.w - ps) / 2, y, ps, ps, 1.5, 1.5, 'S');
         }
         doc.setTextColor(...PL_RGB); doc.text(c.t.w, x + c.w / 2, y + ps + 1.5 + pt2mm(fs) * 0.8, {align:'center'});
         x += c.w;
@@ -1936,20 +2358,22 @@ async function makePdf(){
   const date = new Date().toLocaleDateString(es ? 'es-ES' : 'ca-ES', {day:'numeric', month:'long', year:'numeric'});
   doc.text((cfg.name ? cfg.name + '  ·  ' : '') + date, W - M, y + 2, {align:'right'});
   y = row(d.title, y + 5, 16, 18, true);
-  // photo on the left, sentences on the right
-  const ph = await svgToPng(girlSVG(outfit, {pose:'wave', vb:'20 -10 260 450'}), 600, 840);
-  const pw = 60, phh = pw * 840 / 600, px = M + 3, top = y + 4;
+  // photo on the left (sitting in the wheelchair, with the walker beside), sentences on the right
+  const ph = await svgToPng(girlSVG(outfit, {seat:true, pose:'wave', vb:'0 -10 440 450'}), 880, 900);
+  const pw = 58, phh = pw * 900 / 880, px = M + 3, top = y + 4;
   doc.setFillColor(255,255,255); doc.setDrawColor(...PL_RGB); doc.setLineWidth(0.5); doc.roundedRect(px - 3, top, pw + 6, phh + 12, 2, 2, 'FD');
   doc.addImage(ph, 'PNG', px, top + 3, pw, phh, 'photo');
   doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(224,51,138);
-  doc.text('* ' + (cfg.name || tt('star')).toLocaleUpperCase(es ? 'es' : 'ca') + ' *', px + pw / 2, top + phh + 9, {align:'center'});
-  const cx = px + pw + 10, cw = W - M - cx, avail = 297 - 16 - top;
+  doc.text('* ' + (charName(outfit.char) || cfg.name || tt('star')).toLocaleUpperCase(es ? 'es' : 'ca') + ' *', px + pw / 2, top + phh + 9, {align:'center'});
+  const cx = px + pw + 9, cw = W - M - cx, avail = 297 - 16 - top;
   let picSize = 20, fs = 14;
   row.measure = (toks, yy, ps, f, width) => { doc.setFont('helvetica', 'bold'); doc.setFontSize(f); let n = 1, lw = 0;
     for (const t of toks){ const w = Math.max(t.p ? ps : 0, doc.getTextWidth(t.w)) + 3; if (lw + w > width && lw) { n++; lw = 0; } lw += w; }
     return yy + n * (ps + 3 + pt2mm(f) + 4); };
   const height = () => { let yy = 0; for (const r of d.rows) yy = row.measure(r, yy, picSize, fs, cw); return yy; };
-  while (height() > avail && picSize > 11) { picSize -= 1; if (picSize < 16) fs = 12; }
+  const one = picSize => picSize + 3 + pt2mm(fs) + 4;          // height of a sentence that fits in one line
+  const wraps = () => d.rows.some(r => row.measure(r, 0, picSize, fs, cw) > one(picSize) + .01);
+  while ((height() > avail || wraps()) && picSize > 13) { picSize -= 1; if (picSize < 17) fs = 12; }
   y = top;
   for (const r of d.rows) y = row(r, y, picSize, fs, false, cx, cw);
   doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(120,100,120);
@@ -1960,7 +2384,7 @@ async function makePdf(){
 async function sheetScreen(left, ask, opts){
   const t = T(), d = sheetData();
   ask.classList.remove('pop'); void ask.offsetWidth; ask.classList.add('pop');
-  ask.innerHTML = `<img alt="" src="${pic(7107)}"><h2>${t.sheetSay}</h2>`;
+  ask.innerHTML = `${pimg(7107)}<h2>${t.sheetSay}</h2>`;
   opts.style.gridTemplateColumns = '1fr'; opts.style.gridAutoRows = 'auto';
   opts.style.gridTemplateRows = 'minmax(0,1fr) auto';
   opts.innerHTML = `<div class="sheetprev">${sheetHTML(d)}</div><div class="sheetbar"><button class="pdfbtn" type="button" id="pdfBtn">${t.sheetPdf}</button><span class="sheetmsg" id="pdfMsg"></span></div>`;
@@ -1978,19 +2402,20 @@ async function sheetScreen(left, ask, opts){
   opts.style.gridTemplateRows = ''; opts.style.gridAutoRows = '';
 }
 function polaroid(){
-  return `<div class="polaroid"><div class="ph">${girlSVG(outfit, {pose:'wave', vb:'20 -10 260 450'})}</div><div class="cap">★ ${cfg.name || tt('star')} ★</div></div>`;
+  return `<div class="polaroid"><div class="ph">${girlSVG(outfit, {seat:true, pose:'wave', vb:'0 -10 440 450'})}</div><div class="cap">★ ${charName(outfit.char) || cfg.name || tt('star')} ★</div></div>`;
 }
 
 /* every Catalan sentence the game speaks (used to pre-record the built-in Catalan voice) */
 function phrasesCa(){
   const t = TXT.ca, P = new Set(), add = x => P.add(x);
   add(t.helloSay('')); add(t.g1intro); t.g1more.forEach(add); for (let n=1;n<=20;n++) add(t.g1end(n,''));
-  add(t.g2intro); STAGE.forEach(it => { add(t.g2find(it.ca[1])); add(t.g2found(it.ca[1])); }); [t.g2show, t.g2showR, t.bravo, t.bravoR].forEach(add);
-  [t.g3intro, t.g3introR].forEach(add);
-  CATS.forEach(c => { add(c.ca.choose); add(c.ca.q); c.items.forEach(it => { add(c.ca.say(it.ca[1])); add(t.yes + c.ca.ok(it.ca[1])); }); });
-  ['f','m'].forEach(g => { add(t.photoNice('', g)); add(t.photoNiceR('', g)); });
-  [t.photo, t.qintro, t.look, t.qend, t.sheetSay, t.pauseOn, t.pauseOff, t.bye, t.modeQ, t.modeSayA, t.modeSayR, t.charQ].forEach(add);
-  Object.values(t.chars).forEach(x => add(x + '!'));
+  add(t.g2intro); Object.values(t.g2cat).forEach(add); STAGE.forEach(it => { add(t.g2find(it.ca[1])); add(t.g2found(it.ca[1])); });
+  STYLES.forEach(s => { const k = SUF[s]; [t['g2show' + k], t['bravo' + k], t['g3intro' + k]].forEach(add); ['f','m'].forEach(g => add(t['photoNice' + k]('', g))); add(t.modeSay[s]); });
+  [...CATS, PATSTEP].forEach(c => { add(c.ca.choose); add(c.ca.q); c.items.forEach(it => { add(c.ca.say(it.ca[1])); add(t.yes + c.ca.ok(it.ca[1])); }); });
+  CATS.filter(c => c.color).forEach(c => c.items.forEach(g => { add(t.colChoose(g.ca[2])); add(t.colQ(g.ca[2], /p$/.test(g.ca[3]))); }));
+  COLORS.forEach(c => { add(t.colSay(c.ca[1])); add(t.yes + t.colOk(c.ca[1])); });
+  [t.photo, t.qintro, t.look, t.qend, t.sheetSay, t.bye, t.modeQ, t.charQ, t.charOk].forEach(add);
+  Object.values(t.chars).forEach(x => add(t.charHi(x)));
   return [...P].map(x => x.trim());
 }
 
@@ -2018,8 +2443,8 @@ function fillVoiceSelect(){
   $('#voiceInfo').textContent = cfg.voiceName === '__ona_dl' ? (cfg.lang === 'ca' ? "Ona descarregada: diu totes les frases, també el nom de l'alumne/a." : "Ona només parla català: en castellà es fa servir la veu de l'ordinador.") : cfg.voiceName === '__ona' ? (cfg.lang === 'ca' ? "Veu catalana gravada dins del joc: no cal instal·lar res (no diu el nom de l'alumne/a)." : "La veu gravada només parla català: en castellà es fa servir la veu de l'ordinador.") : hasCa ? 'Hi ha veu en català en aquest ordinador.' : "No s'ha trobat veu en català a l'ordinador: es farà servir una veu castellana.";
 }
 function buildSettings(){
-  $('#g2Checks').innerHTML = '<b style="width:100%">Vocabulari a l\'escenari:</b>' + Object.entries(G2GROUPS).map(([id, g]) => `<label class="chk"><input type="checkbox" id="g2-${id}" data-k="g2groups" data-v="${id}"> ${g.name}</label>`).join('');
-  $('#catChecks').innerHTML = '<b style="width:100%">Què pot triar:</b>' + CATS.map(c => `<label class="chk"><input type="checkbox" id="cat-${c.id}" data-k="g3cats" data-v="${c.id}"> ${c.ca.name}</label>`).join('');
+  $('#g2Checks').innerHTML = '<b style="width:100%">Vocabulari a l\'escenari (a cada partida, tots els pictogrames són d\'un d\'aquests grups):</b>' + Object.entries(G2GROUPS).map(([id, g]) => `<label class="chk"><input type="checkbox" id="g2-${id}" data-k="g2groups" data-v="${id}"> ${g.name}</label>`).join('');
+  $('#catChecks').innerHTML = '<b style="width:100%">Què pot triar (en aquest ordre):</b>' + CATS.map(c => `<label class="chk"><input type="checkbox" id="cat-${c.id}" data-k="g3cats" data-v="${c.id}"> ${c.ca.name}</label>`).join('');
   document.querySelectorAll('#settings [data-k]').forEach(inp => {
     const k = inp.dataset.k;
     const sync = () => {
@@ -2065,14 +2490,14 @@ function toggleFS(){
 function idb(){ return new Promise((res, rej) => { try { const r = indexedDB.open('miraBrilla', 1); r.onupgradeneeded = () => r.result.createObjectStore('files'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch(e) { rej(e); } }); }
 async function fileSet(key, blob){ try { const db = await idb(); const tx = db.transaction('files','readwrite'); blob ? tx.objectStore('files').put(blob, key) : tx.objectStore('files').delete(key); } catch(e) {} }
 async function fileGet(key){ try { const db = await idb(); return await new Promise(res => { const r = db.transaction('files').objectStore('files').get(key); r.onsuccess = () => res(r.result || null); r.onerror = () => res(null); }); } catch(e) { return null; } }
-// one song and one photo for each mode
-const FILES = {
-  song:      {input:'#songFile', info:'#songInfo', none:'Sense cançó: sona una melodia del joc.', ok:'Cançó carregada: ', set:u => songURL = u, get:() => songURL},
-  photo:     {input:'#photoFile', info:'#photoInfo', none:'Sense foto.', ok:'Foto carregada: ', set:u => photoURL = u, get:() => photoURL},
-  songRock:  {input:'#songRockFile', info:'#songRockInfo', none:'Sense cançó: sona un riff de rock del joc.', ok:'Cançó carregada: ', set:u => songRockURL = u, get:() => songRockURL},
-  photoRock: {input:'#photoRockFile', info:'#photoRockInfo', none:'Sense foto.', ok:'Foto carregada: ', set:u => photoRockURL = u, get:() => photoRockURL},
-};
-function setFile(key, blob, name){ const f = FILES[key]; if (f.get()) URL.revokeObjectURL(f.get()); f.set(blob ? URL.createObjectURL(blob) : null); $(f.info).textContent = blob ? f.ok + (name || blob.name || '') : f.none; }
+// one song and one photo for each style
+const FILES = {};
+$('#mediaBox').innerHTML = STYLES.map(st => { const k = MKEY[st], n = TXT.ca.modes[st];
+  FILES['song' + k] = {input:'#song' + k + 'File', info:'#song' + k + 'Info', none:'Sense cançó: sona la música del joc.', ok:'Cançó carregada: '};
+  FILES['photo' + k] = {input:'#photo' + k + 'File', info:'#photo' + k + 'Info', none:'Sense foto.', ok:'Foto carregada: '};
+  return `<label>Cançó per al concert · ${n}<input type="file" id="song${k}File" accept="audio/*"><small id="song${k}Info">Sense cançó: sona la música del joc.</small></label>`
+       + `<label>Foto per a la pantalla del concert · ${n}<input type="file" id="photo${k}File" accept="image/*"><small id="photo${k}Info">Sense foto.</small></label>`; }).join('');
+function setFile(key, blob, name){ const f = FILES[key]; if (MEDIA[key]) URL.revokeObjectURL(MEDIA[key]); MEDIA[key] = blob ? URL.createObjectURL(blob) : null; $(f.info).textContent = blob ? f.ok + (name || blob.name || '') : f.none; }
 Object.keys(FILES).forEach(key => {
   $(FILES[key].input).addEventListener('change', e => { const f = e.target.files[0]; if (f) { setFile(key, f, f.name); fileSet(key, f); } });
   fileGet(key).then(b => b && setFile(key, b, b.name));
@@ -2080,7 +2505,7 @@ Object.keys(FILES).forEach(key => {
 $('#clearFiles').addEventListener('click', () => { Object.keys(FILES).forEach(key => { setFile(key, null); fileSet(key, null); $(FILES[key].input).value = ''; }); });
 
 /* =====================  START  ===================== */
-buildSettings(); applyCfg(); pvCheck(); applyMode('aitana'); drawFab();
+buildSettings(); applyCfg(); pvCheck(); applyMode('pop'); drawFab();
 $('#splashGirl').innerHTML = girlSVG(outfit, {pose:'wave'});
 $('#splashFloats').innerHTML = floats(14);
 $('#startBtn').textContent = T().start;
